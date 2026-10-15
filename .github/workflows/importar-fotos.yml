@@ -11,6 +11,11 @@ permissions:
   contents: write
   actions: write
 
+# Nunca dos importaciones a la vez sobre la misma rama
+concurrency:
+  group: importar-fotos-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   importar:
     runs-on: ubuntu-latest
