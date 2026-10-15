@@ -1,5 +1,1675 @@
 {
-  "generado": null,
-  "origen": "https://www.cocinascma.com",
-  "fotos": []
+  "generado": "2026-10-15T20:36:17.948Z",
+  "origen": "https://cocinascma.com/",
+  "fotos": [
+    {
+      "id": "cocina1",
+      "archivo": "web-actual/imagenes_cocinas/cocina1.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina1.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina2",
+      "archivo": "web-actual/imagenes_cocinas/cocina2.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina2.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina3",
+      "archivo": "web-actual/imagenes_cocinas/cocina3.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina3.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina4",
+      "archivo": "web-actual/imagenes_cocinas/cocina4.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina4.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina5",
+      "archivo": "web-actual/imagenes_cocinas/cocina5.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina5.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina6",
+      "archivo": "web-actual/imagenes_cocinas/cocina6.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina6.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "contexto": [
+        "¡NOVEDAD!",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-y-venta.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina7",
+      "archivo": "web-actual/imagenes_cocinas/cocina7.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina7.jpg",
+      "miniatura": null,
+      "ancho": 300,
+      "alto": 120,
+      "paginas": [
+        "https://cocinascma.com/",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_45.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_51.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_44.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_46.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_53.php",
+        "https://cocinascma.com/actual_dp_49.php",
+        "https://cocinascma.com/actual_dp_47.php",
+        "https://cocinascma.com/actual_dp_50.php",
+        "https://cocinascma.com/actual_dp_52.php",
+        "https://cocinascma.com/actual_dp_30.php",
+        "https://cocinascma.com/actual_dp_24.php",
+        "https://cocinascma.com/actual_dp_48.php",
+        "https://cocinascma.com/actual_dp_11.php",
+        "https://cocinascma.com/actual_dp_35.php",
+        "https://cocinascma.com/actual_dp_12.php",
+        "https://cocinascma.com/encimeras__dp_43.php",
+        "https://cocinascma.com/encimeras__dp_42.php",
+        "https://cocinascma.com/encimeras__dp_38.php",
+        "https://cocinascma.com/encimeras__dp_40.php",
+        "https://cocinascma.com/encimeras__dp_41.php",
+        "https://cocinascma.com/encimeras__dp_39.php",
+        "https://cocinascma.com/impresiones_digitales._dp_33.php",
+        "https://cocinascma.com/moderno_dp_9.php",
+        "https://cocinascma.com/moderno_dp_19.php",
+        "https://cocinascma.com/moderno_dp_18.php",
+        "https://cocinascma.com/moderno_dp_17.php",
+        "https://cocinascma.com/moderno_dp_31.php",
+        "https://cocinascma.com/moderno_dp_7.php",
+        "https://cocinascma.com/moderno_dp_14.php",
+        "https://cocinascma.com/moderno_dp_16.php",
+        "https://cocinascma.com/moderno_dp_36.php",
+        "https://cocinascma.com/moderno_dp_15.php",
+        "https://cocinascma.com/moderno_dp_32.php",
+        "https://cocinascma.com/moderno_dp_5.php",
+        "https://cocinascma.com/moderno_dp_10.php",
+        "https://cocinascma.com/moderno_dp_13.php",
+        "https://cocinascma.com/moderno_dp_6.php",
+        "https://cocinascma.com/moderno_dp_8.php",
+        "https://cocinascma.com/moderno_dp_20.php",
+        "https://cocinascma.com/moderno_dp_4.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_21.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_23.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_22.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_29.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_28.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_25.php",
+        "https://cocinascma.com/r%C3%BAstico_dp_26.php"
+      ],
+      "contexto": [
+        "Fabricación propia",
+        "Disponemos de unas modernas instalaciones con un personal altamente cualificado y maquinaria de última generación para brindar de gran calid",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "Te ayudamos a encontrar la cocina de tus sueños, sólo imagínala",
+        "https://cocinascma.com/",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_45.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_51.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_44.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_46.php",
+        "https://cocinascma.com/a._ultimos_trabajos_dp_53.php",
+        "https://cocinascma.com/actual_dp_49.php",
+        "https://cocinascma.com/actual_dp_47.php"
+      ],
+      "estilos": [
+        "moderno",
+        "ultimos-trabajos",
+        "encimeras",
+        "impresion-aluminio"
+      ],
+      "acabados": [
+        "impresion-digital"
+      ],
+      "titulo": "",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "cocina8",
+      "archivo": "web-actual/imagenes_cocinas/cocina8.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/cocina8.jpg",
+      "miniatura": null,
+      "ancho": 435,
+      "alto": 130,
+      "paginas": [
+        "https://cocinascma.com/contacto.php"
+      ],
+      "contexto": [
+        "Contacte con nosotros",
+        "Si desea información contacte con nosotros. Relleno nuestro formulario de contacto. Nombre :",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/contacto.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-11235739",
+      "archivo": "web-actual/imagenes_cocinas/gr-11235739.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_11235739.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_11235739.jpg",
+      "ancho": 800,
+      "alto": 516,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Madera",
+        "Rústico-Madera Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "madera"
+      ],
+      "titulo": "Rústico-Madera",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-97648487",
+      "archivo": "web-actual/imagenes_cocinas/gr-97648487.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_97648487.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_97648487.jpg",
+      "ancho": 498,
+      "alto": 305,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Polilaminado con gola",
+        "Moderno-Polilaminado",
+        "Moderno-Polilaminado con gola Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "polilaminado"
+      ],
+      "titulo": "Moderno-Polilaminado con gola",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-98050884",
+      "archivo": "web-actual/imagenes_cocinas/gr-98050884.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_98050884.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_98050884.jpg",
+      "ancho": 800,
+      "alto": 648,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Madera",
+        "Moderno-Polilaminado con gola",
+        "Rústico-Madera Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno",
+        "rustico"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "madera",
+        "polilaminado"
+      ],
+      "titulo": "Rústico-Madera",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-106854494",
+      "archivo": "web-actual/imagenes_cocinas/gr-106854494.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_106854494.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_106854494.jpg",
+      "ancho": 800,
+      "alto": 533,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Laca texturizada",
+        "Moderno-Laca brillo",
+        "Moderno-Laca texturizada Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "laca-brillo",
+        "laca-texturizada"
+      ],
+      "titulo": "Moderno-Laca texturizada",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-125679013",
+      "archivo": "web-actual/imagenes_cocinas/gr-125679013.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_125679013.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_125679013.jpg",
+      "ancho": 800,
+      "alto": 488,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Madera con uñero",
+        "Moderno-Luxe",
+        "Moderno-Madera con uñero Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "madera",
+        "luxe"
+      ],
+      "titulo": "Moderno-Madera con uñero",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-159807047",
+      "archivo": "web-actual/imagenes_cocinas/gr-159807047.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_159807047.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_159807047.jpg",
+      "ancho": 800,
+      "alto": 532,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Estractificado matrix",
+        "Moderno-Cristal con uñero",
+        "Moderno-Estractificado matrix Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "madera",
+        "estratificado"
+      ],
+      "titulo": "Moderno-Estractificado matrix",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-168830883",
+      "archivo": "web-actual/imagenes_cocinas/gr-168830883.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_168830883.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_168830883.jpg",
+      "ancho": 800,
+      "alto": 738,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Coleccion Alpicord",
+        "Moderno-Coleccion Alpicord Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "alpicord"
+      ],
+      "titulo": "Moderno-Coleccion Alpicord",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-184896135",
+      "archivo": "web-actual/imagenes_cocinas/gr-184896135.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_184896135.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_184896135.jpg",
+      "ancho": 640,
+      "alto": 478,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Cristal con gola",
+        "Moderno-Cristal",
+        "Moderno-Cristal con gola Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "cristal-gola"
+      ],
+      "titulo": "Moderno-Cristal con gola",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-236499926",
+      "archivo": "web-actual/imagenes_cocinas/gr-236499926.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_236499926.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_236499926.jpg",
+      "ancho": 800,
+      "alto": 533,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Polilaminado",
+        "Moderno-Madera con uñero",
+        "Moderno-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "madera",
+        "polilaminado"
+      ],
+      "titulo": "Moderno-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-244732913",
+      "archivo": "web-actual/imagenes_cocinas/gr-244732913.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_244732913.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_244732913.jpg",
+      "ancho": 800,
+      "alto": 525,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Madera",
+        "Actual-Luxe",
+        "Actual-Madera Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "madera",
+        "luxe"
+      ],
+      "titulo": "Actual-Madera",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-298083162",
+      "archivo": "web-actual/imagenes_cocinas/gr-298083162.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_298083162.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_298083162.jpg",
+      "ancho": 800,
+      "alto": 1019,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Polilaminado",
+        "Moderno-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Moderno-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-312839595",
+      "archivo": "web-actual/imagenes_cocinas/gr-312839595.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_312839595.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_312839595.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Luxe",
+        "Actual-Luxe Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "luxe"
+      ],
+      "titulo": "Actual-Luxe",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-313364354",
+      "archivo": "web-actual/imagenes_cocinas/gr-313364354.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_313364354.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_313364354.jpg",
+      "ancho": 800,
+      "alto": 525,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Estractificado matrix",
+        "Moderno-Estractificado matrix Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "estratificado"
+      ],
+      "titulo": "Moderno-Estractificado matrix",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-401845408",
+      "archivo": "web-actual/imagenes_cocinas/gr-401845408.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_401845408.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_401845408.jpg",
+      "ancho": 800,
+      "alto": 558,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Acrilico alto brillo",
+        "Impresiones digitales.-Perfileria de aluminio.",
+        "Moderno-Acrilico alto brillo Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno",
+        "impresion-aluminio"
+      ],
+      "acabados": [
+        "acrilico",
+        "impresion-digital",
+        "aluminio"
+      ],
+      "titulo": "Moderno-Acrilico alto brillo",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-412045166",
+      "archivo": "web-actual/imagenes_cocinas/gr-412045166.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_412045166.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_412045166.jpg",
+      "ancho": 800,
+      "alto": 593,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Polilaminado",
+        "Actual-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Actual-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-421009707",
+      "archivo": "web-actual/imagenes_cocinas/gr-421009707.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_421009707.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_421009707.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Polilaminado",
+        "Actual-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Actual-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-568834943",
+      "archivo": "web-actual/imagenes_cocinas/gr-568834943.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_568834943.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_568834943.jpg",
+      "ancho": 800,
+      "alto": 597,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Luxe",
+        "Moderno-Laca texturizada",
+        "Moderno-Luxe Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "laca-texturizada",
+        "luxe"
+      ],
+      "titulo": "Moderno-Luxe",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-600278998",
+      "archivo": "web-actual/imagenes_cocinas/gr-600278998.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_600278998.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_600278998.jpg",
+      "ancho": 800,
+      "alto": 562,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Cristal con uñero",
+        "Moderno-Cristal con gola",
+        "Moderno-Cristal con uñero Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "madera"
+      ],
+      "titulo": "Moderno-Cristal con uñero",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-604072686",
+      "archivo": "web-actual/imagenes_cocinas/gr-604072686.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_604072686.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_604072686.jpg",
+      "ancho": 400,
+      "alto": 285,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Polilaminado",
+        "Moderno-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Moderno-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-694726461",
+      "archivo": "web-actual/imagenes_cocinas/gr-694726461.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_694726461.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_694726461.jpg",
+      "ancho": 800,
+      "alto": 583,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Coleccion Alpicord",
+        "Moderno-Acrilico alto brillo",
+        "Moderno-Coleccion Alpicord Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "acrilico",
+        "alpicord"
+      ],
+      "titulo": "Moderno-Coleccion Alpicord",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-721925123",
+      "archivo": "web-actual/imagenes_cocinas/gr-721925123.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_721925123.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_721925123.jpg",
+      "ancho": 620,
+      "alto": 362,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Luxe",
+        "Moderno-Luxe Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "luxe"
+      ],
+      "titulo": "Moderno-Luxe",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-744763509",
+      "archivo": "web-actual/imagenes_cocinas/gr-744763509.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_744763509.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_744763509.jpg",
+      "ancho": 800,
+      "alto": 566,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Polilaminado",
+        "Actual-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Actual-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-912201119",
+      "archivo": "web-actual/imagenes_cocinas/gr-912201119.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_912201119.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_912201119.jpg",
+      "ancho": 800,
+      "alto": 533,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Madera",
+        "Rústico-Madera Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "madera"
+      ],
+      "titulo": "Rústico-Madera",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-946188929",
+      "archivo": "web-actual/imagenes_cocinas/gr-946188929.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_946188929.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_946188929.jpg",
+      "ancho": 760,
+      "alto": 768,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Polilaminado",
+        "Rústico-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Rústico-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-961267144",
+      "archivo": "web-actual/imagenes_cocinas/gr-961267144.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_961267144.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_961267144.jpg",
+      "ancho": 800,
+      "alto": 595,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Polilaminado",
+        "Moderno-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Moderno-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1166136652",
+      "archivo": "web-actual/imagenes_cocinas/gr-1166136652.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1166136652.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1166136652.jpg",
+      "ancho": 800,
+      "alto": 501,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Cristal",
+        "Moderno-Coleccion Alpicord",
+        "Moderno-Cristal Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "alpicord"
+      ],
+      "titulo": "Moderno-Cristal",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1186853860",
+      "archivo": "web-actual/imagenes_cocinas/gr-1186853860.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1186853860.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1186853860.jpg",
+      "ancho": 800,
+      "alto": 657,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Polilaminado",
+        "Rústico-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Rústico-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1306917579",
+      "archivo": "web-actual/imagenes_cocinas/gr-1306917579.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1306917579.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1306917579.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Moderno-Laca brillo",
+        "Moderno-Estractificado matrix",
+        "Moderno-Laca brillo Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "moderno"
+      ],
+      "acabados": [
+        "laca-brillo",
+        "estratificado"
+      ],
+      "titulo": "Moderno-Laca brillo",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1355612061",
+      "archivo": "web-actual/imagenes_cocinas/gr-1355612061.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1355612061.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1355612061.jpg",
+      "ancho": 800,
+      "alto": 769,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Polilaminado",
+        "Rústico-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "polilaminado"
+      ],
+      "titulo": "Rústico-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1373080119",
+      "archivo": "web-actual/imagenes_cocinas/gr-1373080119.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1373080119.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1373080119.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Impresiones digitales.-Perfileria de aluminio.",
+        "Encimeras -Neolith",
+        "Impresiones digitales.-Perfileria de aluminio. Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras",
+        "impresion-aluminio"
+      ],
+      "acabados": [
+        "neolith",
+        "impresion-digital",
+        "aluminio"
+      ],
+      "titulo": "Impresiones digitales.-Perfileria de aluminio.",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1542370123",
+      "archivo": "web-actual/imagenes_cocinas/gr-1542370123.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1542370123.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1542370123.jpg",
+      "ancho": 640,
+      "alto": 480,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Rústico-Polilaminado",
+        "Rústico-Madera",
+        "Rústico-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "rustico"
+      ],
+      "acabados": [
+        "madera",
+        "polilaminado"
+      ],
+      "titulo": "Rústico-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-1097437599673867",
+      "archivo": "web-actual/imagenes_cocinas/gr-1097437599673867.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_1097437599673867.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_1097437599673867.jpg",
+      "ancho": 800,
+      "alto": 597,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras"
+      ],
+      "acabados": [
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-6028836593031883",
+      "archivo": "web-actual/imagenes_cocinas/gr-6028836593031883.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_6028836593031883.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_6028836593031883.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Polilaminado",
+        "Actual-Madera",
+        "Actual-Polilaminado Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "madera",
+        "polilaminado"
+      ],
+      "titulo": "Actual-Polilaminado",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-9984299028292298",
+      "archivo": "web-actual/imagenes_cocinas/gr-9984299028292298.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_9984299028292298.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_9984299028292298.jpg",
+      "ancho": 800,
+      "alto": 597,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Actual-Polilaminado",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual",
+        "encimeras"
+      ],
+      "acabados": [
+        "polilaminado",
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-12350719980895520",
+      "archivo": "web-actual/imagenes_cocinas/gr-12350719980895520.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_12350719980895520.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_12350719980895520.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "A. Ultimos trabajos-Estractificado matrix",
+        "A. Ultimos trabajos-Cristal con gola",
+        "A. Ultimos trabajos-Estractificado matrix Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "estratificado"
+      ],
+      "titulo": "A. Ultimos trabajos-Estractificado matrix",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-24925509793683888",
+      "archivo": "web-actual/imagenes_cocinas/gr-24925509793683888.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_24925509793683888.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_24925509793683888.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Luxe",
+        "Actual-Laminado mate",
+        "Actual-Luxe Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "laminado-mate",
+        "luxe"
+      ],
+      "titulo": "Actual-Luxe",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-26984347868710756",
+      "archivo": "web-actual/imagenes_cocinas/gr-26984347868710756.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_26984347868710756.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_26984347868710756.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Cristal con gola",
+        "Actual-Cristal con gola Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "cristal-gola"
+      ],
+      "titulo": "Actual-Cristal con gola",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-27306379377841948",
+      "archivo": "web-actual/imagenes_cocinas/gr-27306379377841948.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_27306379377841948.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_27306379377841948.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "A. Ultimos trabajos-Madera con uñero",
+        "A. Ultimos trabajos-Laca brillo",
+        "A. Ultimos trabajos-Madera con uñero Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "laca-brillo",
+        "madera"
+      ],
+      "titulo": "A. Ultimos trabajos-Madera con uñero",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-28612705552950500",
+      "archivo": "web-actual/imagenes_cocinas/gr-28612705552950500.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_28612705552950500.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_28612705552950500.jpg",
+      "ancho": 800,
+      "alto": 597,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras"
+      ],
+      "acabados": [
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-41032107640057800",
+      "archivo": "web-actual/imagenes_cocinas/gr-41032107640057800.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_41032107640057800.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_41032107640057800.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "A. Ultimos trabajos-Laca brillo",
+        "A. Ultimos trabajos-Estractificado matrix",
+        "A. Ultimos trabajos-Laca brillo Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "laca-brillo",
+        "estratificado"
+      ],
+      "titulo": "A. Ultimos trabajos-Laca brillo",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-42312078922986984",
+      "archivo": "web-actual/imagenes_cocinas/gr-42312078922986984.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_42312078922986984.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_42312078922986984.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras"
+      ],
+      "acabados": [
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-56433058064430952",
+      "archivo": "web-actual/imagenes_cocinas/gr-56433058064430952.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_56433058064430952.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_56433058064430952.jpg",
+      "ancho": 640,
+      "alto": 478,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras"
+      ],
+      "acabados": [
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-57539567537605760",
+      "archivo": "web-actual/imagenes_cocinas/gr-57539567537605760.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_57539567537605760.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_57539567537605760.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Encimeras -Neolith",
+        "Encimeras -Neolith Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "encimeras"
+      ],
+      "acabados": [
+        "neolith"
+      ],
+      "titulo": "Encimeras -Neolith",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-59145935764536264",
+      "archivo": "web-actual/imagenes_cocinas/gr-59145935764536264.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_59145935764536264.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_59145935764536264.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Cristal con gola",
+        "A. Ultimos trabajos-Madera con uñero",
+        "Actual-Cristal con gola Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual",
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "madera"
+      ],
+      "titulo": "Actual-Cristal con gola",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-94320150325074784",
+      "archivo": "web-actual/imagenes_cocinas/gr-94320150325074784.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_94320150325074784.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_94320150325074784.jpg",
+      "ancho": 800,
+      "alto": 1066,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "A. Ultimos trabajos-Cristal con gola",
+        "Exposición virtual",
+        "A. Ultimos trabajos-Cristal con gola Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "cristal-gola"
+      ],
+      "titulo": "A. Ultimos trabajos-Cristal con gola",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-96576749160885808",
+      "archivo": "web-actual/imagenes_cocinas/gr-96576749160885808.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_96576749160885808.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_96576749160885808.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "A. Ultimos trabajos-Laca brillo",
+        "A. Ultimos trabajos-Laca brillo Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "ultimos-trabajos"
+      ],
+      "acabados": [
+        "laca-brillo"
+      ],
+      "titulo": "A. Ultimos trabajos-Laca brillo",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "gr-97351639531552784",
+      "archivo": "web-actual/imagenes_cocinas/gr-97351639531552784.jpg",
+      "origen": "https://cocinascma.com/imagenes_cocinas/gr_97351639531552784.jpg",
+      "miniatura": "https://cocinascma.com/imagenes_cocinas/pq_97351639531552784.jpg",
+      "ancho": 800,
+      "alto": 600,
+      "paginas": [
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "contexto": [
+        "Actual-Laminado mate",
+        "Actual-Cristal con gola",
+        "Actual-Laminado mate Detallar",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/exposicion-virtual.php"
+      ],
+      "estilos": [
+        "actual"
+      ],
+      "acabados": [
+        "cristal-gola",
+        "laminado-mate"
+      ],
+      "titulo": "Actual-Laminado mate",
+      "alt": "",
+      "galeria": true,
+      "destacado": false,
+      "nota": ""
+    },
+    {
+      "id": "fab-ban",
+      "archivo": "web-actual/images/fab-ban.jpg",
+      "origen": "https://cocinascma.com/images/fab-ban.jpg",
+      "miniatura": null,
+      "ancho": 670,
+      "alto": 131,
+      "paginas": [
+        "https://cocinascma.com/fabrica.php"
+      ],
+      "contexto": [
+        "Fábrica Instalaciones en Cedillo del Condado (Toledo)",
+        "Fabricación a medida En nuestros más de 2000m 2 de fábrica daremos forma a cada proyecto, contanto con especialistas que realizarán la fabri",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/fabrica.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": "De /images/ (web antigua): confirmar con el cliente que es un trabajo suyo antes de usarla."
+    },
+    {
+      "id": "tienda-ban",
+      "archivo": "web-actual/images/tienda-ban.jpg",
+      "origen": "https://cocinascma.com/images/tienda-ban.jpg",
+      "miniatura": null,
+      "ancho": 670,
+      "alto": 131,
+      "paginas": [
+        "https://cocinascma.com/quienes-somos.php"
+      ],
+      "contexto": [
+        "Cocinas CMA",
+        "Cocinas CMA, somos una empresa familiar fundada en 1992 y dedicada a la fabricación y venta de muebles de cocina. Desde entonces nos hemos a",
+        "Cocinas Fuenlabrada, Cocinas Leganés, Cocinas Móstoles, Cocinas Madrid Sur - Cocinas CMA",
+        "https://cocinascma.com/quienes-somos.php"
+      ],
+      "estilos": [],
+      "acabados": [],
+      "titulo": "",
+      "alt": "",
+      "galeria": false,
+      "destacado": false,
+      "nota": "De /images/ (web antigua): confirmar con el cliente que es un trabajo suyo antes de usarla."
+    }
+  ]
 }
