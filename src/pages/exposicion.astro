@@ -113,7 +113,7 @@ const encontraras = [
                 {m.pendiente && <span class="tag-pendiente">Descripción por validar</span>}
                 {m.enGaleria && (
                   <a class="material__enlace" href={url(`/proyectos/?acabado=${m.slug}`)}>
-                    Ver cocinas en {m.nombre.toLowerCase()} <Icon name="arrow" />
+                    Ver cocinas con este acabado <Icon name="arrow" />
                   </a>
                 )}
               </div>
@@ -219,8 +219,15 @@ const encontraras = [
   /* Materiales */
   .materiales__grid {
     display: grid;
-    gap: 2.5rem 1.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+    gap: 2rem 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @media (min-width: 40em) {
+    .materiales__grid {
+      gap: 2.5rem 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    }
   }
 
   .material {
@@ -236,7 +243,12 @@ const encontraras = [
   }
 
   .material h3 {
-    font-size: 1.4rem;
+    font-size: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
+  }
+
+  .material__texto > p {
+    font-size: var(--fs-small);
+    line-height: 1.6;
   }
 
   .material__enlace {
