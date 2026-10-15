@@ -33,7 +33,7 @@
   --f-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
   --f-sans: 'Jost Variable', 'Jost', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
 
-  --fs-display: clamp(2.6rem, 1.4rem + 5.4vw, 6.25rem);
+  --fs-display: clamp(2.6rem, 1.5rem + 4.6vw, 5.75rem);
   --fs-h1: clamp(2.4rem, 1.5rem + 3.6vw, 4.75rem);
   --fs-h2: clamp(2rem, 1.45rem + 2.3vw, 3.6rem);
   --fs-h3: clamp(1.45rem, 1.25rem + 0.8vw, 1.95rem);
