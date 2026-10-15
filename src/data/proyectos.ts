@@ -26,6 +26,8 @@ export interface Proyecto {
   alt: string;
   /** Posición en la selección de la portada (1 = la grande). */
   destacado?: number | boolean;
+  /** Aviso visible en el prototipo (p. ej. "Foto por confirmar"). */
+  aviso?: string;
 }
 
 interface FotoImportada {
@@ -37,6 +39,7 @@ interface FotoImportada {
   alt?: string;
   galeria?: boolean;
   destacado?: number | boolean;
+  aviso?: string;
 }
 
 const tituloPorEstilo: Record<Estilo, string> = {
@@ -74,6 +77,7 @@ const importadas: Proyecto[] = (manifiesto.fotos as FotoImportada[])
       foto: f.archivo,
       alt: f.alt || f.titulo || describir(estilos[0], acabados),
       destacado: f.destacado,
+      aviso: f.aviso,
     };
   })
   // Primero los últimos trabajos, luego moderno, actual, rústico…

@@ -842,9 +842,10 @@
       ],
       "titulo": "Cocina moderna, colección Luxe",
       "alt": "",
-      "galeria": false,
+      "galeria": true,
       "destacado": false,
-      "nota": "Parece una foto de catálogo del fabricante (colección Luxe), no un trabajo propio: confirmar con el cliente antes de usarla."
+      "nota": "Parece una foto de catálogo del fabricante (colección Luxe): confirmar con el cliente que es un trabajo suyo.",
+      "aviso": "Foto por confirmar"
     },
     {
       "id": "gr-744763509",
@@ -1385,9 +1386,9 @@
       ],
       "titulo": "Cocina en laca brillo",
       "alt": "",
-      "galeria": false,
+      "galeria": true,
       "destacado": false,
-      "nota": "Obra sin terminar (plásticos de protección): pedir la foto de la cocina acabada."
+      "nota": "Foto con los plásticos de obra: pedir la foto de la cocina terminada."
     },
     {
       "id": "gr-42312078922986984",
@@ -1469,9 +1470,9 @@
       ],
       "titulo": "Encimera Neolith",
       "alt": "",
-      "galeria": false,
+      "galeria": true,
       "destacado": false,
-      "nota": "Obra sin terminar (plásticos de protección): pedir la foto de la cocina acabada."
+      "nota": "Foto con los plásticos de obra: pedir la foto de la cocina terminada."
     },
     {
       "id": "gr-59145935764536264",

@@ -132,6 +132,7 @@ const meta = (p: (typeof proyectos)[number]) =>
                 <figcaption class="pieza__pie">
                   <h3 class="pieza__titulo">{p.titulo}</h3>
                   <p class="pieza__meta">{meta(p)}</p>
+                  {p.aviso && <p class="pieza__aviso"><span class="tag-pendiente">{p.aviso}</span></p>}
                 </figcaption>
               </figure>
             </li>
@@ -361,6 +362,10 @@ const meta = (p: (typeof proyectos)[number]) =>
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--c-muted);
+  }
+
+  .pieza__aviso {
+    margin-top: 0.5rem;
   }
 
   .galeria__vacio {

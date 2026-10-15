@@ -15,10 +15,12 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
   - Portada: una cocina terminada, horizontal.
   - Exposición: vista general, ambientes, muestrario de acabados y fachada de la tienda.
   - Fábrica: nave general, corte de tableros, canteado, módulos montados.
-  - Nosotros: la familia o el equipo; si la hay, una foto antigua del taller (años 90).
-- [ ] De la **fábrica** y de la **tienda** solo hay dos banners de 670×131 px en la web actual: no sirven, hacen falta fotos nuevas.
-- [ ] Confirmar si la foto de la cocina roja «Moderno-Luxe» es un trabajo suyo: parece de catálogo del fabricante y la he dejado fuera de la galería.
-- [ ] Hay dos cocinas recientes fotografiadas con los plásticos de obra (fuera de la galería): ¿tienen la foto ya terminadas?
+  - Nosotros: **la familia o el equipo** (es el único hueco que sigue vacío); si la hay, una foto antigua del taller (años 90).
+- [ ] De la **fábrica** y de la **tienda** solo hay fotos pequeñas en la web actual (banners de 670×131 y miniaturas de 300×120); se usan a su tamaño en Fábrica y Exposición, pero hacen falta fotos nuevas.
+- [ ] Mientras no haya fotos de la fábrica y del taller, las cabeceras de **Fábrica** y **Nosotros** y el bloque de fábrica de la portada usan fotos de sus cocinas (detalles de cajones, cocinas de madera).
+- [ ] Confirmar que la foto de la nave con el rótulo «Cocinas» (`cocina7`) es la fábrica de Cedillo, como sugiere la web actual.
+- [ ] Confirmar si la foto de la cocina roja «Moderno-Luxe» es un trabajo suyo: parece de catálogo del fabricante (en la galería lleva la etiqueta «Foto por confirmar»).
+- [ ] Hay dos cocinas recientes fotografiadas con los plásticos de obra: ¿tienen la foto ya terminadas?
 - [ ] Revisar la clasificación de las fotos (estilo y acabado salen de las etiquetas de la web actual) y la selección de la portada.
 
 ## Datos

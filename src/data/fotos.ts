@@ -17,6 +17,12 @@ export function buscarFoto(ruta?: string | null): ImageMetadata | undefined {
   return archivos[PREFIJO + ruta.replace(/^\/+/, '')];
 }
 
+/** Proporción natural de una foto para CSS (aspect-ratio), o la indicada si no existe. */
+export function proporcion(ruta: string | undefined, porDefecto: string): string {
+  const img = buscarFoto(ruta);
+  return img ? `${img.width} / ${img.height}` : porDefecto;
+}
+
 export interface Hueco {
   /** Ruta dentro de src/assets/fotos/. Vacío = se muestra "foto pendiente". */
   foto?: string;
@@ -36,8 +42,8 @@ export const huecos = {
     pendiente: 'Cocina terminada, horizontal y en alta resolución (mín. 2400 px de ancho)',
   },
   inicioFabrica: {
-    foto: '',
-    alt: 'Interior de la fábrica de Cocinas CMA en Cedillo del Condado',
+    foto: 'web-actual/imagenes_cocinas/gr-159807047.jpg',
+    alt: 'Detalle de cajones en estratificado Matrix con veta de madera y tiradores de aluminio',
     pendiente: 'Nave de la fábrica de Cedillo del Condado con la maquinaria en marcha',
   },
   inicioExposicion: {
@@ -46,13 +52,13 @@ export const huecos = {
     pendiente: 'Vista general de la exposición de Humanes (700 m²)',
   },
   nosotrosHero: {
-    foto: '',
-    alt: 'Carpintero de Cocinas CMA trabajando en un mueble de cocina',
+    foto: 'web-actual/imagenes_cocinas/gr-11235739.jpg',
+    alt: 'Cocina rústica de madera con vitrinas, botellero y campana de madera',
     pendiente: 'Manos de un carpintero trabajando la madera / detalle de oficio',
   },
   nosotrosHistoria: {
-    foto: '',
-    alt: 'Los inicios de Cocinas CMA',
+    foto: 'web-actual/imagenes_cocinas/gr-1355612061.jpg',
+    alt: 'Cocina rústica de pino con cestas de mimbre bajo la encimera',
     pendiente: 'Foto antigua del taller o de los fundadores (años 90)',
   },
   nosotrosEquipo: {
@@ -61,23 +67,23 @@ export const huecos = {
     pendiente: 'La familia y el equipo, en la tienda o en la fábrica',
   },
   fabricaHero: {
-    foto: '',
-    alt: 'Fábrica de Cocinas CMA en Cedillo del Condado (Toledo)',
+    foto: 'web-actual/imagenes_cocinas/gr-24925509793683888.jpg',
+    alt: 'Cocina con encimera negra, frentes blancos y muebles altos en granate junto a un ventanal',
     pendiente: 'Nave de fabricación, plano general (horizontal, alta resolución)',
   },
   fabricaDetalle1: {
-    foto: '',
-    alt: 'Corte de tableros a medida en la fábrica',
+    foto: 'web-actual/images/fab-ban.jpg',
+    alt: 'Interior de la fábrica de Cedillo del Condado: seccionadora con tableros y nave con la canteadora',
     pendiente: 'Seccionadora o corte de tableros',
   },
   fabricaDetalle2: {
-    foto: '',
-    alt: 'Canteado de piezas en la fábrica',
+    foto: 'web-actual/imagenes_cocinas/gr-912201119.jpg',
+    alt: 'Detalle de cajones de madera oscura con tiradores metálicos',
     pendiente: 'Canteadora / detalle de cantos',
   },
   fabricaDetalle3: {
-    foto: '',
-    alt: 'Montaje y revisión de módulos de cocina',
+    foto: 'web-actual/imagenes_cocinas/gr-1097437599673867.jpg',
+    alt: 'Encimera con fregadero y placa de inducción recién montada',
     pendiente: 'Módulos montados y revisión antes de embalar',
   },
   exposicionHero: {
@@ -96,8 +102,26 @@ export const huecos = {
     pendiente: 'Muestrario de frentes, colores y encimeras',
   },
   exposicionFachada: {
-    foto: '',
-    alt: 'Fachada de la tienda de Cocinas CMA en Humanes de Madrid',
+    foto: 'web-actual/imagenes_cocinas/cocina8.jpg',
+    alt: 'Fachada de la tienda de Cocinas C.M.A. en Humanes de Madrid, con el cartel «Abierto al público»',
     pendiente: 'Fachada / entrada de la tienda (para que se reconozca al llegar)',
   },
+  fabricaExterior: {
+    foto: 'web-actual/imagenes_cocinas/cocina7.jpg',
+    alt: 'Fachada de la nave de la fábrica, con el rótulo «Cocinas»',
+    pendiente: 'Exterior de la fábrica de Cedillo del Condado',
+  },
 } satisfies Record<string, Hueco>;
+
+/**
+ * Fotos actuales de la exposición (300×120 px en la web antigua). Se muestran
+ * a su tamaño, como tira, hasta tener un reportaje nuevo de la tienda.
+ */
+export const tiraExposicion: { foto: string; alt: string }[] = [
+  { foto: 'web-actual/imagenes_cocinas/cocina1.jpg', alt: 'Cocina naranja con muestras de frentes sobre la encimera, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina2.jpg', alt: 'Cocina roja con horno y frigorífico, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina3.jpg', alt: 'Cocina de madera con cestas y muestras de encimera, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina4.jpg', alt: 'Isla con encimera blanca y muebles negros, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina5.jpg', alt: 'Cocina oscura con muestras de frentes sobre la encimera, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina6.jpg', alt: 'Cocina en tono madera claro con microondas integrado, en la exposición' },
+];

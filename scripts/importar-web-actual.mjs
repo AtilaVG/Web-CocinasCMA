@@ -171,6 +171,7 @@ async function main() {
       alt: previo?.alt ?? '',
       galeria: previo?.galeria ?? (enCocinas && estilos.length > 0),
       destacado: previo?.destacado ?? false,
+      ...(previo?.aviso ? { aviso: previo.aviso } : {}),
       nota: previo?.nota ?? (enCocinas ? '' : 'De /images/ (web antigua): confirmar con el cliente que es un trabajo suyo antes de usarla.'),
     });
   }

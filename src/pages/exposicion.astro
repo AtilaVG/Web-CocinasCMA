@@ -4,7 +4,7 @@ import PageHero from '../components/PageHero.astro';
 import Foto from '../components/Foto.astro';
 import Icon from '../components/Icon.astro';
 import Horario from '../components/Horario.astro';
-import { huecos } from '../data/fotos';
+import { huecos, proporcion, tiraExposicion } from '../data/fotos';
 import { acabados, acabadosExposicion, type Acabado } from '../data/catalogo';
 import { proyectos } from '../data/proyectos';
 import { empresa, telPrincipal } from '../config/empresa';
@@ -89,6 +89,27 @@ const encontraras = [
     </div>
   </section>
 
+  <section class="section section--tight tira" aria-labelledby="tira-titulo">
+    <div class="container">
+      <div class="tira__cabecera">
+        <h2 id="tira-titulo" class="tira__titulo" data-reveal>Un paseo por la exposición</h2>
+        <p class="muted small" data-reveal style="--d: 0.08s">
+          <span class="tag-pendiente">Fotos provisionales</span> Imágenes actuales de la tienda, pequeñas: pendiente un
+          reportaje nuevo.
+        </p>
+      </div>
+      <ul class="tira__lista" role="list">
+        {
+          tiraExposicion.map((f, i) => (
+            <li class="media tira__foto" data-reveal style={`--d: ${(i % 3) * 0.06}s`}>
+              <Foto src={f.foto} alt={f.alt} sizes="(min-width: 64em) 30vw, 50vw" anchos={[300]} compacto />
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
   <section class="section section--cream materiales" aria-labelledby="materiales-titulo">
     <div class="container">
       <div class="section-head section-head--split">
@@ -130,7 +151,11 @@ const encontraras = [
 
   <section class="section visita-info" aria-labelledby="visita-titulo">
     <div class="container visita-info__grid">
-      <div class="media visita-info__foto" data-reveal="imagen">
+      <div
+        class="media visita-info__foto"
+        style={`aspect-ratio: ${proporcion(huecos.exposicionFachada.foto, '4 / 3')}`}
+        data-reveal="imagen"
+      >
         <Foto
           src={huecos.exposicionFachada.foto}
           alt={huecos.exposicionFachada.alt}
@@ -214,6 +239,41 @@ const encontraras = [
     width: 48%;
     aspect-ratio: 4 / 5;
     border: clamp(0.4rem, 1vw, 0.75rem) solid var(--c-paper);
+  }
+
+  /* Tira de fotos de la exposición */
+  .tira {
+    padding-top: 0;
+  }
+
+  .tira__cabecera {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .tira__titulo {
+    font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
+  }
+
+  .tira__lista {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+  }
+
+  @media (min-width: 56em) {
+    .tira__lista {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  .tira__foto {
+    aspect-ratio: 5 / 2;
   }
 
   /* Materiales */
