@@ -1,0 +1,311 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Foto from '../components/Foto.astro';
+import Icon from '../components/Icon.astro';
+import BandaContacto from '../components/BandaContacto.astro';
+import { huecos } from '../data/fotos';
+import { empresa } from '../config/empresa';
+
+const { fabrica } = empresa;
+
+const ventajas = [
+  {
+    titulo: 'Calidad controlada',
+    texto: 'Vemos cada pieza antes de que salga de la fábrica. Si algo no está bien, no sale.',
+  },
+  {
+    titulo: 'Precio ajustado',
+    texto: 'Sin intermediarios entre la fábrica y tu casa: pagas la cocina, no los márgenes de otros.',
+  },
+  {
+    titulo: 'Medidas exactas',
+    texto: 'Fabricamos a la medida real de tu espacio, no adaptamos módulos estándar a la fuerza.',
+  },
+  {
+    titulo: 'Respuesta rápida',
+    texto: 'Un ajuste, una pieza más, un cambio de última hora: lo resolvemos nosotros mismos.',
+  },
+];
+
+const proceso = [
+  {
+    titulo: 'Medición y diseño',
+    texto:
+      'Todo empieza en tu casa, con el metro. Con las medidas exactas diseñamos la cocina y te enseñamos cómo quedará antes de fabricar nada.',
+  },
+  {
+    titulo: 'Despiece y materiales',
+    texto:
+      'El diseño aprobado se convierte en una lista de piezas: cascos, frentes, cantos y herrajes, con el acabado que has elegido.',
+  },
+  {
+    titulo: 'Corte y canteado',
+    texto:
+      'Cortamos los tableros a medida y sellamos sus cantos. Es lo que hace que un mueble aguante la humedad y el uso diario.',
+  },
+  {
+    titulo: 'Mecanizado y montaje de módulos',
+    texto:
+      'Taladros, bisagras, guías y uniones. Los módulos se arman y se ajustan en fábrica para que en tu casa todo encaje.',
+  },
+  {
+    titulo: 'Revisión pieza a pieza',
+    texto: 'Antes de embalar, revisamos cada mueble: medidas, acabados, cierres y herrajes.',
+  },
+  {
+    titulo: 'Entrega y montaje',
+    texto: 'Llevamos la cocina a tu casa y la montamos. Y si más adelante necesitas algo, sabes dónde estamos.',
+  },
+];
+---
+
+<Base
+  titulo="Nuestra fábrica en Cedillo del Condado (Toledo)"
+  descripcion="Fabricamos nuestras cocinas a medida en una fábrica propia de más de 2.000 m² en Cedillo del Condado (Toledo). Así es nuestro proceso, de la medición al montaje."
+  headerTransparente
+>
+  <PageHero
+    antetitulo="Fábrica propia · Cedillo del Condado (Toledo)"
+    titulo="Más de 2.000&nbsp;m² donde <em>nacen nuestras cocinas</em>"
+    intro="Todo lo que vendemos en la exposición lo fabricamos nosotros. Es la mejor manera que conocemos de garantizar la calidad y de mantener un precio justo."
+    foto={huecos.fabricaHero}
+  />
+
+  <section class="section porque" aria-labelledby="porque-titulo">
+    <div class="container porque__grid">
+      <div>
+        <p class="eyebrow" data-reveal>¿Por qué fábrica propia?</p>
+        <h2 id="porque-titulo" data-reveal style="--d: 0.08s">Porque una cocina a medida se hace, no se encarga</h2>
+        <p class="lead muted porque__intro" data-reveal style="--d: 0.16s">
+          Muchas tiendas venden cocinas que fabrican otros. Nosotros las fabricamos, y eso se nota en cuatro cosas.
+        </p>
+      </div>
+      <ul class="porque__lista" role="list">
+        {
+          ventajas.map((v, i) => (
+            <li class="ventaja" data-reveal style={`--d: ${i * 0.08}s`}>
+              <Icon name="check" class="ventaja__icono" />
+              <div>
+                <h3>{v.titulo}</h3>
+                <p class="muted">{v.texto}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--cream proceso" aria-labelledby="proceso-titulo">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal>El proceso</p>
+          <h2 id="proceso-titulo" data-reveal style="--d: 0.08s">De un tablero a tu cocina, en seis pasos</h2>
+        </div>
+        <p class="muted" data-reveal style="--d: 0.16s">
+          Cada cocina pasa por las mismas manos y los mismos controles, sea grande o pequeña.
+        </p>
+      </div>
+
+      <div class="proceso__grid">
+        <ol class="proceso__lista" role="list">
+          {
+            proceso.map((p, i) => (
+              <li class="etapa" data-reveal>
+                <span class="etapa__num" aria-hidden="true">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <div>
+                  <h3>{p.titulo}</h3>
+                  <p class="muted">{p.texto}</p>
+                </div>
+              </li>
+            ))
+          }
+        </ol>
+
+        <div class="proceso__fotos">
+          {
+            [huecos.fabricaDetalle1, huecos.fabricaDetalle2, huecos.fabricaDetalle3].map((h, i) => (
+              <div class={`media proceso__foto proceso__foto--${i + 1}`} data-reveal="imagen">
+                <Foto
+                  src={h.foto}
+                  alt={h.alt}
+                  pendiente={h.pendiente}
+                  sizes="(min-width: 64em) 40vw, 100vw"
+                  tono={i === 1 ? 'madera' : 'claro'}
+                />
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark donde" aria-labelledby="donde-titulo">
+    <div class="container donde__grid">
+      <div>
+        <p class="eyebrow" data-reveal>Dónde está</p>
+        <h2 id="donde-titulo" data-reveal style="--d: 0.08s">Cedillo del Condado, a pocos kilómetros de Humanes</h2>
+      </div>
+      <div class="donde__datos" data-reveal style="--d: 0.16s">
+        <address>
+          <strong>Cocinas CMA · Fábrica</strong><br />
+          {fabrica.calle}<br />
+          {fabrica.cp} {fabrica.localidad} ({fabrica.provincia})
+        </address>
+        <div class="btn-row">
+          <a class="btn btn--light" href={`tel:${fabrica.telefonos[0].e164}`}>
+            <Icon name="phone" /> {fabrica.telefonos[0].texto}
+          </a>
+          <a class="btn btn--ghost-light" href={fabrica.mapa} target="_blank" rel="noopener">
+            <Icon name="pin" /> Ver en el mapa
+            <span class="visually-hidden">(abre Google Maps en una pestaña nueva)</span>
+          </a>
+        </div>
+        <p class="muted small">
+          Para dudas sobre tu cocina, presupuestos o visitas, lo más cómodo es empezar por la tienda de Humanes.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <BandaContacto />
+</Base>
+
+<style>
+  .porque__grid {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+  }
+
+  @media (min-width: 56em) {
+    .porque__grid {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+  }
+
+  .porque__intro {
+    margin-top: 1.5rem;
+  }
+
+  .porque__lista {
+    display: grid;
+    gap: 0;
+  }
+
+  .ventaja {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    padding-block: 1.6rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .ventaja:first-child {
+    border-top: 1px solid var(--c-line);
+  }
+
+  .ventaja :global(.ventaja__icono) {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.35rem;
+    color: var(--c-red);
+  }
+
+  .ventaja h3 {
+    margin-bottom: 0.35rem;
+    font-size: 1.45rem;
+  }
+
+  /* Proceso */
+  .proceso__grid {
+    display: grid;
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  @media (min-width: 64em) {
+    .proceso__grid {
+      grid-template-columns: 1.1fr 1fr;
+      align-items: start;
+    }
+
+    .proceso__fotos {
+      position: sticky;
+      top: calc(var(--header-h) + 2rem);
+    }
+  }
+
+  .proceso__lista {
+    display: grid;
+    counter-reset: etapa;
+  }
+
+  .etapa {
+    display: grid;
+    grid-template-columns: 4.5rem 1fr;
+    gap: 1rem;
+    padding-block: 1.75rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+
+  .etapa__num {
+    font-family: var(--f-serif);
+    font-size: 2.6rem;
+    font-style: italic;
+    line-height: 1;
+    color: var(--c-red);
+  }
+
+  .etapa h3 {
+    margin-bottom: 0.5rem;
+  }
+
+  .proceso__fotos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .proceso__foto--1 {
+    grid-column: 1 / -1;
+    aspect-ratio: 16 / 10;
+  }
+
+  .proceso__foto--2,
+  .proceso__foto--3 {
+    aspect-ratio: 1;
+  }
+
+  /* Dónde */
+  .donde__grid {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  @media (min-width: 56em) {
+    .donde__grid {
+      grid-template-columns: 1.2fr 1fr;
+      align-items: end;
+    }
+  }
+
+  .donde__datos {
+    display: grid;
+    gap: 1.75rem;
+  }
+
+  .donde address {
+    font-style: normal;
+    font-size: 1.15rem;
+    line-height: 1.6;
+  }
+
+  .donde strong {
+    font-weight: 500;
+  }
+</style>

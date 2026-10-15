@@ -1,0 +1,102 @@
+---
+/**
+ * Cabecera de las páginas interiores. Con `foto`, va a sangre con la foto de
+ * fondo (la página debe usar headerTransparente); sin ella, sobre papel.
+ */
+import Foto from './Foto.astro';
+import type { Hueco } from '../data/fotos';
+
+interface Props {
+  antetitulo: string;
+  titulo: string;
+  intro?: string;
+  foto?: Hueco;
+}
+
+const { antetitulo, titulo, intro, foto } = Astro.props;
+---
+
+{
+  foto ? (
+    <section class="phero phero--foto on-dark">
+      <div class="media media--fill phero__media">
+        <Foto src={foto.foto} alt={foto.alt} pendiente={foto.pendiente} prioridad tono="oscuro" posicion="arriba" />
+      </div>
+      <div class="phero__velo" aria-hidden="true" />
+      <div class="container phero__contenido">
+        <p class="eyebrow" data-reveal>{antetitulo}</p>
+        <h1 data-reveal style="--d: 0.08s" set:html={titulo} />
+        {intro && <p class="lead" data-reveal style="--d: 0.16s">{intro}</p>}
+        <slot />
+      </div>
+    </section>
+  ) : (
+    <section class="phero phero--simple">
+      <div class="container phero__contenido">
+        <p class="eyebrow" data-reveal>{antetitulo}</p>
+        <h1 data-reveal style="--d: 0.08s" set:html={titulo} />
+        {intro && <p class="lead" data-reveal style="--d: 0.16s">{intro}</p>}
+        <slot />
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .phero {
+    position: relative;
+  }
+
+  .phero__contenido {
+    position: relative;
+    display: grid;
+    gap: 0;
+  }
+
+  .phero h1 {
+    max-width: 16ch;
+  }
+
+  .phero .lead {
+    max-width: 36rem;
+    margin-top: 1.75rem;
+  }
+
+  .phero--simple {
+    padding-block: clamp(3.5rem, 2rem + 6vw, 7.5rem) clamp(2.5rem, 1.5rem + 4vw, 5rem);
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .phero--foto {
+    display: flex;
+    align-items: flex-end;
+    min-height: min(88svh, 52rem);
+    padding-top: calc(var(--header-h) + 3rem);
+    padding-bottom: clamp(3rem, 2rem + 5vw, 6.5rem);
+    color: var(--c-on-dark);
+    background: var(--c-ink);
+  }
+
+  .phero--foto h1,
+  .phero--foto .lead,
+  .phero--foto .eyebrow {
+    color: var(--c-on-dark);
+  }
+
+  .phero--foto .eyebrow::before {
+    background: currentColor;
+  }
+
+  .phero__media :global(.foto-pendiente) {
+    padding-top: calc(var(--header-h) + 1.25rem);
+  }
+
+  .phero__velo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgb(2 15 61 / 0.82) 0%, rgb(2 15 61 / 0.35) 45%, rgb(2 15 61 / 0) 70%),
+      linear-gradient(90deg, rgb(2 15 61 / 0.45), rgb(2 15 61 / 0) 60%);
+    pointer-events: none;
+  }
+</style>

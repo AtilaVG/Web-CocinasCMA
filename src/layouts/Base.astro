@@ -1,0 +1,71 @@
+---
+import '@fontsource-variable/jost';
+import '@fontsource/cormorant-garamond/latin-500.css';
+import '@fontsource/cormorant-garamond/latin-600.css';
+import '@fontsource/cormorant-garamond/latin-500-italic.css';
+import '../styles/global.css';
+
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import DatosEstructurados from '../components/DatosEstructurados.astro';
+import { url } from '../lib/url';
+
+interface Props {
+  /** Título de la página (sin el nombre de la empresa, se añade solo). */
+  titulo: string;
+  descripcion: string;
+  /** Título completo, para la portada. */
+  tituloCompleto?: string;
+  headerTransparente?: boolean;
+}
+
+const { titulo, descripcion, tituloCompleto, headerTransparente = false } = Astro.props;
+const tituloFinal = tituloCompleto ?? `${titulo} · Cocinas CMA`;
+const canonica = new URL(Astro.url.pathname, Astro.site).href;
+const imagenSocial = new URL(url('og-cocinascma.png'), Astro.site).href;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{tituloFinal}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {!__INDEXAR__ && <meta name="robots" content="noindex, nofollow" />}
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content="Cocinas CMA" />
+    <meta property="og:title" content={tituloFinal} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={imagenSocial} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="theme-color" content="#020f3d" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
+    <link rel="icon" href={url('favicon-32.png')} sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href={url('apple-touch-icon.png')} />
+
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+    <DatosEstructurados />
+  </head>
+  <body>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <Header transparente={headerTransparente} />
+    <main id="contenido" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      import '../scripts/sitio';
+    </script>
+  </body>
+</html>

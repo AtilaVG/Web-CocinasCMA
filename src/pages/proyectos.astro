@@ -1,0 +1,509 @@
+---
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Foto from '../components/Foto.astro';
+import Icon from '../components/Icon.astro';
+import BandaContacto from '../components/BandaContacto.astro';
+import { proyectos, hayFotosReales } from '../data/proyectos';
+import { acabados, estilos, estilosFiltro, nombreAcabado, nombreEstilo, type Estilo } from '../data/catalogo';
+import { buscarFoto } from '../data/fotos';
+
+// Versión grande de cada foto para el visor
+const piezas = await Promise.all(
+  proyectos.map(async (p) => {
+    const img = buscarFoto(p.foto);
+    if (!img) return { ...p, grande: null };
+    const g = await getImage({ src: img, width: Math.min(img.width, 2000), format: 'webp', quality: 82 });
+    return { ...p, grande: g.src };
+  }),
+);
+
+const estilosPresentes = [
+  ...estilosFiltro,
+  ...(Object.keys(estilos) as Estilo[]).filter((e) => !estilosFiltro.includes(e)),
+].filter((e) => proyectos.some((p) => p.estilos.includes(e)));
+
+const acabadosPresentes = Object.keys(acabados).filter((a) =>
+  proyectos.some((p) => (p.acabados as string[]).includes(a)),
+);
+
+const meta = (p: (typeof proyectos)[number]) =>
+  [p.estilos.map(nombreEstilo).join(', '), p.acabados.map(nombreAcabado).join(', ')].filter(Boolean).join(' · ');
+---
+
+<Base
+  titulo="Proyectos: cocinas a medida modernas, actuales y rústicas"
+  descripcion="Galería de cocinas a medida diseñadas y fabricadas por Cocinas CMA: estilos moderno, actual y rústico, en laca, madera, cristal con gola, estratificado, acrílico y más."
+>
+  <PageHero
+    antetitulo="Proyectos"
+    titulo="Cocinas que hemos <em>diseñado y fabricado</em>"
+    intro="Una selección de trabajos reales. Filtra por estilo o por acabado y pulsa en cualquier foto para verla en grande."
+  />
+
+  <section class="section section--tight galeria" aria-labelledby="galeria-titulo" data-galeria>
+    <div class="container">
+      <h2 id="galeria-titulo" class="visually-hidden">Galería de proyectos</h2>
+
+      {
+        !hayFotosReales && (
+          <p class="galeria__aviso">
+            <span class="tag-pendiente">Fotos pendientes</span>
+            La galería ya funciona con el catálogo real de estilos y acabados. Faltan las fotos: se importan de la web
+            actual con <code>npm run fotos</code> o se añaden las nuevas del cliente.
+          </p>
+        )
+      }
+
+      <div class="filtros">
+        <div class="filtros__grupo" role="group" aria-labelledby="filtro-estilo">
+          <span class="filtros__etiqueta" id="filtro-estilo">Estilo</span>
+          <div class="filtros__chips">
+            <button type="button" class="chip" data-filtro="estilo" data-valor="" aria-pressed="true">Todos</button>
+            {
+              estilosPresentes.map((e) => (
+                <button type="button" class="chip" data-filtro="estilo" data-valor={e} aria-pressed="false">
+                  {nombreEstilo(e)}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <div class="filtros__grupo" role="group" aria-labelledby="filtro-acabado">
+          <span class="filtros__etiqueta" id="filtro-acabado">Acabado</span>
+          <div class="filtros__chips">
+            <button type="button" class="chip" data-filtro="acabado" data-valor="" aria-pressed="true">Todos</button>
+            {
+              acabadosPresentes.map((a) => (
+                <button type="button" class="chip" data-filtro="acabado" data-valor={a} aria-pressed="false">
+                  {nombreAcabado(a)}
+                </button>
+              ))
+            }
+          </div>
+        </div>
+        <p class="filtros__resultado" role="status" data-resultado>
+          {proyectos.length} proyectos
+        </p>
+      </div>
+
+      <ul class="galeria__grid" role="list">
+        {
+          piezas.map((p, i) => (
+            <li class="pieza" id={p.id} data-pieza data-estilos={p.estilos.join(' ')} data-acabados={p.acabados.join(' ')}>
+              <figure>
+                {p.grande ? (
+                  <a
+                    class="pieza__enlace"
+                    href={p.grande}
+                    data-abrir
+                    data-titulo={p.titulo}
+                    data-meta={meta(p)}
+                  >
+                    <div class="media pieza__media">
+                      <Foto
+                        src={p.foto}
+                        alt={p.alt}
+                        sizes="(min-width: 64em) 31vw, (min-width: 40em) 46vw, 100vw"
+                        anchos={[400, 640, 900, 1200]}
+                      />
+                      <span class="pieza__lupa" aria-hidden="true">
+                        <Icon name="plus" />
+                      </span>
+                    </div>
+                    <span class="visually-hidden">Ampliar foto</span>
+                  </a>
+                ) : (
+                  <div class="media pieza__media">
+                    <Foto pendiente={p.titulo} alt={p.alt} tono={i % 3 === 1 ? 'madera' : 'claro'} compacto />
+                  </div>
+                )}
+                <figcaption class="pieza__pie">
+                  <h3 class="pieza__titulo">{p.titulo}</h3>
+                  <p class="pieza__meta">{meta(p)}</p>
+                </figcaption>
+              </figure>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="galeria__vacio" data-vacio hidden>
+        <p class="serif">No hay proyectos con esa combinación.</p>
+        <button type="button" class="btn btn--ghost" data-limpiar>Ver todos los proyectos</button>
+      </div>
+    </div>
+  </section>
+
+  <dialog class="visor" aria-label="Visor de fotos" data-visor>
+    <div class="visor__marco">
+      <figure class="visor__figura">
+        <img data-visor-img src="" alt="" />
+        <figcaption class="visor__pie">
+          <span class="visor__titulo" data-visor-titulo></span>
+          <span class="visor__meta" data-visor-meta></span>
+          <span class="visor__contador" data-visor-contador></span>
+        </figcaption>
+      </figure>
+    </div>
+    <button type="button" class="visor__boton visor__cerrar" data-visor-cerrar>
+      <Icon name="close" /><span class="visually-hidden">Cerrar</span>
+    </button>
+    <button type="button" class="visor__boton visor__nav visor__nav--prev" data-visor-prev>
+      <Icon name="arrow-left" /><span class="visually-hidden">Foto anterior</span>
+    </button>
+    <button type="button" class="visor__boton visor__nav visor__nav--next" data-visor-next>
+      <Icon name="arrow" /><span class="visually-hidden">Foto siguiente</span>
+    </button>
+  </dialog>
+
+  <BandaContacto
+    titulo="¿Te gusta alguna?"
+    texto="Ven a verla en persona: en la exposición puedes ver y tocar muchos de estos acabados. Y si no está, la diseñamos contigo."
+  />
+</Base>
+
+<script>
+  import '../scripts/galeria';
+</script>
+
+<style>
+  .galeria__aviso {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.25rem;
+    border: 1px dashed var(--c-line-strong);
+    font-size: var(--fs-small);
+    color: var(--c-muted);
+  }
+
+  .galeria__aviso code {
+    padding: 0.05rem 0.35rem;
+    background: var(--c-cream);
+    font-size: 0.85em;
+  }
+
+  /* Filtros */
+  .filtros {
+    display: grid;
+    gap: 1.25rem;
+    margin-bottom: clamp(2rem, 1.5rem + 2vw, 3.5rem);
+    padding-bottom: 1.75rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .filtros__grupo {
+    display: grid;
+    gap: 0.6rem;
+  }
+
+  @media (min-width: 56em) {
+    .filtros__grupo {
+      grid-template-columns: 7rem 1fr;
+      align-items: baseline;
+    }
+  }
+
+  .filtros__etiqueta {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .filtros__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .chip {
+    min-height: 2.5rem;
+    padding: 0.45rem 1rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: 99px;
+    background: transparent;
+    font-size: 0.9rem;
+    line-height: 1.2;
+    color: var(--c-text);
+    cursor: pointer;
+    transition:
+      background-color 0.25s var(--ease),
+      color 0.25s var(--ease),
+      border-color 0.25s var(--ease);
+  }
+
+  .chip:hover {
+    border-color: var(--c-ink);
+  }
+
+  .chip[aria-pressed='true'] {
+    background: var(--c-ink);
+    border-color: var(--c-ink);
+    color: var(--c-paper);
+  }
+
+  .filtros__resultado {
+    font-size: var(--fs-small);
+    color: var(--c-muted);
+  }
+
+  /* Rejilla */
+  .galeria__grid {
+    display: grid;
+    gap: clamp(2rem, 1.5rem + 2vw, 3rem) clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  }
+
+  @media (min-width: 40em) {
+    .galeria__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 64em) {
+    .galeria__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .pieza[hidden] {
+    display: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pieza.is-entrando {
+      animation: pieza-entrar 0.6s var(--ease) both;
+    }
+  }
+
+  @keyframes pieza-entrar {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+
+  .pieza:target .pieza__media {
+    outline: 2px solid var(--c-red);
+    outline-offset: 4px;
+  }
+
+  .pieza__enlace {
+    display: block;
+    text-decoration: none;
+    cursor: zoom-in;
+  }
+
+  .pieza__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .pieza__media :global(img) {
+    transition: transform 1s var(--ease);
+  }
+
+  .pieza__enlace:hover .pieza__media :global(img) {
+    transform: scale(1.04);
+  }
+
+  .pieza__lupa {
+    position: absolute;
+    right: 0.85rem;
+    bottom: 0.85rem;
+    display: grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgb(248 245 239 / 0.92);
+    color: var(--c-ink);
+    opacity: 0;
+    transform: scale(0.8);
+    transition:
+      opacity 0.3s var(--ease),
+      transform 0.3s var(--ease);
+  }
+
+  .pieza__enlace:hover .pieza__lupa,
+  .pieza__enlace:focus-visible .pieza__lupa {
+    opacity: 1;
+    transform: none;
+  }
+
+  .pieza__pie {
+    padding-top: 0.9rem;
+  }
+
+  .pieza__titulo {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .pieza__meta {
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .galeria__vacio {
+    display: grid;
+    justify-items: center;
+    gap: 1.25rem;
+    padding-block: 4rem;
+    text-align: center;
+  }
+
+  .galeria__vacio[hidden] {
+    display: none;
+  }
+
+  .galeria__vacio p {
+    font-size: 1.75rem;
+  }
+
+  /* Visor (lightbox) */
+  .visor {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: rgb(2 10 32 / 0.96);
+    color: var(--c-on-dark);
+  }
+
+  .visor[open] {
+    display: grid;
+    animation: visor-entrar 0.35s var(--ease);
+  }
+
+  .visor::backdrop {
+    background: transparent;
+  }
+
+  .visor__marco {
+    display: grid;
+    place-items: center;
+    padding: 4.5rem 1rem 1.5rem;
+    min-height: 0;
+  }
+
+  @media (min-width: 48em) {
+    .visor__marco {
+      padding: 4.5rem 6rem 2rem;
+    }
+  }
+
+  .visor__figura {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    max-height: 100%;
+    min-height: 0;
+  }
+
+  .visor__figura img {
+    max-width: 100%;
+    max-height: calc(100svh - 11rem);
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    user-select: none;
+  }
+
+  .visor__pie {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.35rem 1rem;
+    text-align: center;
+  }
+
+  .visor__titulo {
+    font-family: var(--f-serif);
+    font-size: 1.4rem;
+    font-weight: 500;
+  }
+
+  .visor__meta,
+  .visor__contador {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-on-dark-muted);
+  }
+
+  .visor__boton {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--c-line-dark);
+    border-radius: 50%;
+    background: rgb(2 15 61 / 0.5);
+    color: var(--c-on-dark);
+    cursor: pointer;
+    transition:
+      background-color 0.25s var(--ease),
+      color 0.25s var(--ease);
+  }
+
+  .visor__boton:hover {
+    background: var(--c-paper);
+    color: var(--c-ink);
+  }
+
+  .visor__boton :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .visor__cerrar {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .visor__nav {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .visor__nav--prev {
+    left: 1rem;
+  }
+
+  .visor__nav--next {
+    right: 1rem;
+  }
+
+  @media (max-width: 47.99em) {
+    .visor__nav {
+      top: auto;
+      bottom: 1rem;
+      transform: none;
+    }
+
+    .visor__marco {
+      padding-bottom: 5rem;
+    }
+  }
+
+  @keyframes visor-entrar {
+    from {
+      opacity: 0;
+    }
+  }
+</style>

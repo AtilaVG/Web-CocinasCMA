@@ -1,0 +1,374 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { navegacion } from '../data/navegacion';
+import { empresa, telPrincipal } from '../config/empresa';
+import { url, rutaSinBase } from '../lib/url';
+
+interface Props {
+  /** Cabecera transparente sobre una foto a sangre (se vuelve opaca al hacer scroll). */
+  transparente?: boolean;
+}
+
+const { transparente = false } = Astro.props;
+const actual = rutaSinBase(Astro.url.pathname);
+const esActual = (ruta: string) => (ruta === '/' ? actual === '/' : actual.startsWith(ruta));
+---
+
+<header class="cabecera" data-cabecera data-transparente={transparente ? '' : undefined}>
+  <div class="cabecera__barra container">
+    <a class="cabecera__logo" href={url('/')} aria-label="Cocinas CMA, ir al inicio">
+      <Logo variante={transparente ? 'claro' : 'color'} class="logo-sobre-foto" />
+      {transparente && <Logo class="logo-solido" />}
+    </a>
+
+    <nav class="cabecera__nav" aria-label="Principal">
+      <ul role="list">
+        {
+          navegacion.slice(1).map((item) => (
+            <li>
+              <a href={url(item.ruta)} aria-current={esActual(item.ruta) ? 'page' : undefined}>
+                {item.texto}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <a class="cabecera__tel" href={`tel:${telPrincipal.e164}`}>
+      <Icon name="phone" />
+      <span class="cabecera__tel-texto">{telPrincipal.texto}</span>
+      <span class="visually-hidden">Llamar a la tienda</span>
+    </a>
+
+    <button class="cabecera__menu" type="button" aria-haspopup="dialog" aria-controls="menu-movil" data-abrir-menu>
+      <Icon name="menu" />
+      <span>Menú</span>
+    </button>
+  </div>
+</header>
+
+<dialog class="menu-movil" id="menu-movil" aria-label="Menú" data-menu>
+  <div class="menu-movil__cabecera container">
+    <Logo />
+    <button class="menu-movil__cerrar" type="button" data-cerrar-menu>
+      <Icon name="close" />
+      <span>Cerrar</span>
+    </button>
+  </div>
+  <nav class="menu-movil__nav container" aria-label="Principal (móvil)">
+    <ul role="list">
+      {
+        navegacion.map((item, i) => (
+          <li style={`--i: ${i}`}>
+            <a href={url(item.ruta)} aria-current={esActual(item.ruta) ? 'page' : undefined}>
+              {item.texto}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+  <div class="menu-movil__pie container">
+    {
+      empresa.tienda.telefonos.map((t) => (
+        <a href={`tel:${t.e164}`}>
+          <Icon name="phone" /> {t.texto}
+        </a>
+      ))
+    }
+    <a href={`mailto:${empresa.email}`}><Icon name="mail" /> {empresa.email}</a>
+  </div>
+</dialog>
+
+<style>
+  .cabecera {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    height: var(--header-h);
+    background: rgb(248 245 239 / 0.94);
+    color: var(--c-ink);
+    border-bottom: 1px solid var(--c-line);
+    transition:
+      background-color 0.4s var(--ease),
+      color 0.4s var(--ease),
+      border-color 0.4s var(--ease);
+  }
+
+  @supports (backdrop-filter: blur(1px)) {
+    .cabecera {
+      background: rgb(248 245 239 / 0.82);
+      backdrop-filter: saturate(1.3) blur(14px);
+    }
+  }
+
+  /* Sobre foto: transparente hasta que se hace scroll */
+  .cabecera[data-transparente] {
+    position: fixed;
+    inset: 0 0 auto;
+  }
+
+  .cabecera[data-transparente]:not(.is-scrolled) {
+    background: linear-gradient(180deg, rgb(2 15 61 / 0.55), rgb(2 15 61 / 0));
+    backdrop-filter: none;
+    color: var(--c-on-dark);
+    border-color: transparent;
+  }
+
+  .cabecera :global(.logo-solido) {
+    display: none;
+  }
+
+  .cabecera[data-transparente].is-scrolled :global(.logo-sobre-foto) {
+    display: none;
+  }
+
+  .cabecera[data-transparente].is-scrolled :global(.logo-solido) {
+    display: inline-flex;
+  }
+
+  .cabecera__barra {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    height: 100%;
+  }
+
+  .cabecera__logo {
+    display: inline-flex;
+    margin-right: auto;
+    text-decoration: none;
+  }
+
+  .cabecera__nav {
+    display: none;
+  }
+
+  .cabecera__nav ul {
+    display: flex;
+    gap: clamp(1.25rem, 2.2vw, 2.4rem);
+  }
+
+  .cabecera__nav a {
+    position: relative;
+    display: inline-block;
+    padding-block: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .cabecera__nav a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.15rem;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.45s var(--ease);
+  }
+
+  .cabecera__nav a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .cabecera__nav a[aria-current='page']::after {
+    background: var(--c-red);
+    height: 2px;
+    transform: scaleX(1);
+  }
+
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__nav a[aria-current='page']::after {
+    background: currentColor;
+  }
+
+  .cabecera__tel {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    min-width: 2.75rem;
+    min-height: 2.75rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .cabecera__tel :global(svg) {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+
+  .cabecera__tel-texto {
+    display: none;
+  }
+
+  .cabecera__menu {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0 0.25rem;
+    border: 0;
+    background: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .cabecera__menu :global(svg) {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+
+  @media (min-width: 40em) {
+    .cabecera__tel-texto {
+      display: inline;
+    }
+  }
+
+  @media (min-width: 64em) {
+    .cabecera__nav {
+      display: block;
+    }
+
+    .cabecera__menu {
+      display: none;
+    }
+
+    .cabecera__tel {
+      padding-left: 1.5rem;
+      border-left: 1px solid currentColor;
+      border-color: color-mix(in srgb, currentColor 30%, transparent);
+    }
+  }
+
+  /* Menú móvil (dialog modal: atrapa el foco y se cierra con Esc) */
+  .menu-movil {
+    width: 100%;
+    max-width: none;
+    height: 100%;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: var(--c-paper);
+    color: var(--c-ink);
+    overflow-y: auto;
+  }
+
+  .menu-movil[open] {
+    display: flex;
+    flex-direction: column;
+    animation: menu-entrar 0.45s var(--ease);
+  }
+
+  .menu-movil::backdrop {
+    background: rgb(2 15 61 / 0.4);
+  }
+
+  .menu-movil__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: var(--header-h);
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .menu-movil__cerrar {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    border: 0;
+    background: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .menu-movil__cerrar :global(svg) {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+
+  .menu-movil__nav {
+    flex: 1;
+    padding-block: 2rem;
+  }
+
+  .menu-movil__nav li {
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .menu-movil__nav a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 0.9rem;
+    font-family: var(--f-serif);
+    font-size: clamp(2rem, 8vw, 2.75rem);
+    font-weight: 500;
+    line-height: 1.1;
+    text-decoration: none;
+  }
+
+  .menu-movil__nav a[aria-current='page'] {
+    color: var(--c-red);
+  }
+
+  .menu-movil__pie {
+    display: grid;
+    gap: 0.6rem;
+    padding-block: 1.5rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  .menu-movil__pie a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    min-height: 2.75rem;
+    text-decoration: none;
+  }
+
+  .menu-movil__pie :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    color: var(--c-navy);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .menu-movil[open] li {
+      animation: menu-item 0.6s var(--ease) both;
+      animation-delay: calc(0.08s + var(--i) * 0.04s);
+    }
+  }
+
+  @keyframes menu-entrar {
+    from {
+      opacity: 0;
+    }
+  }
+
+  @keyframes menu-item {
+    from {
+      opacity: 0;
+      transform: translateY(0.75rem);
+    }
+  }
+</style>

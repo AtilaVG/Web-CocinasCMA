@@ -1,0 +1,70 @@
+---
+/**
+ * Datos estructurados (schema.org) para SEO local: la empresa, la tienda de
+ * Humanes y la fábrica de Cedillo del Condado. El horario se añadirá cuando
+ * el cliente lo confirme (no publicamos datos de ejemplo a Google).
+ */
+import { empresa } from '../config/empresa';
+
+const sitio = new URL(import.meta.env.BASE_URL, Astro.site).href;
+const { tienda, fabrica } = empresa;
+
+const direccion = (s: typeof tienda) => ({
+  '@type': 'PostalAddress',
+  streetAddress: s.calle,
+  postalCode: s.cp,
+  addressLocality: s.localidad,
+  addressRegion: s.provincia,
+  addressCountry: 'ES',
+});
+
+const grafo = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      '@id': `${sitio}#empresa`,
+      name: empresa.nombre,
+      legalName: empresa.razonSocial,
+      url: sitio,
+      email: empresa.email,
+      foundingDate: String(empresa.fundacion),
+      slogan: 'Cocinas a medida fabricadas por nosotros desde 1992',
+      sameAs: empresa.redes.map((r) => r.url),
+    },
+    {
+      '@type': ['HomeAndConstructionBusiness', 'FurnitureStore'],
+      '@id': `${sitio}#tienda`,
+      name: `${empresa.nombre} · ${tienda.nombre}`,
+      description:
+        'Fábrica y tienda familiar de muebles de cocina a medida. Exposición de más de 700 m² en Humanes de Madrid.',
+      url: sitio,
+      email: empresa.email,
+      telephone: tienda.telefonos[0].e164,
+      contactPoint: tienda.telefonos.map((t) => ({
+        '@type': 'ContactPoint',
+        telephone: t.e164,
+        contactType: 'customer service',
+        areaServed: 'ES',
+        availableLanguage: 'es',
+      })),
+      address: direccion(tienda),
+      hasMap: tienda.mapa,
+      areaServed: ['Humanes de Madrid', 'Fuenlabrada', 'Comunidad de Madrid', 'Toledo'],
+      parentOrganization: { '@id': `${sitio}#empresa` },
+    },
+    {
+      '@type': 'HomeAndConstructionBusiness',
+      '@id': `${sitio}#fabrica`,
+      name: `${empresa.nombre} · ${fabrica.nombre}`,
+      description: 'Fábrica propia de muebles de cocina, de más de 2.000 m².',
+      telephone: fabrica.telefonos[0].e164,
+      address: direccion(fabrica),
+      hasMap: fabrica.mapa,
+      parentOrganization: { '@id': `${sitio}#empresa` },
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(grafo)} />

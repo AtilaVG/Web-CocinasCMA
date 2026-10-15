@@ -1,0 +1,59 @@
+---
+/**
+ * Foto optimizada (AVIF/WebP en varios tamaños) o, si aún no existe el
+ * archivo, un hueco "foto pendiente" con la descripción de lo que falta.
+ */
+import { Picture } from 'astro:assets';
+import FotoPendiente from './FotoPendiente.astro';
+import { buscarFoto } from '../data/fotos';
+
+interface Props {
+  src?: string | null;
+  alt: string;
+  pendiente?: string;
+  sizes?: string;
+  anchos?: number[];
+  prioridad?: boolean;
+  tono?: 'claro' | 'oscuro' | 'madera';
+  posicion?: 'centro' | 'arriba' | 'abajo';
+  compacto?: boolean;
+  class?: string;
+}
+
+const {
+  src,
+  alt,
+  pendiente,
+  sizes = '100vw',
+  anchos = [480, 800, 1200, 1600, 2400],
+  prioridad = false,
+  tono,
+  posicion,
+  compacto,
+  class: className,
+} = Astro.props;
+
+const img = buscarFoto(src);
+// No generamos tamaños mayores que el original.
+const widths = img
+  ? [...new Set([...anchos.filter((w) => w < img.width), Math.min(img.width, Math.max(...anchos))])]
+  : [];
+---
+
+{
+  img ? (
+    <Picture
+      src={img}
+      alt={alt}
+      widths={widths}
+      sizes={sizes}
+      formats={['avif', 'webp']}
+      loading={prioridad ? 'eager' : 'lazy'}
+      fetchpriority={prioridad ? 'high' : 'auto'}
+      decoding={prioridad ? 'sync' : 'async'}
+      class={className}
+    />
+  ) : (
+    <FotoPendiente texto={pendiente ?? alt} tono={tono} posicion={posicion} compacto={compacto} class={className} />
+  )
+}

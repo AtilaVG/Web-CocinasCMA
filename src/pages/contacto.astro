@@ -1,0 +1,475 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Icon from '../components/Icon.astro';
+import Horario from '../components/Horario.astro';
+import { empresa, enlaceWhatsApp } from '../config/empresa';
+import { url } from '../lib/url';
+
+const { tienda, fabrica } = empresa;
+const formspree = empresa.formspreeId ? `https://formspree.io/f/${empresa.formspreeId}` : '';
+---
+
+<Base
+  titulo="Contacto: teléfono, WhatsApp y cómo llegar"
+  descripcion="Contacta con Cocinas CMA: tienda y exposición en Avda. de Fuenlabrada, 57, Humanes de Madrid. Teléfonos 91 604 93 82 y 91 604 06 56, WhatsApp y correo info@cocinascma.com."
+>
+  <PageHero
+    antetitulo="Contacto"
+    titulo="Cuéntanos qué cocina <em>tienes en mente</em>"
+    intro="Llámanos, escríbenos o pásate por la exposición. Te responderemos lo antes posible y, si quieres, te preparamos un presupuesto sin compromiso con el diseño de tu cocina."
+  />
+
+  <section class="section section--tight contacto" aria-label="Datos de contacto y formulario">
+    <div class="container contacto__grid">
+      <div class="contacto__datos">
+        <div class="bloque" data-reveal>
+          <h2 class="bloque__titulo"><Icon name="showroom" /> {tienda.nombre}</h2>
+          <address>
+            {tienda.calle}<br />
+            {tienda.cp} {tienda.localidad} ({tienda.provincia})<br />
+            <span class="muted small">{tienda.referencia}</span>
+          </address>
+          <ul class="telefonos" role="list">
+            {
+              tienda.telefonos.map((t) => (
+                <li>
+                  <a class="telefono" href={`tel:${t.e164}`}>
+                    <Icon name="phone" />
+                    {t.texto}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="btn-row">
+            <a class="btn btn--whatsapp" href={enlaceWhatsApp} target="_blank" rel="noopener">
+              <Icon name="whatsapp" /> Escríbenos por WhatsApp
+              <span class="visually-hidden">(abre WhatsApp en una pestaña nueva)</span>
+            </a>
+          </div>
+          {empresa.whatsapp.pendiente && <p class="nota"><span class="tag-pendiente">Número de WhatsApp por confirmar</span></p>}
+          <p class="email">
+            <Icon name="mail" />
+            <a href={`mailto:${empresa.email}`}>{empresa.email}</a>
+          </p>
+        </div>
+
+        <div class="bloque" data-reveal style="--d: 0.08s">
+          <h2 class="bloque__titulo"><Icon name="clock" /> Horario de la tienda</h2>
+          <Horario />
+        </div>
+
+        <div class="bloque" data-reveal style="--d: 0.16s">
+          <h2 class="bloque__titulo"><Icon name="saw" /> {fabrica.nombre}</h2>
+          <address>
+            {fabrica.calle}<br />
+            {fabrica.cp} {fabrica.localidad} ({fabrica.provincia})
+          </address>
+          <ul class="telefonos" role="list">
+            {
+              fabrica.telefonos.map((t) => (
+                <li>
+                  <a class="telefono" href={`tel:${t.e164}`}>
+                    <Icon name="phone" />
+                    {t.texto}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="contacto__formulario" data-reveal style="--d: 0.1s">
+        <h2>Escríbenos</h2>
+        <p class="muted small">Los campos marcados con * son obligatorios.</p>
+
+        <form
+          class="formulario"
+          action={formspree || `mailto:${empresa.email}`}
+          method="post"
+          enctype={formspree ? undefined : 'text/plain'}
+          data-formulario
+          data-formspree={formspree || undefined}
+          data-email={empresa.email}
+          novalidate
+        >
+          <div class="campo">
+            <label for="f-nombre">Nombre *</label>
+            <input id="f-nombre" name="nombre" type="text" autocomplete="name" required />
+          </div>
+          <div class="campos-dobles">
+            <div class="campo">
+              <label for="f-telefono">Teléfono *</label>
+              <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" inputmode="tel" required />
+            </div>
+            <div class="campo">
+              <label for="f-email">Correo electrónico</label>
+              <input id="f-email" name="email" type="email" autocomplete="email" />
+            </div>
+          </div>
+          <div class="campos-dobles">
+            <div class="campo">
+              <label for="f-localidad">Localidad</label>
+              <input id="f-localidad" name="localidad" type="text" autocomplete="address-level2" />
+            </div>
+            <div class="campo">
+              <label for="f-interes">Me interesa</label>
+              <select id="f-interes" name="interes">
+                <option>Una cocina a medida</option>
+                <option>Reformar mi cocina actual</option>
+                <option>Muebles de baño</option>
+                <option>Armarios a medida</option>
+                <option>Otra consulta</option>
+              </select>
+            </div>
+          </div>
+          <div class="campo">
+            <label for="f-mensaje">Cuéntanos tu idea *</label>
+            <textarea
+              id="f-mensaje"
+              name="mensaje"
+              rows="5"
+              required
+              aria-describedby="f-mensaje-ayuda"></textarea>
+            <p class="ayuda" id="f-mensaje-ayuda">Medidas aproximadas, estilo que te gusta, cuándo te gustaría tenerla…</p>
+          </div>
+          <div class="campo campo--check">
+            <input id="f-privacidad" name="privacidad" type="checkbox" required />
+            <label for="f-privacidad">
+              He leído y acepto la <a href={url('/privacidad/')}>política de privacidad</a>. *
+            </label>
+          </div>
+          <input type="text" name="_gotcha" class="trampa" tabindex="-1" autocomplete="off" aria-hidden="true" />
+
+          <p class="formulario__error" role="alert" data-error hidden></p>
+
+          <button class="btn" type="submit">Enviar mensaje <Icon name="arrow" /></button>
+          {
+            !formspree && (
+              <p class="nota small muted">
+                <span class="tag-pendiente">Prototipo</span> Al enviar se abrirá tu programa de correo con el mensaje
+                preparado. En la web definitiva se enviará directamente (Formspree u otro servicio).
+              </p>
+            )
+          }
+        </form>
+
+        <div class="formulario__ok" data-ok hidden tabindex="-1">
+          <Icon name="check" />
+          <h3>¡Gracias! Hemos recibido tu mensaje.</h3>
+          <p class="muted">Te contestaremos lo antes posible. Si es urgente, llámanos al {tienda.telefonos[0].texto}.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mapa" aria-labelledby="mapa-titulo">
+    <h2 id="mapa-titulo" class="visually-hidden">Mapa de la tienda</h2>
+    <div class="mapa__caja" data-mapa data-src={empresa.mapaEmbebido}>
+      <div class="mapa__fachada">
+        <div class="mapa__texto">
+          <Icon name="pin" class="mapa__icono" />
+          <p class="serif mapa__direccion">
+            {tienda.calle}, {tienda.localidad}
+          </p>
+          <div class="btn-row">
+            <button type="button" class="btn" data-cargar-mapa>Mostrar el mapa</button>
+            <a class="btn btn--ghost" href={tienda.mapa} target="_blank" rel="noopener">
+              Abrir en Google Maps <Icon name="external" />
+              <span class="visually-hidden">(pestaña nueva)</span>
+            </a>
+          </div>
+          <p class="small muted">Al mostrar el mapa se cargará contenido de Google, que puede usar cookies.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  import '../scripts/contacto';
+</script>
+
+<style>
+  .contacto__grid {
+    display: grid;
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  @media (min-width: 64em) {
+    .contacto__grid {
+      grid-template-columns: 1fr 1.25fr;
+      align-items: start;
+    }
+  }
+
+  .contacto__datos {
+    display: grid;
+    gap: 2.5rem;
+  }
+
+  .bloque {
+    display: grid;
+    gap: 1rem;
+    justify-items: start;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+
+  .bloque > :global(*) {
+    max-width: 100%;
+  }
+
+  .bloque__titulo {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    font-family: var(--f-sans);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-navy);
+  }
+
+  .bloque__titulo :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  .bloque :global(.horario) {
+    width: 100%;
+  }
+
+  address {
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: 1.6;
+  }
+
+  .telefonos {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .telefono {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-height: 2.75rem;
+    font-family: var(--f-serif);
+    font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.25rem);
+    font-weight: 500;
+    color: var(--c-ink);
+    text-decoration: none;
+  }
+
+  .telefono:hover {
+    color: var(--c-navy);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+  }
+
+  .telefono :global(svg) {
+    width: 1.2rem;
+    height: 1.2rem;
+    color: var(--c-red);
+  }
+
+  .email {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 1.1rem;
+  }
+
+  .email :global(svg) {
+    color: var(--c-navy);
+  }
+
+  /* Formulario */
+  .contacto__formulario {
+    padding: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+    background: var(--c-cream);
+  }
+
+  .contacto__formulario > h2 {
+    font-size: clamp(2rem, 1.6rem + 1.4vw, 2.75rem);
+  }
+
+  .formulario {
+    display: grid;
+    gap: 1.25rem;
+    margin-top: 1.75rem;
+  }
+
+  .campos-dobles {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 40em) {
+    .campos-dobles {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .campo {
+    display: grid;
+    gap: 0.4rem;
+  }
+
+  .campo label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--c-ink);
+  }
+
+  .campo input:not([type='checkbox']),
+  .campo select,
+  .campo textarea {
+    width: 100%;
+    min-height: 3rem;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid var(--c-line-strong);
+    border-radius: var(--radius);
+    background: var(--c-white);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: border-color 0.2s var(--ease);
+  }
+
+  .campo textarea {
+    resize: vertical;
+    min-height: 8rem;
+  }
+
+  .campo input:focus-visible,
+  .campo select:focus-visible,
+  .campo textarea:focus-visible {
+    outline: 2px solid var(--c-navy);
+    outline-offset: 1px;
+    border-color: var(--c-navy);
+  }
+
+  .campo [aria-invalid='true'] {
+    border-color: var(--c-red) !important;
+  }
+
+  .ayuda {
+    font-size: 0.85rem;
+    color: var(--c-muted);
+  }
+
+  .campo--check {
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 0.75rem;
+  }
+
+  .campo--check input {
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-top: 0.2rem;
+    accent-color: var(--c-ink);
+  }
+
+  .campo--check label {
+    font-weight: 400;
+  }
+
+  .trampa {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+
+  .formulario__error {
+    padding: 0.75rem 1rem;
+    border-left: 3px solid var(--c-red);
+    background: var(--c-white);
+    color: var(--c-red);
+    font-size: var(--fs-small);
+  }
+
+  .formulario .btn {
+    justify-self: start;
+  }
+
+  .nota {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .formulario__ok {
+    display: grid;
+    gap: 0.75rem;
+    margin-top: 2rem;
+    padding: 2rem;
+    background: var(--c-paper);
+    border-left: 3px solid var(--c-navy);
+  }
+
+  .formulario__ok:focus {
+    outline: none;
+  }
+
+  .formulario__ok :global(svg) {
+    width: 2rem;
+    height: 2rem;
+    color: var(--c-navy);
+  }
+
+  /* Mapa */
+  .mapa__caja {
+    position: relative;
+    height: clamp(24rem, 50vw, 34rem);
+    background:
+      repeating-linear-gradient(0deg, rgb(2 15 61 / 0.05) 0 1px, transparent 1px 48px),
+      repeating-linear-gradient(90deg, rgb(2 15 61 / 0.05) 0 1px, transparent 1px 48px),
+      linear-gradient(160deg, #e9e3d8, #dcd3c4);
+  }
+
+  .mapa__caja :global(iframe) {
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .mapa__fachada {
+    display: grid;
+    place-items: center;
+    height: 100%;
+    padding: var(--gutter);
+    text-align: center;
+  }
+
+  .mapa__texto {
+    display: grid;
+    gap: 1rem;
+    justify-items: center;
+    max-width: 32rem;
+  }
+
+  .mapa__texto :global(.mapa__icono) {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--c-red);
+  }
+
+  .mapa__direccion {
+    font-size: clamp(1.6rem, 1.3rem + 1.2vw, 2.2rem);
+    color: var(--c-ink);
+    line-height: 1.2;
+  }
+
+  .mapa__texto .btn-row {
+    justify-content: center;
+  }
+</style>

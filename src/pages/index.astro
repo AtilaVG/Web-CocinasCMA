@@ -1,0 +1,549 @@
+---
+import Base from '../layouts/Base.astro';
+import Foto from '../components/Foto.astro';
+import Icon from '../components/Icon.astro';
+import Valoracion from '../components/Valoracion.astro';
+import VisitaExposicion from '../components/VisitaExposicion.astro';
+import { huecos } from '../data/fotos';
+import { destacados } from '../data/proyectos';
+import { nombreAcabado, nombreEstilo } from '../data/catalogo';
+import { url } from '../lib/url';
+
+const pilares = [
+  {
+    icono: 'saw',
+    titulo: 'Fabricación propia',
+    texto:
+      'Cada mueble sale de nuestra fábrica de más de 2.000 m² en Cedillo del Condado (Toledo). Controlamos la calidad de principio a fin y, sin intermediarios, ajustamos el precio.',
+    enlace: { texto: 'Ver la fábrica', ruta: '/fabrica/' },
+  },
+  {
+    icono: 'ruler',
+    titulo: 'Diseño a medida',
+    texto:
+      'Medimos tu espacio y diseñamos la cocina pieza a pieza, a tu gusto y a tu manera de cocinar. Antes de fabricar nada, te enseñamos cómo va a quedar.',
+    enlace: { texto: 'Ver proyectos', ruta: '/proyectos/' },
+  },
+  {
+    icono: 'showroom',
+    titulo: '700 m² de exposición',
+    texto:
+      'En Humanes de Madrid puedes ver cocinas montadas, comparar acabados y tocar los materiales antes de decidir. Sin prisas y con quien la va a fabricar.',
+    enlace: { texto: 'Visitar la exposición', ruta: '/exposicion/' },
+  },
+] as const;
+
+const cifras = [
+  { valor: '+2.000 m²', texto: 'de fábrica propia en Toledo' },
+  { valor: '+30 años', texto: 'de oficio familiar' },
+  { valor: '700 m²', texto: 'de exposición en Humanes' },
+];
+---
+
+<Base
+  tituloCompleto="Cocinas CMA · Cocinas a medida en Humanes de Madrid, de fábrica propia desde 1992"
+  titulo="Inicio"
+  descripcion="Fábrica y tienda familiar de cocinas a medida en Humanes de Madrid. Diseñamos y fabricamos cada cocina en nuestra fábrica desde 1992. Visita nuestra exposición de 700 m²."
+  headerTransparente
+>
+  <!-- Portada -->
+  <section class="hero on-dark">
+    <div class="media media--fill hero__media">
+      <Foto
+        src={huecos.inicioHero.foto}
+        alt={huecos.inicioHero.alt}
+        pendiente={huecos.inicioHero.pendiente}
+        prioridad
+        tono="oscuro"
+        posicion="arriba"
+      />
+    </div>
+    <div class="hero__velo" aria-hidden="true"></div>
+
+    <div class="container hero__contenido">
+      <p class="eyebrow hero__antetitulo" data-reveal>Fábrica de mobiliario de cocinas</p>
+      <h1 class="hero__titulo" data-reveal style="--d: 0.1s">
+        Cocinas a medida, <em>fabricadas por nosotros</em> desde&nbsp;1992
+      </h1>
+      <p class="hero__intro" data-reveal style="--d: 0.2s">
+        Diseñamos cada cocina para su espacio y la fabricamos en nuestra fábrica de Toledo. Más de 30 años de oficio
+        familiar, sin intermediarios.
+      </p>
+      <div class="btn-row" data-reveal style="--d: 0.3s">
+        <a class="btn btn--light" href={url('/proyectos/')}>Ver proyectos</a>
+        <a class="btn btn--ghost-light" href={url('/exposicion/')}>Visitar la exposición</a>
+      </div>
+    </div>
+
+    <div class="container hero__pie" aria-hidden="true">
+      <span>Humanes de Madrid · Cedillo del Condado</span>
+      <span class="hero__scroll"><Icon name="arrow-down" /></span>
+    </div>
+  </section>
+
+  <!-- Presentación -->
+  <section class="section manifiesto">
+    <div class="container manifiesto__grid">
+      <p class="eyebrow" data-reveal>Desde 1992</p>
+      <div>
+        <p class="manifiesto__texto" data-reveal>
+          Somos una familia de carpinteros. Llevamos más de treinta años dibujando y fabricando cocinas a medida con
+          la misma idea del primer día: que estén <em>bien hechas</em>, que se adapten a cada casa y que duren.
+        </p>
+        <a class="link-arrow" href={url('/nosotros/')} data-reveal style="--d: 0.1s">
+          Nuestra historia <Icon name="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pilares -->
+  <section class="section section--tight pilares" aria-label="Por qué Cocinas CMA">
+    <div class="container">
+      <ol class="pilares__lista" role="list">
+        {
+          pilares.map((p, i) => (
+            <li class="pilar" data-reveal style={`--d: ${i * 0.1}s`}>
+              <div class="pilar__cabecera">
+                <span class="pilar__num" aria-hidden="true">
+                  0{i + 1}
+                </span>
+                <Icon name={p.icono} class="pilar__icono" />
+              </div>
+              <h2 class="pilar__titulo">{p.titulo}</h2>
+              <p class="pilar__texto">{p.texto}</p>
+              <a class="link-arrow" href={url(p.enlace.ruta)}>
+                {p.enlace.texto} <Icon name="arrow" />
+              </a>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Selección de trabajos -->
+  <section class="section trabajos" aria-labelledby="trabajos-titulo">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal>Proyectos</p>
+          <h2 id="trabajos-titulo" data-reveal style="--d: 0.08s">Algunas de nuestras cocinas</h2>
+        </div>
+        <div data-reveal style="--d: 0.16s">
+          <p class="muted">
+            Modernas, actuales o rústicas; en laca, madera, cristal o estratificado. Cada una pensada para una casa y
+            una familia concretas.
+          </p>
+        </div>
+      </div>
+
+      <ul class="trabajos__grid" role="list">
+        {
+          destacados.map((p, i) => (
+            <li class={`trabajo trabajo--${i + 1}`} data-reveal style={`--d: ${(i % 3) * 0.08}s`}>
+              <a href={url(`/proyectos/#${p.id}`)} class="trabajo__enlace">
+                <div class="media trabajo__media" data-reveal="imagen">
+                  <Foto
+                    src={p.foto}
+                    alt={p.alt}
+                    pendiente={p.titulo}
+                    sizes={i === 0 ? '(min-width: 56em) 58vw, 100vw' : '(min-width: 56em) 42vw, 100vw'}
+                    tono={i % 2 ? 'madera' : 'claro'}
+                    compacto={i > 0}
+                  />
+                </div>
+                <div class="trabajo__pie">
+                  <h3 class="trabajo__titulo">{p.titulo}</h3>
+                  <p class="trabajo__meta">
+                    {nombreEstilo(p.estilos[0])}
+                    {p.acabados.length > 0 && ` · ${p.acabados.map(nombreAcabado).join(', ')}`}
+                  </p>
+                </div>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <div class="trabajos__mas" data-reveal>
+        <a class="btn btn--ghost" href={url('/proyectos/')}>Ver todos los proyectos <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Fábrica -->
+  <section class="section section--dark fabrica" aria-labelledby="fabrica-titulo">
+    <div class="container fabrica__grid">
+      <div class="media fabrica__media" data-reveal="imagen">
+        <Foto
+          src={huecos.inicioFabrica.foto}
+          alt={huecos.inicioFabrica.alt}
+          pendiente={huecos.inicioFabrica.pendiente}
+          sizes="(min-width: 56em) 50vw, 100vw"
+          tono="oscuro"
+        />
+      </div>
+      <div class="fabrica__texto">
+        <p class="eyebrow" data-reveal>Fábrica propia · Cedillo del Condado (Toledo)</p>
+        <h2 id="fabrica-titulo" data-reveal style="--d: 0.08s">Lo que diseñamos, <em>lo fabricamos nosotros</em></h2>
+        <p class="muted" data-reveal style="--d: 0.16s">
+          Tener fábrica propia lo cambia todo: elegimos los materiales, cuidamos cada corte y cada canto, y
+          resolvemos cualquier ajuste sin depender de nadie. Por eso podemos ofrecer cocinas a medida de calidad a un
+          precio ajustado.
+        </p>
+        <dl class="fabrica__cifras" data-reveal style="--d: 0.24s">
+          {
+            cifras.map((c) => (
+              <div>
+                <dt>{c.texto}</dt>
+                <dd>{c.valor}</dd>
+              </div>
+            ))
+          }
+        </dl>
+        <a class="link-arrow" href={url('/fabrica/')} data-reveal style="--d: 0.3s">
+          Cómo trabajamos en la fábrica <Icon name="arrow" />
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <Valoracion />
+
+  <VisitaExposicion />
+</Base>
+
+<style>
+  /* Portada */
+  .hero {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    min-height: 100svh;
+    padding-top: calc(var(--header-h) + 7rem);
+    color: var(--c-on-dark);
+    background: var(--c-ink);
+  }
+
+  .hero__media :global(.foto-pendiente) {
+    padding-top: calc(var(--header-h) + 1.25rem);
+  }
+
+  .hero__velo {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(0deg, rgb(2 15 61 / 0.85) 0%, rgb(2 15 61 / 0.4) 40%, rgb(2 15 61 / 0) 68%),
+      linear-gradient(90deg, rgb(2 15 61 / 0.5), rgb(2 15 61 / 0) 65%);
+    pointer-events: none;
+  }
+
+  .hero__contenido {
+    position: relative;
+    padding-bottom: clamp(2.5rem, 2rem + 3vw, 4.5rem);
+  }
+
+  .hero__antetitulo {
+    color: var(--c-on-dark);
+  }
+
+  .hero__antetitulo::before {
+    background: currentColor;
+  }
+
+  .hero__titulo {
+    max-width: 13ch;
+    font-size: var(--fs-display);
+    line-height: 0.98;
+    color: var(--c-on-dark);
+  }
+
+  .hero__intro {
+    max-width: 34rem;
+    margin-block: 1.75rem 2.25rem;
+    font-size: var(--fs-lead);
+    line-height: 1.55;
+    color: var(--c-on-dark-muted);
+  }
+
+  .hero__pie {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: 1.25rem;
+    border-top: 1px solid var(--c-line-dark);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-on-dark-muted);
+  }
+
+  .hero__scroll :global(svg) {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero__scroll {
+      animation: flotar 2.6s var(--ease) infinite;
+    }
+  }
+
+  @keyframes flotar {
+    50% {
+      transform: translateY(0.35rem);
+    }
+  }
+
+  /* Presentación */
+  .manifiesto__grid {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 56em) {
+    .manifiesto__grid {
+      grid-template-columns: 1fr 3fr;
+      gap: 3rem;
+    }
+  }
+
+  .manifiesto__texto {
+    margin-bottom: 2.5rem;
+    font-family: var(--f-serif);
+    font-size: clamp(1.75rem, 1.2rem + 2.2vw, 3.1rem);
+    font-weight: 500;
+    line-height: 1.22;
+    color: var(--c-ink);
+    text-wrap: pretty;
+  }
+
+  .manifiesto__texto em {
+    color: var(--c-red);
+  }
+
+  /* Pilares */
+  .pilares {
+    padding-top: 0;
+  }
+
+  .pilares__lista {
+    display: grid;
+    gap: 3rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  @media (min-width: 56em) {
+    .pilares__lista {
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(2rem, 3vw, 3.5rem);
+    }
+  }
+
+  .pilar {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--c-line-strong);
+  }
+
+  .pilar__cabecera {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+    margin-bottom: 0.5rem;
+  }
+
+  .pilar__num {
+    font-family: var(--f-serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--c-red);
+  }
+
+  .pilar :global(.pilar__icono) {
+    width: 2.25rem;
+    height: 2.25rem;
+    color: var(--c-navy);
+    stroke-width: 1.1;
+  }
+
+  .pilar__titulo {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+  }
+
+  .pilar__texto {
+    flex: 1;
+    color: var(--c-muted);
+  }
+
+  /* Trabajos */
+  .trabajos {
+    padding-top: calc(var(--section) * 0.5);
+  }
+
+  .trabajos__grid {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 1.5vw, 2.25rem) clamp(1rem, 0.5rem + 1.5vw, 2rem);
+  }
+
+  .trabajo__enlace {
+    display: block;
+    text-decoration: none;
+  }
+
+  .trabajo__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .trabajo__media :global(img) {
+    transition: transform 1.2s var(--ease);
+  }
+
+  .trabajo__enlace:hover .trabajo__media :global(img) {
+    transform: scale(1.03);
+  }
+
+  .trabajo__pie {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding-top: 1rem;
+  }
+
+  .trabajo__titulo {
+    font-size: 1.35rem;
+    font-weight: 600;
+  }
+
+  .trabajo__meta {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  @media (min-width: 40em) {
+    .trabajos__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .trabajo--1 {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (min-width: 56em) {
+    .trabajos__grid {
+      grid-template-columns: repeat(12, 1fr);
+    }
+
+    .trabajo--1 {
+      grid-column: 1 / 8;
+      grid-row: 1 / 3;
+    }
+
+    .trabajo--1 .trabajo__enlace {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .trabajo--1 .trabajo__media {
+      flex: 1;
+      aspect-ratio: auto;
+      min-height: 26rem;
+    }
+
+    .trabajo--2,
+    .trabajo--3 {
+      grid-column: 8 / 13;
+    }
+
+    .trabajo--4 {
+      grid-column: 1 / 6;
+    }
+
+    .trabajo--5 {
+      grid-column: 6 / 13;
+    }
+
+    /* Misma altura que la 4 (5 columnas a 4:3) */
+    .trabajo--5 .trabajo__media {
+      aspect-ratio: 28 / 15;
+    }
+  }
+
+  .trabajos__mas {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(2.5rem, 2rem + 2vw, 4rem);
+  }
+
+  /* Fábrica */
+  .fabrica__grid {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .fabrica__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .fabrica__media {
+    aspect-ratio: 4 / 5;
+    background: #0b1d45;
+  }
+
+  .fabrica__texto h2 {
+    margin-bottom: 1.5rem;
+  }
+
+  .fabrica__cifras {
+    display: grid;
+    gap: 1.25rem;
+    margin-block: 2.5rem;
+    padding-block: 2rem;
+    border-block: 1px solid var(--c-line-dark);
+  }
+
+  @media (min-width: 36em) {
+    .fabrica__cifras {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .fabrica__cifras div {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 0.35rem;
+  }
+
+  .fabrica__cifras dd {
+    font-family: var(--f-serif);
+    font-size: clamp(2rem, 1.6rem + 1.2vw, 2.6rem);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--c-on-dark);
+  }
+
+  .fabrica__cifras dt {
+    font-size: var(--fs-small);
+    color: var(--c-on-dark-muted);
+  }
+</style>

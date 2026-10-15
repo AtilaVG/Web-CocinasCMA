@@ -1,0 +1,354 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Foto from '../components/Foto.astro';
+import Icon from '../components/Icon.astro';
+import BandaContacto from '../components/BandaContacto.astro';
+import { huecos } from '../data/fotos';
+import { url } from '../lib/url';
+
+const hitos = [
+  {
+    ano: '1992',
+    titulo: 'Nace el taller',
+    texto: 'Una familia de carpinteros empieza a fabricar cocinas a medida en su propio taller.',
+  },
+  {
+    ano: '1993',
+    titulo: 'Cocinas C.M.A. S.L.',
+    texto: 'El 13 de enero de 1993 se constituye la sociedad que hoy sigue al frente.',
+  },
+  {
+    ano: null,
+    titulo: 'Fábrica en Cedillo del Condado',
+    texto: 'Levantamos nuestra propia fábrica en Toledo, hoy con más de 2.000 m².',
+  },
+  {
+    ano: null,
+    titulo: 'Exposición en Humanes de Madrid',
+    texto: 'Abrimos la tienda de la Avenida de Fuenlabrada: más de 700 m² de exposición.',
+  },
+  {
+    ano: 'Hoy',
+    titulo: 'Más de 30 años después',
+    texto: 'Seguimos siendo una empresa familiar, con un equipo propio entre fábrica y tienda.',
+  },
+];
+
+const valores = [
+  {
+    icono: 'hand',
+    titulo: 'Oficio',
+    texto: 'Venimos de la carpintería y se nota en los detalles: cantos, ajustes, herrajes, remates.',
+  },
+  {
+    icono: 'heart',
+    titulo: 'Trato cercano',
+    texto: 'Hablas con quien diseña y fabrica tu cocina. Sin centralitas ni intermediarios.',
+  },
+  {
+    icono: 'euro',
+    titulo: 'Precio justo',
+    texto: 'Al fabricar nosotros, el presupuesto se ajusta a lo que de verdad cuesta hacerla bien.',
+  },
+  {
+    icono: 'shield',
+    titulo: 'Hecho para durar',
+    texto: 'Elegimos materiales y herrajes pensando en el uso diario durante muchos años.',
+  },
+] as const;
+
+const pasos = [
+  {
+    titulo: 'Nos cuentas tu idea',
+    texto: 'En la exposición o por teléfono. Cómo cocinas, qué necesitas guardar, qué te gusta.',
+  },
+  {
+    titulo: 'Medimos y diseñamos',
+    texto: 'Tomamos medidas y te preparamos un presupuesto sin compromiso, con el diseño visual de tu cocina.',
+  },
+  {
+    titulo: 'La fabricamos',
+    texto: 'En nuestra fábrica de Cedillo del Condado, pieza a pieza y a la medida exacta.',
+  },
+  {
+    titulo: 'La montamos',
+    texto: 'Coordinamos la entrega y el montaje, y seguimos ahí después para lo que necesites.',
+  },
+];
+---
+
+<Base
+  titulo="Nosotros: una empresa familiar desde 1992"
+  descripcion="Cocinas CMA es una empresa familiar de Humanes de Madrid fundada en 1992 por una familia de carpinteros. Más de 30 años diseñando y fabricando cocinas a medida."
+  headerTransparente
+>
+  <PageHero
+    antetitulo="Nosotros"
+    titulo="Una familia de carpinteros, <em>haciendo cocinas desde 1992</em>"
+    intro="Varias generaciones dedicadas a la madera y una forma de trabajar que no ha cambiado: escuchar, medir con cuidado y fabricar cada mueble como si fuera para nuestra casa."
+    foto={huecos.nosotrosHero}
+  />
+
+  <section class="section historia" aria-labelledby="historia-titulo">
+    <div class="container historia__grid">
+      <div class="historia__texto">
+        <p class="eyebrow" data-reveal>Nuestra historia</p>
+        <h2 id="historia-titulo" data-reveal style="--d: 0.08s">Del taller familiar a fábrica propia</h2>
+        <div class="prose" data-reveal style="--d: 0.16s">
+          <p class="lead">
+            Cocinas CMA nació en 1992 como un pequeño taller con una idea sencilla: hacer cocinas bien hechas, a
+            medida y a un precio justo.
+          </p>
+          <p>
+            Detrás había —y sigue habiendo— una familia con varias generaciones de carpinteros. Con los años el taller
+            creció: se constituyó la empresa, abrimos la exposición de Humanes de Madrid y levantamos nuestra propia
+            fábrica en Cedillo del Condado (Toledo).
+          </p>
+          <p>
+            Hoy somos un equipo más grande, pero seguimos trabajando igual. Quien te atiende en la tienda conoce la
+            fábrica, y quien fabrica tu cocina sabe para quién es.
+          </p>
+        </div>
+      </div>
+      <div class="historia__fotos">
+        <div class="media historia__foto historia__foto--1" data-reveal="imagen">
+          <Foto
+            src={huecos.nosotrosHistoria.foto}
+            alt={huecos.nosotrosHistoria.alt}
+            pendiente={huecos.nosotrosHistoria.pendiente}
+            sizes="(min-width: 56em) 30vw, 70vw"
+            tono="madera"
+          />
+        </div>
+        <div class="media historia__foto historia__foto--2" data-reveal="imagen" style="--d: 0.15s">
+          <Foto
+            src={huecos.nosotrosEquipo.foto}
+            alt={huecos.nosotrosEquipo.alt}
+            pendiente={huecos.nosotrosEquipo.pendiente}
+            sizes="(min-width: 56em) 26vw, 60vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream linea" aria-labelledby="linea-titulo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow" data-reveal>Más de 30 años</p>
+        <h2 id="linea-titulo" data-reveal style="--d: 0.08s">Cómo hemos llegado hasta aquí</h2>
+      </div>
+      <ol class="linea__lista" role="list">
+        {
+          hitos.map((h, i) => (
+            <li class="hito" data-reveal style={`--d: ${i * 0.08}s`}>
+              <p class="hito__ano">{h.ano ?? <span class="tag-pendiente">Año por confirmar</span>}</p>
+              <h3 class="hito__titulo">{h.titulo}</h3>
+              <p class="hito__texto muted">{h.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <section class="section valores" aria-labelledby="valores-titulo">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal>Lo que nos importa</p>
+          <h2 id="valores-titulo" data-reveal style="--d: 0.08s">Una empresa familiar, con todo lo que eso significa</h2>
+        </div>
+      </div>
+      <ul class="valores__lista" role="list">
+        {
+          valores.map((v, i) => (
+            <li class="valor" data-reveal style={`--d: ${i * 0.08}s`}>
+              <Icon name={v.icono} class="valor__icono" />
+              <h3>{v.titulo}</h3>
+              <p class="muted">{v.texto}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--dark pasos" aria-labelledby="pasos-titulo">
+    <div class="container">
+      <div class="section-head section-head--split">
+        <div>
+          <p class="eyebrow" data-reveal>Cómo trabajamos</p>
+          <h2 id="pasos-titulo" data-reveal style="--d: 0.08s">De la primera visita a tu cocina terminada</h2>
+        </div>
+        <p class="muted" data-reveal style="--d: 0.16s">
+          Un solo interlocutor durante todo el proceso. Y, también, baños y armarios a medida con el mismo cuidado.
+        </p>
+      </div>
+      <ol class="pasos__lista" role="list">
+        {
+          pasos.map((p, i) => (
+            <li class="paso" data-reveal style={`--d: ${i * 0.08}s`}>
+              <span class="paso__num" aria-hidden="true">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3>{p.titulo}</h3>
+              <p class="muted">{p.texto}</p>
+            </li>
+          ))
+        }
+      </ol>
+      <div class="pasos__mas" data-reveal>
+        <a class="link-arrow" href={url('/fabrica/')}>Conoce la fábrica <Icon name="arrow" /></a>
+      </div>
+    </div>
+  </section>
+
+  <BandaContacto />
+</Base>
+
+<style>
+  .historia__grid {
+    display: grid;
+    gap: clamp(3rem, 2rem + 4vw, 6rem);
+    align-items: center;
+  }
+
+  @media (min-width: 56em) {
+    .historia__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .historia__texto h2 {
+    margin-bottom: 2rem;
+  }
+
+  .historia__fotos {
+    position: relative;
+    padding-bottom: 18%;
+  }
+
+  .historia__foto--1 {
+    width: 78%;
+    aspect-ratio: 4 / 5;
+  }
+
+  .historia__foto--2 {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 52%;
+    aspect-ratio: 1;
+    border: clamp(0.4rem, 1vw, 0.75rem) solid var(--c-paper);
+  }
+
+  /* Línea del tiempo */
+  .linea__lista {
+    display: grid;
+    gap: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 64em) {
+    .linea__lista {
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  .hito {
+    position: relative;
+    display: grid;
+    gap: 0.6rem;
+    align-content: start;
+    padding: 0 0 2.5rem 2rem;
+    border-left: 1px solid var(--c-line-strong);
+  }
+
+  .hito::before {
+    content: '';
+    position: absolute;
+    top: 0.85rem;
+    left: -0.3rem;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 50%;
+    background: var(--c-red);
+  }
+
+  @media (min-width: 64em) {
+    .hito {
+      padding: 2rem 0 0;
+      border-left: 0;
+      border-top: 1px solid var(--c-line-strong);
+    }
+
+    .hito::before {
+      top: -0.3rem;
+      left: 0;
+    }
+  }
+
+  .hito__ano {
+    min-height: 2.6rem;
+    font-family: var(--f-serif);
+    font-size: 2.2rem;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--c-ink);
+  }
+
+  .hito__titulo {
+    font-size: 1.35rem;
+  }
+
+  /* Valores */
+  .valores__lista {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  }
+
+  .valor {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+  }
+
+  .valor :global(.valor__icono) {
+    width: 2.25rem;
+    height: 2.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--c-navy);
+    stroke-width: 1.1;
+  }
+
+  /* Pasos */
+  .pasos__lista {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  }
+
+  .paso {
+    display: grid;
+    gap: 0.75rem;
+    align-content: start;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-line-dark);
+  }
+
+  .paso__num {
+    font-family: var(--f-serif);
+    font-size: 3rem;
+    font-style: italic;
+    line-height: 1;
+    color: var(--c-on-dark-muted);
+  }
+
+  .pasos__mas {
+    margin-top: 3.5rem;
+  }
+</style>

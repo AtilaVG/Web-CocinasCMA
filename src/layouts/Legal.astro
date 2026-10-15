@@ -1,0 +1,46 @@
+---
+import Base from './Base.astro';
+import PageHero from '../components/PageHero.astro';
+
+interface Props {
+  titulo: string;
+  descripcion: string;
+}
+
+const { titulo, descripcion } = Astro.props;
+---
+
+<Base titulo={titulo} descripcion={descripcion}>
+  <PageHero antetitulo="Información legal" titulo={titulo} />
+  <section class="section section--tight">
+    <div class="container container--narrow">
+      <p class="aviso">
+        <span class="tag-pendiente">Texto provisional</span>
+        Plantilla orientativa. Hay que completar los datos marcados y que la revise un asesor antes de publicar la web.
+      </p>
+      <div class="prose">
+        <slot />
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .aviso {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin-bottom: 3rem;
+    padding: 1rem 1.25rem;
+    border: 1px dashed var(--c-line-strong);
+    font-size: var(--fs-small);
+    color: var(--c-muted);
+  }
+
+  .prose :global(mark) {
+    padding: 0 0.3em;
+    background: #efe2c9;
+    color: var(--c-ink);
+  }
+</style>

@@ -1,0 +1,28 @@
+{
+  "name": "cocinas-cma-web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prototipo de la nueva web de Cocinas CMA (Humanes de Madrid).",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check",
+    "fotos": "node scripts/importar-web-actual.mjs"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/jost": "^5.3.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "astro": "^7.3.8",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "typescript": "^5.9.3"
+  }
+}
