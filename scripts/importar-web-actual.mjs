@@ -7,6 +7,9 @@
  *   npm run fotos -- --max-paginas 50
  *   npm run fotos -- --reclasificar     # sin descargar: recalcula estilo, acabado y
  *                                       # título a partir del contexto guardado
+ *   npm run fotos -- --diagnostico URL[,URL…]
+ *                                       # muestra el HTML que recibe el importador
+ *                                       # (para ajustar el rastreo; no guarda nada)
  *
  * Qué hace:
  *  1. Recorre las páginas del sitio (enlaces, marcos y menús en JavaScript).
@@ -58,6 +61,7 @@ let HOSTS;
 
 async function main() {
   if (args.reclasificar) return reclasificar();
+  if (args.diagnostico) return diagnostico(String(args.diagnostico).split(',').map((u) => u.trim()).filter(Boolean));
 
   origen = await elegirOrigen();
   if (!origen) {
@@ -493,6 +497,25 @@ function clasificarFoto(grupos, nombre = '') {
     r.acabados.forEach((a) => acabados.add(a));
   }
   return { estilos: ORDEN_ESTILOS.filter((e) => estilos.has(e)), acabados: [...acabados], titulo: '' };
+}
+
+/** Vuelca el HTML de unas páginas tal como lo recibe el importador (solo lectura). */
+async function diagnostico(urls) {
+  const LIMITE = 60_000;
+  for (const url of urls) {
+    console.log(`\n===== ${url}`);
+    try {
+      const res = await pedir(url);
+      const buffer = Buffer.from(await res.arrayBuffer());
+      const html = decodificar(buffer, res.headers.get('content-type'));
+      console.log(`HTTP ${res.status} · ${res.headers.get('content-type')} · ${buffer.length} bytes · final: ${res.url}`);
+      const pagina = analizarPagina(html, res.url || url);
+      console.log(`Enlaces detectados: ${pagina.enlaces.length} · imágenes detectadas: ${pagina.imagenes.length}`);
+      console.log(html.length > LIMITE ? html.slice(0, LIMITE) + `\n[… ${html.length - LIMITE} caracteres más]` : html);
+    } catch (e) {
+      console.log(`ERROR: ${e.cause?.code ?? e.message}`);
+    }
+  }
 }
 
 /** Recalcula la clasificación del manifiesto con el contexto ya guardado (sin red). */

@@ -6,6 +6,11 @@ name: Importar fotos de la web actual
 # Se lanza a mano: Actions → "Importar fotos de la web actual" → Run workflow.
 on:
   workflow_dispatch:
+    inputs:
+      diagnostico:
+        description: 'Solo diagnóstico: URLs (separadas por comas) cuyo HTML mostrar en el log, sin importar nada'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -29,11 +34,19 @@ jobs:
 
       - run: npm ci
 
+      - name: Diagnóstico (no importa ni guarda)
+        if: inputs.diagnostico != ''
+        run: npm run fotos -- --diagnostico "$URLS"
+        env:
+          URLS: ${{ inputs.diagnostico }}
+
       - name: Importar fotos y textos
+        if: inputs.diagnostico == ''
         run: npm run fotos
 
       - name: Guardar en el repositorio
         id: guardar
+        if: inputs.diagnostico == ''
         run: |
           git add -A src/assets/fotos/web-actual src/data/fotos-web-actual.json referencias/web-actual
           if git diff --cached --quiet; then
