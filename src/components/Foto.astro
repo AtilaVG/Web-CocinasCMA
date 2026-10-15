@@ -17,6 +17,11 @@ interface Props {
   tono?: 'claro' | 'oscuro' | 'madera';
   posicion?: 'centro' | 'arriba' | 'abajo';
   compacto?: boolean;
+  /**
+   * Ancho mínimo para verse bien en ese hueco. Si la foto es más pequeña se
+   * marca como provisional (útil en el prototipo para pedir fotos nuevas).
+   */
+  minAncho?: number;
   class?: string;
 }
 
@@ -30,6 +35,7 @@ const {
   tono,
   posicion,
   compacto,
+  minAncho = 0,
   class: className,
 } = Astro.props;
 
@@ -55,5 +61,10 @@ const widths = img
     />
   ) : (
     <FotoPendiente texto={pendiente ?? alt} tono={tono} posicion={posicion} compacto={compacto} class={className} />
+  )
+}
+{
+  img && img.width < minAncho && (
+    <span class="foto-aviso tag-pendiente">Foto provisional · {img.width} px, pedir en alta</span>
   )
 }

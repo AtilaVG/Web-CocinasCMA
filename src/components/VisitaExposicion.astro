@@ -12,7 +12,7 @@ const foto = huecos.inicioExposicion;
 
 <section class="visita" aria-labelledby="visita-titulo">
   <div class="media media--fill visita__media" data-reveal="fade">
-    <Foto src={foto.foto} alt={foto.alt} pendiente={foto.pendiente} tono="oscuro" posicion="arriba" />
+    <Foto src={foto.foto} alt={foto.alt} pendiente={foto.pendiente} tono="oscuro" posicion="arriba" minAncho={1600} />
   </div>
   <div class="container visita__contenedor">
     <div class="visita__tarjeta" data-reveal>
@@ -69,6 +69,11 @@ const foto = huecos.inicioExposicion;
 
   .visita__media {
     position: absolute;
+  }
+
+  .visita__media :global(.foto-aviso) {
+    top: 1rem;
+    bottom: auto;
   }
 
   .visita__contenedor {

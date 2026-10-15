@@ -7,7 +7,8 @@ import { nombreAcabado, type AcabadoSlug, type Estilo } from './catalogo';
  * Salen de src/data/fotos-web-actual.json, que genera el importador
  * (`npm run fotos`) con las fotos de la web actual. Ahí se puede corregir a
  * mano el estilo, los acabados, el título o el texto alternativo de cada foto,
- * o quitarla de la galería con "galeria": false. Las fotos nuevas que entregue
+ * quitarla de la galería con "galeria": false o llevarla a la portada con
+ * "destacado": 1…5 (posición en la rejilla). Las fotos nuevas que entregue
  * el cliente se añaden en `propias` (abajo).
  *
  * Si todavía no hay fotos, la galería muestra huecos "foto pendiente" con el
@@ -23,7 +24,8 @@ export interface Proyecto {
   /** Ruta dentro de src/assets/fotos/; vacío = foto pendiente. */
   foto?: string;
   alt: string;
-  destacado?: boolean;
+  /** Posición en la selección de la portada (1 = la grande). */
+  destacado?: number | boolean;
 }
 
 interface FotoImportada {
@@ -34,7 +36,7 @@ interface FotoImportada {
   titulo?: string;
   alt?: string;
   galeria?: boolean;
-  destacado?: boolean;
+  destacado?: number | boolean;
 }
 
 const tituloPorEstilo: Record<Estilo, string> = {
@@ -70,10 +72,14 @@ const importadas: Proyecto[] = (manifiesto.fotos as FotoImportada[])
       estilos,
       acabados,
       foto: f.archivo,
-      alt: f.alt || describir(estilos[0], acabados),
+      alt: f.alt || f.titulo || describir(estilos[0], acabados),
       destacado: f.destacado,
     };
-  });
+  })
+  // Primero los últimos trabajos, luego moderno, actual, rústico…
+  .map((p, i) => ({ p, i }))
+  .sort((a, b) => ordenEstilo(a.p) - ordenEstilo(b.p) || a.i - b.i)
+  .map(({ p }) => p);
 
 const pendientes: Proyecto[] = (
   [
@@ -105,11 +111,17 @@ export const hayFotosReales = reales.length > 0;
 
 export const proyectos: Proyecto[] = hayFotosReales ? reales : pendientes;
 
-/** Selección para la portada: los marcados como destacados o, si no hay, los primeros. */
+/** Selección para la portada: los marcados como destacados (en su orden) o, si no hay, los primeros. */
 export const destacados: Proyecto[] = (() => {
-  const marcados = proyectos.filter((p) => p.destacado);
+  const posicion = (p: Proyecto) => (typeof p.destacado === 'number' ? p.destacado : 99);
+  const marcados = proyectos.filter((p) => p.destacado).sort((a, b) => posicion(a) - posicion(b));
   return (marcados.length >= 5 ? marcados : proyectos).slice(0, 5);
 })();
+
+function ordenEstilo(p: Proyecto) {
+  const orden: Estilo[] = ['ultimos-trabajos', 'moderno', 'actual', 'rustico', 'encimeras', 'impresion-aluminio'];
+  return orden.indexOf(p.estilos[0]);
+}
 
 function describir(estilo: Estilo, acabados: AcabadoSlug[]) {
   const base = descripcionPorEstilo[estilo];

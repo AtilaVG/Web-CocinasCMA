@@ -572,3 +572,15 @@ p {
 main:focus {
   outline: none;
 }
+
+/* Aviso sobre fotos provisionales de baja resolución (solo prototipo) */
+.foto-aviso,
+.on-dark .foto-aviso,
+.section--dark .foto-aviso {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  background: rgb(248 245 239 / 0.92);
+  color: var(--c-oak);
+}

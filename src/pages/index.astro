@@ -43,7 +43,7 @@ const cifras = [
 <Base
   tituloCompleto="Cocinas CMA · Cocinas a medida en Humanes de Madrid, de fábrica propia desde 1992"
   titulo="Inicio"
-  descripcion="Fábrica y tienda familiar de cocinas a medida en Humanes de Madrid. Diseñamos y fabricamos cada cocina en nuestra fábrica desde 1992. Visita nuestra exposición de 700 m²."
+  descripcion="Fábrica y tienda familiar de cocinas a medida en Humanes de Madrid, cerca de Fuenlabrada, Leganés y Móstoles. Diseñamos y fabricamos cada cocina desde 1992. Visita nuestra exposición de 700 m²."
   headerTransparente
 >
   <!-- Portada -->
@@ -56,6 +56,7 @@ const cifras = [
         prioridad
         tono="oscuro"
         posicion="arriba"
+        minAncho={1600}
       />
     </div>
     <div class="hero__velo" aria-hidden="true"></div>
@@ -229,6 +230,11 @@ const cifras = [
 
   .hero__media :global(.foto-pendiente) {
     padding-top: calc(var(--header-h) + 1.25rem);
+  }
+
+  .hero__media :global(.foto-aviso) {
+    top: calc(var(--header-h) + 1rem);
+    bottom: auto;
   }
 
   .hero__velo {

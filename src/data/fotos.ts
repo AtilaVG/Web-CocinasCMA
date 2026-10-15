@@ -31,8 +31,8 @@ export interface Hueco {
  */
 export const huecos = {
   inicioHero: {
-    foto: '',
-    alt: 'Cocina a medida terminada, fabricada por Cocinas CMA',
+    foto: 'web-actual/imagenes_cocinas/gr-96576749160885808.jpg',
+    alt: 'Cocina blanca en laca brillo con isla de mármol, fabricada por Cocinas CMA',
     pendiente: 'Cocina terminada, horizontal y en alta resolución (mín. 2400 px de ancho)',
   },
   inicioFabrica: {
@@ -41,8 +41,8 @@ export const huecos = {
     pendiente: 'Nave de la fábrica de Cedillo del Condado con la maquinaria en marcha',
   },
   inicioExposicion: {
-    foto: '',
-    alt: 'Exposición de cocinas de Cocinas CMA en Humanes de Madrid',
+    foto: 'web-actual/imagenes_cocinas/gr-600278998.jpg',
+    alt: 'Isla de cocina con frentes de cristal negro en la exposición de Cocinas CMA en Humanes de Madrid',
     pendiente: 'Vista general de la exposición de Humanes (700 m²)',
   },
   nosotrosHero: {
@@ -81,18 +81,18 @@ export const huecos = {
     pendiente: 'Módulos montados y revisión antes de embalar',
   },
   exposicionHero: {
-    foto: '',
-    alt: 'Exposición de Cocinas CMA en Humanes de Madrid',
+    foto: 'web-actual/imagenes_cocinas/gr-412045166.jpg',
+    alt: 'Cocina en U con muebles blancos y verdes en la exposición de Cocinas CMA en Humanes de Madrid',
     pendiente: 'Exposición de Humanes, plano general (horizontal, alta resolución)',
   },
   exposicionAmbiente1: {
-    foto: '',
-    alt: 'Ambiente de cocina montado en la exposición',
+    foto: 'web-actual/imagenes_cocinas/gr-236499926.jpg',
+    alt: 'Cocina con frentes en verde lima y madera gris montada en la exposición',
     pendiente: 'Uno de los ambientes de cocina montados en la tienda',
   },
   exposicionAmbiente2: {
-    foto: '',
-    alt: 'Muestrario de acabados en la exposición',
+    foto: 'web-actual/imagenes_cocinas/gr-184896135.jpg',
+    alt: 'Cocina de la exposición con un muestrario de colores de encimera',
     pendiente: 'Muestrario de frentes, colores y encimeras',
   },
   exposicionFachada: {

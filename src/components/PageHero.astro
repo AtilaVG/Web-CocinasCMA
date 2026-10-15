@@ -20,7 +20,15 @@ const { antetitulo, titulo, intro, foto } = Astro.props;
   foto ? (
     <section class="phero phero--foto on-dark">
       <div class="media media--fill phero__media">
-        <Foto src={foto.foto} alt={foto.alt} pendiente={foto.pendiente} prioridad tono="oscuro" posicion="arriba" />
+        <Foto
+          src={foto.foto}
+          alt={foto.alt}
+          pendiente={foto.pendiente}
+          prioridad
+          tono="oscuro"
+          posicion="arriba"
+          minAncho={1600}
+        />
       </div>
       <div class="phero__velo" aria-hidden="true" />
       <div class="container phero__contenido">
@@ -89,6 +97,11 @@ const { antetitulo, titulo, intro, foto } = Astro.props;
 
   .phero__media :global(.foto-pendiente) {
     padding-top: calc(var(--header-h) + 1.25rem);
+  }
+
+  .phero__media :global(.foto-aviso) {
+    top: calc(var(--header-h) + 1rem);
+    bottom: auto;
   }
 
   .phero__velo {

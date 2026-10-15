@@ -5,6 +5,8 @@
  *   npm run fotos                       # rastrea www.cocinascma.com
  *   npm run fotos -- --origen URL       # otro origen (p. ej. una copia local para pruebas)
  *   npm run fotos -- --max-paginas 50
+ *   npm run fotos -- --reclasificar     # sin descargar: recalcula estilo, acabado y
+ *                                       # título a partir del contexto guardado
  *
  * Qué hace:
  *  1. Recorre las páginas del sitio (enlaces, marcos y menús en JavaScript).
@@ -12,7 +14,8 @@
  *     contexto: título, alt, grupo del lightbox, encabezado y texto cercano.
  *  3. De cada foto descarga la versión más grande disponible (la miniatura
  *     "pq_" solo si no hay otra) y descarta duplicados.
- *  4. Deduce estilo y acabado a partir del contexto y escribe
+ *  4. Deduce estilo y acabado (sobre todo de la etiqueta «Estilo-Acabado»
+ *     que la web antigua pone a cada foto) y escribe
  *     src/data/fotos-web-actual.json, que alimenta la galería. Si el archivo
  *     ya existía, respeta lo que se haya corregido a mano.
  *  5. Guarda el texto de cada página en referencias/web-actual/ para poder
@@ -54,6 +57,8 @@ let origen;
 let HOSTS;
 
 async function main() {
+  if (args.reclasificar) return reclasificar();
+
   origen = await elegirOrigen();
   if (!origen) {
     console.error('✖ No se ha podido acceder a la web actual desde ninguno de estos orígenes:\n  ' + ORIGENES.join('\n  '));
@@ -141,19 +146,10 @@ async function main() {
     // Se clasifica con los contextos más fiables (enlaces de lightbox, <img>);
     // las rutas sueltas en scripts solo cuentan si no hay otra cosa.
     const fuertes = g.contextos.filter((c) => (c.fuerza ?? 1) >= 2);
-    const estilosSet = new Set();
-    const acabadosSet = new Set();
-    for (const c of fuertes.length ? fuertes : g.contextos) {
-      const r = clasificar(camposContexto(c));
-      r.estilos.forEach((e) => estilosSet.add(e));
-      r.acabados.forEach((a) => acabadosSet.add(a));
-    }
-    const porNombre = clasificar([nombre.replace(/\.\w+$/, '').replace(/^(pq|gr|th|mini)_/i, '').replace(/[_-]/g, ' ')]);
-    porNombre.estilos.forEach((e) => estilosSet.add(e));
-    porNombre.acabados.forEach((a) => acabadosSet.add(a));
-    const estilos = ORDEN_ESTILOS.filter((e) => estilosSet.has(e));
-    const acabados = [...acabadosSet];
-    const titulo = tituloDesde(g.contextos);
+    const clasificacion = clasificarFoto((fuertes.length ? fuertes : g.contextos).map(camposContexto), nombre);
+    const estilos = clasificacion.estilos;
+    const acabados = clasificacion.acabados;
+    const titulo = clasificacion.titulo || tituloDesde(g.contextos);
     const previo = anterior.get(mejor.url);
 
     fotos.push({
@@ -428,6 +424,91 @@ function claveFoto(u) {
 
 const ORDEN_ESTILOS = ['moderno', 'actual', 'rustico', 'ultimos-trabajos', 'encimeras', 'impresion-aluminio'];
 
+/** Categorías de la «Exposición virtual» de la web antigua (antes del guion en cada foto). */
+const CATEGORIAS = [
+  [/^(a\.?\s*)?ultimos\s+trabajos$/, 'ultimos-trabajos'],
+  [/^actual(es)?$/, 'actual'],
+  [/^modern[oa]s?$/, 'moderno'],
+  [/^rustic[oa]s?$/, 'rustico'],
+  [/^encimeras?$/, 'encimeras'],
+  [/^impresion(es)?\s+digital(es)?\.?$/, 'impresion-aluminio'],
+];
+
+const NOMBRES_PROPIOS = ['Matrix', 'Alpicord', 'Neolith', 'Luxe'];
+const CORRECCIONES = [
+  [/estractificado/gi, 'estratificado'],
+  [/coleccion/gi, 'colección'],
+  [/acrilico/gi, 'acrílico'],
+  [/perfileria/gi, 'perfilería'],
+  ...NOMBRES_PROPIOS.map((n) => [new RegExp(`\\b${n}\\b`, 'gi'), n]),
+];
+
+/** Lee etiquetas como «Moderno-Polilaminado con gola» o «A. Ultimos trabajos-Laca brillo». */
+function etiquetaCatalogo(texto) {
+  const m = /^(.{3,40}?)\s*-\s*(.{3,60}?)(\s+detallar)?$/i.exec(limpiar(texto ?? ''));
+  if (!m) return null;
+  const categoria = normalizar(m[1]);
+  const encontrada = CATEGORIAS.find(([re]) => re.test(categoria));
+  if (!encontrada) return null;
+  let acabado = limpiar(m[2]).replace(/[.\s]+$/, '');
+  for (const [re, valor] of CORRECCIONES) acabado = acabado.replace(re, valor);
+  if (acabado === 'Luxe') acabado = 'colección Luxe';
+  if (!NOMBRES_PROPIOS.some((n) => acabado.startsWith(n))) acabado = acabado.charAt(0).toLowerCase() + acabado.slice(1);
+  return { estilo: encontrada[1], acabado };
+}
+
+function tituloProyecto(estilo, acabado) {
+  if (estilo === 'encimeras') return `Encimera ${acabado}`;
+  if (estilo === 'impresion-aluminio') return acabado.charAt(0).toUpperCase() + acabado.slice(1);
+  const base = { 'ultimos-trabajos': 'Cocina', actual: 'Cocina actual', moderno: 'Cocina moderna', rustico: 'Cocina rústica' }[estilo];
+  return /^colecci/.test(acabado) ? `${base}, ${acabado}` : `${base} en ${acabado}`;
+}
+
+/**
+ * Clasifica una foto. `grupos` tiene una lista de textos por cada lugar donde
+ * aparece la foto. Manda la etiqueta del catálogo antiguo; si no la hay, se
+ * buscan palabras clave en todo el contexto.
+ */
+function clasificarFoto(grupos, nombre = '') {
+  for (const texto of grupos.flat()) {
+    const etiqueta = etiquetaCatalogo(texto);
+    if (etiqueta) {
+      const acabados = clasificar([etiqueta.acabado]).acabados;
+      if (etiqueta.estilo === 'impresion-aluminio') {
+        return {
+          estilos: [etiqueta.estilo],
+          acabados: ['impresion-digital', ...acabados.filter((a) => a !== 'impresion-digital')],
+          titulo: `Impresión digital con ${etiqueta.acabado}`,
+        };
+      }
+      return { estilos: [etiqueta.estilo], acabados, titulo: tituloProyecto(etiqueta.estilo, etiqueta.acabado) };
+    }
+  }
+  const estilos = new Set();
+  const acabados = new Set();
+  const nombreLimpio = nombre.replace(/\.\w+$/, '').replace(/^(pq|gr|th|mini)_/i, '').replace(/[_-]/g, ' ');
+  for (const textos of [...grupos, [nombreLimpio]]) {
+    const r = clasificar(textos);
+    r.estilos.forEach((e) => estilos.add(e));
+    r.acabados.forEach((a) => acabados.add(a));
+  }
+  return { estilos: ORDEN_ESTILOS.filter((e) => estilos.has(e)), acabados: [...acabados], titulo: '' };
+}
+
+/** Recalcula la clasificación del manifiesto con el contexto ya guardado (sin red). */
+async function reclasificar() {
+  const datos = JSON.parse(await readFile(MANIFIESTO, 'utf8'));
+  for (const foto of datos.fotos) {
+    if (!/\/imagenes_cocinas\//.test(foto.archivo)) continue;
+    const r = clasificarFoto([foto.contexto ?? []], path.basename(foto.archivo));
+    foto.estilos = r.estilos;
+    foto.acabados = r.acabados;
+    if (r.titulo) foto.titulo = r.titulo;
+  }
+  await writeFile(MANIFIESTO, JSON.stringify(datos, null, 2) + '\n');
+  console.log(`✔ ${datos.fotos.length} fotos reclasificadas en src/data/fotos-web-actual.json`);
+}
+
 function clasificar(textos) {
   const t = normalizar(textos.filter(Boolean).join(' | '));
   const estilos = [];
@@ -440,11 +521,11 @@ function clasificar(textos) {
 
   const acabados = [];
   const si = (cond, slug) => cond && !acabados.includes(slug) && acabados.push(slug);
-  si(/gola|cristal/.test(t), 'cristal-gola');
+  si(/cristal/.test(t), 'cristal-gola');
   si(/laca\W{0,3}(alto\W)?brillo|lacad[ao]s?\W{0,3}brillo/.test(t), 'laca-brillo');
   si(/laca\W{0,3}textur|texturizad/.test(t), 'laca-texturizada');
   si(/\blac(a|ad[ao]s?)\b/.test(t) && !acabados.some((a) => a.startsWith('laca')), 'laca');
-  si(/madera|unero|roble|nogal|haya|cerezo/.test(t), 'madera');
+  si(/madera|roble|nogal|haya|cerezo/.test(t), 'madera');
   si(/estratificad|matrix/.test(t), 'estratificado');
   si(/polilaminad/.test(t), 'polilaminado');
   si(/(^|[^i])laminado\W{0,3}mate|\bmate\b/.test(t) && !/polilaminado\W{0,3}mate/.test(t), 'laminado-mate');

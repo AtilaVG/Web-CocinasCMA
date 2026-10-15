@@ -56,6 +56,16 @@ const meta = (p: (typeof proyectos)[number]) =>
         )
       }
 
+      {
+        hayFotosReales && proyectos.some((p) => p.foto?.startsWith('web-actual/')) && (
+          <p class="galeria__aviso">
+            <span class="tag-pendiente">Fotos provisionales</span>
+            Son las fotos de la web actual (800 px como máximo). Para la versión final conviene una sesión de fotos de la
+            exposición y de cocinas terminadas.
+          </p>
+        )
+      }
+
       <div class="filtros">
         <div class="filtros__grupo" role="group" aria-labelledby="filtro-estilo">
           <span class="filtros__etiqueta" id="filtro-estilo">Estilo</span>

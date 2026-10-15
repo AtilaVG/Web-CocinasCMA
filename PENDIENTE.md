@@ -9,15 +9,17 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
 
 ## Fotos
 
-- [ ] **Fotos originales en alta resolución** de sus cocinas (las de la web actual son pequeñas). Ideal: JPG, mínimo 2400 px de ancho.
+- [ ] **Fotos originales en alta resolución** de sus cocinas. Ya están importadas las 55 de la web actual, pero tienen 800 px como máximo: en las fotos a sangre se nota (en el prototipo llevan la etiqueta «Foto provisional»). Ideal: JPG, mínimo 2400 px de ancho.
 - [ ] Valorar una **sesión de fotos profesional**: exposición de Humanes, fábrica de Cedillo y 8–12 cocinas terminadas.
 - [ ] Fotos concretas que pide el diseño:
   - Portada: una cocina terminada, horizontal.
   - Exposición: vista general, ambientes, muestrario de acabados y fachada de la tienda.
   - Fábrica: nave general, corte de tableros, canteado, módulos montados.
   - Nosotros: la familia o el equipo; si la hay, una foto antigua del taller (años 90).
-- [ ] Confirmar que las imágenes de la cabecera de la web actual (`/images/`) **no** son de banco de imágenes antes de usarlas.
-- [ ] Revisar la clasificación de cada foto de la galería (estilo y acabado).
+- [ ] De la **fábrica** y de la **tienda** solo hay dos banners de 670×131 px en la web actual: no sirven, hacen falta fotos nuevas.
+- [ ] Confirmar si la foto de la cocina roja «Moderno-Luxe» es un trabajo suyo: parece de catálogo del fabricante y la he dejado fuera de la galería.
+- [ ] Hay dos cocinas recientes fotografiadas con los plásticos de obra (fuera de la galería): ¿tienen la foto ya terminadas?
+- [ ] Revisar la clasificación de las fotos (estilo y acabado salen de las etiquetas de la web actual) y la selección de la portada.
 
 ## Datos
 
@@ -28,8 +30,9 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
 - [ ] Años de la **fábrica de Cedillo** y de la **exposición de Humanes** (línea del tiempo de «Nosotros»).
 - [ ] Datos nuevos que quieran destacar: nº de cocinas instaladas, tamaño del equipo, zonas en las que trabajan.
 - [ ] **Marcas** con las que trabajan: encimeras, herrajes, electrodomésticos.
-- [ ] Validar los textos del **proceso de fábrica** (6 pasos) y del **proceso con el cliente**; confirmar que el **montaje** lo hace equipo propio.
+- [ ] Validar los textos del **proceso de fábrica** (6 pasos) y del **proceso con el cliente** (la web actual confirma que diseñan, fabrican e instalan).
 - [ ] Descripción de las colecciones **Luxe** y **Alpicord**.
+- [ ] La web actual también cita **Formica** y **Pek**: ¿siguen trabajándolos? ¿Qué es exactamente «Pek»?
 - [ ] ¿Siguen haciendo **baños y armarios** a medida? (aparece en Nosotros y Exposición).
 
 ## Legal y técnico
@@ -39,3 +42,4 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
 - [ ] Formulario: confirmar que los mensajes lleguen a info@cocinascma.com (alta en Formspree u otro servicio).
 - [ ] ¿Quieren estadísticas de visitas? (implica aviso de cookies).
 - [ ] Confirmar la ficha de **Google Business Profile** (para el mapa y las opiniones de Google).
+- [ ] Zonas de trabajo: la web actual se posiciona para Fuenlabrada, Leganés, Móstoles y Madrid Sur. ¿Alguna más?
