@@ -1,7 +1,7 @@
 # Importación de la web actual
 
 - Origen: https://cocinascma.com/
-- Fecha: 2026-10-15T20:36:17.958Z
+- Fecha: 2026-10-16T02:39:42.925Z
 - Páginas leídas: 54
 - Fotos guardadas: 57
 
@@ -65,23 +65,32 @@
 - https://cocinascma.com/cdn-cgi/l/email-protection: HTTP 404
 
 ## Imágenes descartadas
-- https://cocinascma.com/images/logo.jpg: parece un elemento de la interfaz (374×48)
-- https://cocinascma.com/images/box-pic2.jpg: parece un elemento de la interfaz (194×264)
-- https://cocinascma.com/images/box-pic4.jpg: parece un elemento de la interfaz (194×264)
-- https://cocinascma.com/images/box-pic3.jpg: parece un elemento de la interfaz (194×264)
-- https://cocinascma.com/images/box-pic1.jpg: parece un elemento de la interfaz (194×264)
-- https://cocinascma.com/images/box-pic5.jpg: parece un elemento de la interfaz (194×264)
-- https://cocinascma.com/images/img5.jpg: parece un elemento de la interfaz (86×145)
-- https://cocinascma.com/images/img6.jpg: parece un elemento de la interfaz (86×145)
-- https://cocinascma.com/images/img7.jpg: parece un elemento de la interfaz (86×145)
-- https://cocinascma.com/imagenes_cocinas/cocina4mini.jpg: demasiado pequeña (86×120)
-- https://cocinascma.com/imagenes_cocinas/cocina6mini.jpg: demasiado pequeña (86×120)
-- https://cocinascma.com/imagenes_cocinas/cocina2mini.jpg: demasiado pequeña (86×120)
-- https://cocinascma.com/imagenes_cocinas/cocina9mini.jpg: demasiado pequeña (73×120)
-- https://cocinascma.com/imagenes_cocinas/cocina10mini.jpg: demasiado pequeña (73×120)
-- https://cocinascma.com/images/arrow-lt.png: parece un elemento de la interfaz (35×43)
-- https://cocinascma.com/images/arrow-rt.png: parece un elemento de la interfaz (35×43)
-- https://cocinascma.com/images/arrow-lt-small.png: parece un elemento de la interfaz (21×27)
-- https://cocinascma.com/images/arrow-rt-small.png: parece un elemento de la interfaz (21×27)
-- https://cocinascma.com/images/fabone.jpg: parece un elemento de la interfaz (86×120)
-- https://cocinascma.com/images/locmap.jpg: parece un elemento de la interfaz (177×177)
+- https://cocinascma.com/images/logo.jpg: elemento de la interfaz (374×48)
+- https://cocinascma.com/images/box-pic2.jpg: demasiado pequeña (194×264), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/box-pic4.jpg: demasiado pequeña (194×264), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/box-pic3.jpg: demasiado pequeña (194×264), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/box-pic1.jpg: demasiado pequeña (194×264), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/box-pic5.jpg: demasiado pequeña (194×264), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/img5.jpg: demasiado pequeña (86×145), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/img6.jpg: demasiado pequeña (86×145), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/img7.jpg: demasiado pequeña (86×145), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/imagenes_cocinas/cocina9mini.jpg: demasiado pequeña (73×120), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/imagenes_cocinas/cocina10mini.jpg: demasiado pequeña (73×120), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/arrow-lt.png: elemento de la interfaz (35×43)
+- https://cocinascma.com/images/arrow-rt.png: elemento de la interfaz (35×43)
+- https://cocinascma.com/images/arrow-lt-small.png: elemento de la interfaz (21×27)
+- https://cocinascma.com/images/arrow-rt-small.png: elemento de la interfaz (21×27)
+- https://cocinascma.com/images/fabone.jpg: demasiado pequeña (86×120), guardada en referencias/web-actual/descartadas/
+- https://cocinascma.com/images/locmap.jpg: demasiado pequeña (177×177), guardada en referencias/web-actual/descartadas/
+
+## Nombres probados que no existen
+- /images/cocina1.jpg
+- /images/cocina2.jpg
+- /images/cocina3.jpg
+- /images/cocina4.jpg
+- /images/cocina5.jpg
+- /images/cocina6.jpg
+- /images/cocina7.jpg
+- /images/cocina8.jpg
+- /images/cocina9.jpg
+- /images/cocina10.jpg
