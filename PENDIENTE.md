@@ -47,3 +47,9 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
 - [ ] ¿Quieren estadísticas de visitas? (implica aviso de cookies).
 - [ ] Confirmar la ficha de **Google Business Profile** (para el mapa y las opiniones de Google).
 - [ ] Zonas de trabajo: la web actual se posiciona para Fuenlabrada, Leganés, Móstoles y Madrid Sur. ¿Alguna más?
+
+## Intro en vídeo de la portada
+
+- El vídeo actual de la portada es una **recreación hecha con IA (Gemini/Veo)** a partir de una foto de una cocina de CMA. Veo ha añadido elementos que no están en la foto (otra ventana, sillas, un mueble), por eso lleva la etiqueta «Recreación con IA».
+- Propuesta para la web definitiva: grabar un recorrido real por la exposición de Humanes (gimbal o dron FPV) o hacer un render 3D de una de sus cocinas, y sustituir los fotogramas en `public/intro/fotogramas/` (ver `src/data/intro.ts`).
+- Si se quiere volver a las puertas animadas sin vídeo, basta con poner `total: 0` en `src/data/intro.ts`.

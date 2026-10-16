@@ -17,8 +17,8 @@ export const secuencia = {
   /** Carpeta dentro de public/. */
   carpeta: 'intro/fotogramas',
   /** Número de fotogramas. 0 = no hay vídeo: se usan las puertas. */
-  total: 0,
+  total: 120,
   extension: 'webp',
   /** Etiqueta visible sobre el vídeo si no es una grabación real. */
-  aviso: '',
+  aviso: 'Recreación con IA a partir de una cocina de CMA',
 };

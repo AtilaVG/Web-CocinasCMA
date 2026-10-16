@@ -29,7 +29,7 @@ if (intro && escena && animar) {
     const zoom = suave(limitar(p / 0.8));
     escena.style.setProperty('--abrir', abrir.toFixed(4));
     escena.style.setProperty('--zoom', zoom.toFixed(4));
-    intro.classList.toggle('is-abierta', p > 0.55);
+    intro.classList.toggle('is-abierta', p > (fotogramas ? 0.82 : 0.55));
     intro.classList.toggle('is-empezada', p > 0.02);
     fotogramas?.mostrar(p);
   };
