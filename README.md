@@ -6,6 +6,7 @@ Web corporativa estática, sin tienda online: el peso está en el diseño, la fo
 - **Tecnología:** [Astro](https://astro.build) (HTML estático, casi sin JavaScript), CSS propio, tipografías de Google Fonts autoalojadas (Cormorant Garamond + Jost).
 - **Publicación:** GitHub Pages mediante GitHub Actions.
 - **Pendiente de pedir al cliente:** ver [PENDIENTE.md](PENDIENTE.md).
+- **Resumen de todo lo hecho y decisiones (traspaso):** ver [TRASPASO.md](TRASPASO.md).
 
 ## Páginas
 
