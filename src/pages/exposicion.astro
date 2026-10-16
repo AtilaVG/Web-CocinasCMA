@@ -18,6 +18,11 @@ const materiales = acabadosExposicion.map((slug) => ({
   enGaleria: proyectos.some((p) => (p.acabados as string[]).includes(slug)),
 }));
 
+// Acabados de frentes que se pueden probar en la puerta giratoria
+const frentes = new Set(['laca-brillo', 'laca-texturizada', 'cristal-gola', 'madera', 'estratificado', 'laminado-mate', 'luxe', 'polilaminado', 'acrilico', 'alpicord']);
+const probables = materiales.filter((m) => frentes.has(m.slug));
+const inicial = probables[0];
+
 const encontraras = [
   {
     titulo: 'Cocinas montadas',
@@ -137,6 +142,46 @@ const encontraras = [
         </p>
       </div>
 
+      <div class="probador" data-probador>
+        <div class="probador__escena" data-reveal="fade">
+          <div class="probador__puerta" data-puerta>
+            <div class={`probador__cara muestra ${inicial.muestra}`} data-cara>
+              <span class="probador__gola"></span>
+            </div>
+            <div class="probador__cara probador__cara--dorso muestra" data-cara>
+              <span class="probador__gola"></span>
+            </div>
+          </div>
+          <div class="probador__suelo" aria-hidden="true"></div>
+        </div>
+        <div class="probador__panel">
+          <p class="eyebrow" data-reveal>Pruébalo</p>
+          <h3 class="probador__titulo" data-reveal style="--d: 0.08s">Gira la puerta y compara acabados</h3>
+          <div class="probador__opciones" role="group" aria-label="Acabados de frente" data-reveal style="--d: 0.16s">
+            {
+              probables.map((m, i) => (
+                <button
+                  type="button"
+                  class="probador__opcion"
+                  aria-pressed={i === 0 ? 'true' : 'false'}
+                  data-muestra={m.muestra}
+                  data-nombre={m.nombre}
+                  data-desc={m.descripcion}
+                >
+                  <span class={`probador__chip muestra ${m.muestra}`} aria-hidden="true" />
+                  {m.nombre}
+                </button>
+              ))
+            }
+          </div>
+          <div class="probador__info" aria-live="polite" data-reveal style="--d: 0.24s">
+            <p class="probador__nombre" data-info-nombre>{inicial.nombre}</p>
+            <p class="muted" data-info-desc>{inicial.descripcion}</p>
+          </div>
+          <p class="small muted">Ilustración orientativa: los colores reales se ven mejor en la exposición.</p>
+        </div>
+      </div>
+
       <ul class="materiales__grid" role="list">
         {
           materiales.map((m, i) => (
@@ -203,6 +248,39 @@ const encontraras = [
     </div>
   </section>
 </Base>
+
+<script>
+  // Probador de acabados: la puerta gira y la cara oculta toma el acabado elegido
+  const probador = document.querySelector<HTMLElement>('[data-probador]');
+  const puerta = probador?.querySelector<HTMLElement>('[data-puerta]');
+  if (probador && puerta) {
+    const caras = [...puerta.querySelectorAll<HTMLElement>('[data-cara]')];
+    const nombre = probador.querySelector('[data-info-nombre]');
+    const desc = probador.querySelector('[data-info-desc]');
+    const botones = [...probador.querySelectorAll<HTMLButtonElement>('button[data-muestra]')];
+    let giro = 0;
+    let visible = 0;
+
+    const ponerMuestra = (cara: HTMLElement, muestra: string) => {
+      [...cara.classList].filter((c) => c.startsWith('muestra--')).forEach((c) => cara.classList.remove(c));
+      cara.classList.add(muestra);
+    };
+
+    botones.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        if (boton.getAttribute('aria-pressed') === 'true') return;
+        botones.forEach((b) => b.setAttribute('aria-pressed', String(b === boton)));
+        const oculta = 1 - visible;
+        ponerMuestra(caras[oculta], boton.dataset.muestra ?? '');
+        giro += 180;
+        puerta.style.transform = `rotateY(${giro}deg)`;
+        visible = oculta;
+        if (nombre) nombre.textContent = boton.dataset.nombre ?? '';
+        if (desc) desc.textContent = boton.dataset.desc ?? '';
+      });
+    });
+  }
+</script>
 
 <style>
   .encontraras__grid {
@@ -354,6 +432,143 @@ const encontraras = [
 
   .materiales__nota {
     margin-top: 3rem;
+  }
+
+
+  /* Probador: puerta que gira para enseñar cada acabado */
+  .probador {
+    display: grid;
+    gap: clamp(2rem, 1.5rem + 3vw, 4.5rem);
+    align-items: center;
+    margin-bottom: clamp(4rem, 3rem + 4vw, 7rem);
+  }
+
+  @media (min-width: 56em) {
+    .probador {
+      grid-template-columns: 5fr 6fr;
+    }
+  }
+
+  .probador__escena {
+    position: relative;
+    display: grid;
+    place-items: center;
+    padding-block: 1rem 2.5rem;
+    perspective: 1400px;
+  }
+
+  .probador__puerta {
+    position: relative;
+    width: min(100%, 22rem);
+    aspect-ratio: 3 / 4.6;
+    transform-style: preserve-3d;
+    transition: transform 1s cubic-bezier(0.65, 0, 0.25, 1);
+  }
+
+  .probador__puerta .probador__cara {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    backface-visibility: hidden;
+    border-radius: 2px;
+    box-shadow:
+      inset 0 0 0 1px rgb(2 15 61 / 0.1),
+      0 30px 50px -25px rgb(2 15 61 / 0.45);
+  }
+
+  .probador__puerta .probador__cara--dorso {
+    transform: rotateY(180deg);
+  }
+
+  /* Perfil de gola de aluminio en la parte alta del frente */
+  .probador__gola {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: 1.4rem;
+    background: linear-gradient(180deg, rgb(0 0 0 / 0.55) 0 55%, #c6cdd3 55%, #eef1f3 75%, #98a2ac);
+  }
+
+  .probador__suelo {
+    position: absolute;
+    bottom: 0.75rem;
+    left: 50%;
+    width: min(80%, 18rem);
+    height: 1.25rem;
+    background: radial-gradient(ellipse at center, rgb(2 15 61 / 0.22), transparent 70%);
+    transform: translateX(-50%);
+  }
+
+  .probador__titulo {
+    margin-bottom: 1.75rem;
+    font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.6rem);
+  }
+
+  .probador__opciones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .probador__opcion {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 2.75rem;
+    padding: 0.35rem 0.9rem 0.35rem 0.4rem;
+    border: 1px solid rgb(2 15 61 / 0.18);
+    border-radius: 999px;
+    background: var(--c-paper);
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--c-ink);
+    cursor: pointer;
+    transition:
+      border-color 0.25s var(--ease),
+      background 0.25s var(--ease);
+  }
+
+  .probador__opcion:hover {
+    border-color: var(--c-ink);
+  }
+
+  .probador__opcion[aria-pressed='true'] {
+    border-color: var(--c-ink);
+    background: var(--c-ink);
+    color: var(--c-paper);
+  }
+
+  .probador__opcion:focus-visible {
+    outline: 2px solid var(--c-red);
+    outline-offset: 2px;
+  }
+
+  .probador__opcion .probador__chip {
+    width: 1.9rem;
+    height: 1.9rem;
+    aspect-ratio: auto;
+    border-radius: 50%;
+    flex: none;
+  }
+
+  .probador__nombre {
+    margin-bottom: 0.4rem;
+    font-family: var(--f-serif);
+    font-size: 1.6rem;
+    font-weight: 500;
+    color: var(--c-ink);
+  }
+
+  .probador__info {
+    min-height: 7.5rem;
+    margin-bottom: 1rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .probador__puerta {
+      transition: none;
+    }
   }
 
   /* Muestras: ilustraciones CSS orientativas, no fotos */

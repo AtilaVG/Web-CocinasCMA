@@ -545,17 +545,38 @@ p {
     transform: none;
   }
 
+  /* Fotos: se abren como un cajón. El frente baja desde arriba y un perfil
+     de aluminio (la gola) recorre el borde que avanza. */
   .js [data-reveal='imagen'] {
     transform: none;
-    clip-path: inset(6% 6% 6% 6%);
-    transition:
-      opacity 1.1s var(--ease),
-      clip-path 1.4s var(--ease);
+    opacity: 1;
+    clip-path: inset(0 0 100% 0);
+    transition: clip-path 1.25s var(--ease);
   }
 
   .js [data-reveal='imagen'] img {
-    transform: scale(1.08);
-    transition: transform 1.8s var(--ease);
+    transform: translateY(-14%) scale(1.06);
+    transition: transform 1.6s var(--ease);
+  }
+
+  .js [data-reveal='imagen']::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 3;
+    height: 5px;
+    background: linear-gradient(180deg, #8e98a3, #e6eaee 45%, #9aa3ad);
+    box-shadow: 0 3px 10px rgb(2 15 61 / 0.35);
+    transition:
+      top 1.25s var(--ease),
+      opacity 0.5s var(--ease) 1s;
+    pointer-events: none;
+  }
+
+  .js [data-reveal='imagen'].is-visible::after {
+    top: calc(100% - 5px);
+    opacity: 0;
   }
 
   .js [data-reveal].is-visible {
@@ -583,4 +604,15 @@ main:focus {
   z-index: 2;
   background: rgb(248 245 239 / 0.92);
   color: var(--c-oak);
+}
+
+/* Texto pintado con el scroll ([data-pintar]): las palabras pasan de un tono
+   apagado a su color al leerlas. Solo con animaciones activadas. */
+.anima .is-pintable .palabra {
+  opacity: 0.22;
+  transition: opacity 0.35s var(--ease);
+}
+
+.anima .is-pintable .palabra.is-on {
+  opacity: 1;
 }
