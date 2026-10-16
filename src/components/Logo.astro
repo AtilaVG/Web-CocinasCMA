@@ -1,0 +1,91 @@
+---
+/**
+ * Logo de Cocinas CMA.
+ *
+ * Mientras no tengamos el logo oficial en vectorial se recrea el texto
+ * "cocinas" (azul, fino) + "cma" (rojo) con tipografía. Para usar el oficial:
+ * guardar el SVG como src/assets/marca/logo.svg (y, si hace falta una versión
+ * en blanco para fondos oscuros, src/assets/marca/logo-blanco.svg). No hay que
+ * tocar nada más.
+ */
+interface Props {
+  variante?: 'color' | 'claro';
+  lema?: boolean;
+  class?: string;
+}
+
+const { variante = 'color', lema = false, class: className } = Astro.props;
+
+const svgs = import.meta.glob<string>('/src/assets/marca/*.svg', {
+  eager: true,
+  query: '?raw',
+  import: 'default',
+});
+const oficial =
+  (variante === 'claro' && svgs['/src/assets/marca/logo-blanco.svg']) || svgs['/src/assets/marca/logo.svg'];
+---
+
+<span class:list={['logo', `logo--${variante}`, className]}>
+  {
+    oficial ? (
+      <span class="logo__svg" set:html={oficial} />
+    ) : (
+      <span class="logo__texto" aria-hidden="true">
+        <span class="logo__cocinas">cocinas</span><span class="logo__cma">cma</span>
+      </span>
+    )
+  }
+  {lema && !oficial && <span class="logo__lema" aria-hidden="true">Fábrica de mobiliario de cocinas</span>}
+  <span class="visually-hidden">Cocinas CMA</span>
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    line-height: 1;
+  }
+
+  .logo__texto {
+    font-family: var(--f-sans);
+    font-size: 1.65rem;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  .logo__cocinas {
+    font-weight: 300;
+    color: var(--c-navy);
+  }
+
+  .logo__cma {
+    font-weight: 600;
+    color: var(--c-red);
+  }
+
+  .logo--claro .logo__cocinas {
+    color: var(--c-on-dark);
+  }
+
+  .logo--claro .logo__cma {
+    color: var(--c-on-dark);
+  }
+
+  .logo__lema {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c-muted);
+  }
+
+  .logo--claro .logo__lema {
+    color: var(--c-on-dark-muted);
+  }
+
+  .logo__svg :global(svg) {
+    height: 2.25rem;
+    width: auto;
+  }
+</style>

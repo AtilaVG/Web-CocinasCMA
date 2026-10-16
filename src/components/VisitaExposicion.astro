@@ -1,0 +1,148 @@
+---
+/** Invitación a visitar la exposición de Humanes, con foto a sangre. */
+import Foto from './Foto.astro';
+import Icon from './Icon.astro';
+import Horario from './Horario.astro';
+import { empresa, telPrincipal } from '../config/empresa';
+import { huecos } from '../data/fotos';
+
+const { tienda } = empresa;
+const foto = huecos.inicioExposicion;
+---
+
+<section class="visita" aria-labelledby="visita-titulo">
+  <div class="media media--fill visita__media" data-reveal="fade">
+    <Foto src={foto.foto} alt={foto.alt} pendiente={foto.pendiente} tono="oscuro" posicion="arriba" minAncho={1600} />
+  </div>
+  <div class="container visita__contenedor">
+    <div class="visita__tarjeta" data-reveal>
+      <p class="eyebrow">Exposición en Humanes de Madrid</p>
+      <h2 id="visita-titulo">Ven a verlas, a tocarlas, a abrir cajones</h2>
+      <p class="visita__texto">
+        Más de 700 m² con cocinas montadas, frentes, encimeras y acabados de verdad. Tráenos las medidas o una
+        foto de tu cocina y te prepararemos un presupuesto sin compromiso, con el diseño de cómo quedará.
+      </p>
+
+      <div class="visita__datos">
+        <div>
+          <h3 class="visita__subtitulo"><Icon name="pin" /> Dónde estamos</h3>
+          <p>
+            {tienda.calle}<br />
+            {tienda.cp} {tienda.localidad}<br />
+            <span class="muted small">{tienda.referencia}</span>
+          </p>
+        </div>
+        <div>
+          <h3 class="visita__subtitulo"><Icon name="clock" /> Horario</h3>
+          <Horario />
+        </div>
+      </div>
+
+      <div class="btn-row">
+        <a class="btn" href={tienda.mapa} target="_blank" rel="noopener">
+          <Icon name="pin" /> Cómo llegar
+          <span class="visually-hidden">(abre Google Maps en una pestaña nueva)</span>
+        </a>
+        <a class="btn btn--ghost" href={`tel:${telPrincipal.e164}`}>
+          <Icon name="phone" /> {telPrincipal.texto}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .visita {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: min(100svh, 56rem);
+    padding-block: clamp(14rem, 40vw, 18rem) clamp(2rem, 4vw, 6rem);
+    background: var(--c-ink);
+  }
+
+  @media (min-width: 56em) {
+    .visita {
+      padding-block: clamp(4rem, 3rem + 5vw, 8rem);
+    }
+  }
+
+  .visita__media {
+    position: absolute;
+  }
+
+  .visita__media :global(.foto-aviso) {
+    top: 1rem;
+    bottom: auto;
+  }
+
+  /* En móvil la foto va entera encima de la tarjeta (a sangre quedaba tapada) */
+  @media (max-width: 55.99em) {
+    .visita {
+      display: block;
+      min-height: 0;
+      padding-block: 0 clamp(2rem, 6vw, 3rem);
+    }
+
+    .visita__media {
+      position: relative;
+      inset: auto;
+      aspect-ratio: 4 / 3;
+    }
+
+    .visita__contenedor {
+      margin-top: -3rem;
+    }
+  }
+
+  .visita__contenedor {
+    position: relative;
+  }
+
+  .visita__tarjeta {
+    max-width: 36rem;
+    padding: clamp(1.75rem, 1rem + 3vw, 3.5rem);
+    background: var(--c-paper);
+    box-shadow: 0 30px 80px -30px rgb(2 15 61 / 0.45);
+  }
+
+  .visita__tarjeta h2 {
+    font-size: clamp(2rem, 1.5rem + 2vw, 3.1rem);
+  }
+
+  .visita__texto {
+    margin-block: 1.25rem 2rem;
+    color: var(--c-muted);
+  }
+
+  .visita__datos {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-line);
+  }
+
+
+  .visita__subtitulo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.6rem;
+    font-family: var(--f-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-navy);
+  }
+
+  .visita__subtitulo :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .visita__datos :global(.horario) {
+    font-size: var(--fs-small);
+  }
+</style>

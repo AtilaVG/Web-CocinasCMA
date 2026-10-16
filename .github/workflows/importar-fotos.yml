@@ -1,0 +1,80 @@
+name: Importar fotos de la web actual
+
+# Descarga las fotos y los textos de www.cocinascma.com, los guarda en el
+# repositorio (src/assets/fotos/web-actual, src/data/fotos-web-actual.json y
+# referencias/web-actual) y vuelve a publicar la web.
+# Se lanza a mano: Actions → "Importar fotos de la web actual" → Run workflow.
+on:
+  workflow_dispatch:
+    inputs:
+      diagnostico:
+        description: 'Solo diagnóstico: URLs (separadas por comas) cuyo HTML mostrar en el log, sin importar nada'
+        required: false
+        default: ''
+
+permissions:
+  contents: write
+  actions: write
+
+# Nunca dos importaciones a la vez sobre la misma rama
+concurrency:
+  group: importar-fotos-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  importar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Diagnóstico (no importa ni guarda)
+        if: inputs.diagnostico != ''
+        run: npm run fotos -- --diagnostico "$URLS"
+        env:
+          URLS: ${{ inputs.diagnostico }}
+
+      - name: Importar fotos y textos
+        if: inputs.diagnostico == ''
+        run: npm run fotos
+
+      # Las imágenes demasiado pequeñas (a menudo de banco de imágenes) no se
+      # suben al repo: quedan en un artifact para revisarlas a mano.
+      - name: Adjuntar imágenes descartadas para revisar
+        if: inputs.diagnostico == ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: imagenes-descartadas
+          path: referencias/web-actual/descartadas/
+          if-no-files-found: ignore
+          retention-days: 30
+
+      - name: Guardar en el repositorio
+        id: guardar
+        if: inputs.diagnostico == ''
+        run: |
+          git add -A src/assets/fotos/web-actual src/data/fotos-web-actual.json referencias/web-actual
+          if git diff --cached --quiet; then
+            echo "No hay cambios que guardar."
+            echo "cambios=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Importar fotos y textos de la web actual (cocinascma.com)"
+          git push
+          echo "cambios=true" >> "$GITHUB_OUTPUT"
+
+      # Los commits hechos con el token de Actions no disparan otros workflows,
+      # así que lanzamos la publicación explícitamente.
+      - name: Volver a publicar la web
+        if: steps.guardar.outputs.cambios == 'true'
+        run: gh workflow run deploy.yml --ref "$GITHUB_REF_NAME"
+        env:
+          GH_TOKEN: ${{ github.token }}

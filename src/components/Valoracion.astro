@@ -1,0 +1,164 @@
+---
+/**
+ * Valoración de clientes. Solo datos reales: la media y el número de opiniones
+ * de ProvenExpert. Las reseñas concretas quedan como huecos hasta elegir
+ * (con el cliente) tres opiniones reales.
+ */
+import Icon from './Icon.astro';
+import { empresa } from '../config/empresa';
+
+const { media, total, fuente, url } = empresa.valoracion;
+const mediaTexto = media.toLocaleString('es-ES', { minimumFractionDigits: 1 });
+const estrellas = Array.from({ length: 5 }, (_, i) =>
+  media >= i + 1 ? 'star' : media > i ? 'star-half' : 'vacia',
+);
+---
+
+<section class="section section--cream valoracion" aria-labelledby="valoracion-titulo">
+  <div class="container valoracion__grid">
+    <div class="valoracion__nota" data-reveal>
+      <p class="eyebrow">Opiniones de clientes</p>
+      <h2 id="valoracion-titulo" class="visually-hidden">Valoración de nuestros clientes</h2>
+      <p class="valoracion__media">
+        <span class="valoracion__numero">{mediaTexto}</span>
+        <span class="valoracion__sobre">/ 5</span>
+      </p>
+      <p class="valoracion__estrellas" role="img" aria-label={`${mediaTexto} de 5 estrellas`}>
+        {estrellas.map((e) => (e === 'vacia' ? <Icon name="star" class="vacia" /> : <Icon name={e as 'star'} />))}
+      </p>
+      <p class="valoracion__texto">
+        Valoración media en <strong>{total} opiniones</strong> de clientes en {fuente}.
+      </p>
+      {
+        url ? (
+          <a class="link-arrow" href={url} target="_blank" rel="noopener">
+            Leer las opiniones <Icon name="arrow" />
+            <span class="visually-hidden">(abre {fuente} en una pestaña nueva)</span>
+          </a>
+        ) : (
+          <span class="tag-pendiente">Falta el enlace a {fuente}</span>
+        )
+      }
+    </div>
+
+    <ul class="valoracion__resenas" role="list">
+      {
+        [0, 1, 2].map((i) => (
+          <li class="resena" data-reveal style={`--d: ${0.1 + i * 0.08}s`}>
+            <p class="resena__estrellas" aria-hidden="true">
+              {[0, 1, 2, 3, 4].map(() => (
+                <Icon name="star" />
+              ))}
+            </p>
+            <p class="resena__texto">
+              Aquí irá una opinión real de un cliente, copiada de {fuente} con su permiso.
+            </p>
+            <p class="resena__autor">
+              <span class="tag-pendiente">Reseña pendiente</span>
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .valoracion__grid {
+    display: grid;
+    gap: clamp(2.5rem, 2rem + 3vw, 5rem);
+  }
+
+  @media (min-width: 64em) {
+    .valoracion__grid {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 2fr);
+      align-items: center;
+    }
+  }
+
+  .valoracion__media {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--f-serif);
+    color: var(--c-ink);
+    line-height: 0.9;
+  }
+
+  .valoracion__numero {
+    font-size: clamp(5rem, 3.5rem + 6vw, 8.5rem);
+    font-weight: 500;
+  }
+
+  .valoracion__sobre {
+    font-size: 2rem;
+    color: var(--c-muted);
+  }
+
+  .valoracion__estrellas {
+    display: flex;
+    gap: 0.2rem;
+    margin-block: 1rem 1.25rem;
+    color: var(--c-red);
+  }
+
+  .valoracion__estrellas :global(svg) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .valoracion__estrellas :global(.vacia) {
+    opacity: 0.22;
+  }
+
+  .valoracion__texto {
+    max-width: 22rem;
+    margin-bottom: 1.5rem;
+    color: var(--c-muted);
+  }
+
+  .valoracion__texto strong {
+    color: var(--c-ink);
+    font-weight: 500;
+  }
+
+  .valoracion__resenas {
+    display: grid;
+    gap: 1rem;
+  }
+
+  @media (min-width: 48em) {
+    .valoracion__resenas {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .resena {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+    background: var(--c-paper);
+    border: 1px dashed var(--c-line-strong);
+  }
+
+  .resena__estrellas {
+    display: flex;
+    gap: 0.15rem;
+    color: var(--c-sand);
+  }
+
+  .resena__estrellas :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .resena__texto {
+    flex: 1;
+    font-family: var(--f-serif);
+    font-size: 1.3rem;
+    font-style: italic;
+    line-height: 1.35;
+    color: var(--c-muted);
+  }
+</style>

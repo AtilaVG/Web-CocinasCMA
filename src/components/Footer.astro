@@ -1,0 +1,213 @@
+---
+import Logo from './Logo.astro';
+import Icon from './Icon.astro';
+import { empresa, enlaceWhatsApp } from '../config/empresa';
+import { navegacion, legales } from '../data/navegacion';
+import { url } from '../lib/url';
+
+const { tienda, fabrica } = empresa;
+const ano = new Date().getFullYear();
+---
+
+<footer class="pie on-dark">
+  <div class="container">
+    <div class="pie__grid">
+      <div class="pie__marca">
+        <Logo variante="claro" lema />
+        <p>
+          Cocinas a medida diseñadas y fabricadas por nosotros desde {empresa.fundacion}. Una empresa familiar de
+          Humanes de Madrid.
+        </p>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">{tienda.nombre}</h2>
+        <address>
+          <a href={tienda.mapa} target="_blank" rel="noopener">
+            {tienda.calle}<br />
+            {tienda.cp} {tienda.localidad}
+            <span class="visually-hidden">(abre Google Maps en una pestaña nueva)</span>
+          </a>
+        </address>
+        <ul role="list" class="pie__lista">
+          {
+            tienda.telefonos.map((t) => (
+              <li>
+                <a href={`tel:${t.e164}`}>{t.texto}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">{fabrica.nombre}</h2>
+        <address>
+          <a href={fabrica.mapa} target="_blank" rel="noopener">
+            {fabrica.calle}<br />
+            {fabrica.cp} {fabrica.localidad} ({fabrica.provincia})
+            <span class="visually-hidden">(abre Google Maps en una pestaña nueva)</span>
+          </a>
+        </address>
+        <ul role="list" class="pie__lista">
+          {
+            fabrica.telefonos.map((t) => (
+              <li>
+                <a href={`tel:${t.e164}`}>{t.texto}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="pie__col">
+        <h2 class="pie__titulo">Escríbenos</h2>
+        <ul role="list" class="pie__lista">
+          <li>
+            <a href={`mailto:${empresa.email}`}>{empresa.email}</a>
+          </li>
+          <li>
+            <a href={enlaceWhatsApp} target="_blank" rel="noopener" class="pie__wa">
+              <Icon name="whatsapp" /> WhatsApp
+              <span class="visually-hidden">(abre en una pestaña nueva)</span>
+            </a>
+          </li>
+          {
+            empresa.redes.map((r) => (
+              <li>
+                <a href={r.url} target="_blank" rel="noopener">
+                  {r.nombre}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <nav class="pie__col" aria-label="Pie de página">
+        <h2 class="pie__titulo">La web</h2>
+        <ul role="list" class="pie__lista">
+          {
+            navegacion.map((item) => (
+              <li>
+                <a href={url(item.ruta)}>{item.texto}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
+
+    <div class="pie__legal">
+      <p>© {ano} {empresa.razonSocial}</p>
+      <ul role="list">
+        {
+          legales.map((item) => (
+            <li>
+              <a href={url(item.ruta)}>{item.texto}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .pie {
+    background: var(--c-ink);
+    color: var(--c-on-dark-muted);
+    padding-block: clamp(4rem, 3rem + 4vw, 6.5rem) 2rem;
+    font-size: var(--fs-small);
+  }
+
+  .pie a {
+    color: var(--c-on-dark);
+    text-decoration-color: rgb(248 245 239 / 0.35);
+    text-underline-offset: 0.25em;
+  }
+
+  .pie a:hover {
+    text-decoration-color: currentColor;
+  }
+
+  .pie__grid {
+    display: grid;
+    gap: 2.5rem 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  }
+
+  .pie__marca {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: 1.25rem;
+    max-width: 26rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--c-line-dark);
+  }
+
+  @media (min-width: 72em) {
+    .pie__grid {
+      grid-template-columns: 1.4fr repeat(4, 1fr);
+    }
+
+    .pie__marca {
+      grid-column: auto;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+  }
+
+  .pie__titulo {
+    margin-bottom: 1rem;
+    font-family: var(--f-sans);
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--c-on-dark-muted);
+  }
+
+  address {
+    font-style: normal;
+    margin-bottom: 0.75rem;
+  }
+
+  .pie__lista li + li {
+    margin-top: 0.35rem;
+  }
+
+  .pie__lista a,
+  address a {
+    display: inline-block;
+    padding-block: 0.15rem;
+  }
+
+  .pie__wa {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .pie__wa :global(svg) {
+    width: 1.05rem;
+    height: 1.05rem;
+  }
+
+  .pie__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem 2rem;
+    margin-top: clamp(3rem, 2rem + 3vw, 5rem);
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--c-line-dark);
+    font-size: 0.85rem;
+  }
+
+  .pie__legal ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+</style>

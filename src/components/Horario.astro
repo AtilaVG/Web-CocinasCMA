@@ -1,0 +1,53 @@
+---
+import { empresa } from '../config/empresa';
+
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+const { filas, pendiente } = empresa.horario;
+---
+
+<div class:list={['horario', className]}>
+  <dl>
+    {
+      filas.map((f) => (
+        <div class="horario__fila">
+          <dt>{f.dias}</dt>
+          <dd>{f.horas}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  {pendiente && <p class="horario__aviso"><span class="tag-pendiente">Horario de ejemplo, pendiente de confirmar</span></p>}
+</div>
+
+<style>
+  .horario dl {
+    display: grid;
+    gap: 0.35rem;
+  }
+
+  .horario__fila {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    padding-block: 0.45rem;
+    border-bottom: 1px solid var(--c-line);
+  }
+
+  .on-dark .horario__fila,
+  .section--dark .horario__fila {
+    border-color: var(--c-line-dark);
+  }
+
+  .horario dd {
+    font-variant-numeric: tabular-nums;
+  }
+
+  .horario__aviso {
+    margin-top: 0.85rem;
+  }
+</style>

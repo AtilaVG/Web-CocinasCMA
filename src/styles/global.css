@@ -1,0 +1,586 @@
+/* ==========================================================================
+   Cocinas CMA — estilos globales
+   Base clara y cálida (blancos rotos, piedra, madera), azul marino de marca y
+   el rojo solo como acento.
+   ========================================================================== */
+
+:root {
+  /* Marca */
+  --c-ink: #020f3d;        /* azul marino de los textos */
+  --c-navy: #003c6d;       /* azul del logo */
+  --c-red: #9d0008;        /* rojo de "cma", con moderación */
+
+  /* Base cálida */
+  --c-paper: #f8f5ef;      /* blanco roto */
+  --c-cream: #f1ece3;      /* piedra clara */
+  --c-stone: #e5ddd0;      /* piedra */
+  --c-sand: #cfc2ad;       /* arena */
+  --c-oak: #77573a;        /* madera */
+  --c-white: #fffdf9;
+
+  /* Texto */
+  --c-text: #252a3a;
+  --c-muted: #575c6b;
+  --c-line: rgb(2 15 61 / 0.14);
+  --c-line-strong: rgb(2 15 61 / 0.28);
+
+  /* Sobre fondo marino */
+  --c-on-dark: #f8f5ef;
+  --c-on-dark-muted: rgb(248 245 239 / 0.76);
+  --c-line-dark: rgb(248 245 239 / 0.2);
+
+  /* Tipografía */
+  --f-serif: 'Cormorant Garamond', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --f-sans: 'Jost Variable', 'Jost', 'Avenir Next', 'Segoe UI', system-ui, sans-serif;
+
+  --fs-display: clamp(2.6rem, 1.5rem + 4.6vw, 5.75rem);
+  --fs-h1: clamp(2.4rem, 1.5rem + 3.6vw, 4.75rem);
+  --fs-h2: clamp(2rem, 1.45rem + 2.3vw, 3.6rem);
+  --fs-h3: clamp(1.45rem, 1.25rem + 0.8vw, 1.95rem);
+  --fs-lead: clamp(1.15rem, 1.05rem + 0.45vw, 1.4rem);
+  --fs-body: 1.0625rem;
+  --fs-small: 0.9375rem;
+  --fs-eyebrow: 0.78rem;
+
+  /* Espaciado */
+  --gutter: clamp(1rem, 4.5vw, 3rem);
+  --max: 1320px;
+  --max-text: 40rem;
+  --section: clamp(4.5rem, 3rem + 7vw, 9.5rem);
+  --header-h: 4.5rem;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --radius: 2px;
+
+  color-scheme: light;
+}
+
+@media (min-width: 64em) {
+  :root {
+    --header-h: 5.5rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Reset ligero
+   -------------------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 1rem);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--c-paper);
+  color: var(--c-text);
+  font-family: var(--f-sans);
+  font-size: var(--fs-body);
+  font-weight: 400;
+  line-height: 1.7;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+img,
+svg,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+.icon {
+  width: 1.2em;
+  height: 1.2em;
+  flex: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ol,
+ul {
+  margin: 0;
+}
+
+ul[role='list'],
+ol[role='list'] {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--c-navy);
+  color: var(--c-paper);
+}
+
+/* --------------------------------------------------------------------------
+   Tipografía
+   -------------------------------------------------------------------------- */
+
+h1,
+h2,
+h3,
+.serif {
+  font-family: var(--f-serif);
+  font-weight: 500;
+  color: var(--c-ink);
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: 1.04;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  line-height: 1.08;
+}
+
+h3 {
+  font-size: var(--fs-h3);
+  line-height: 1.2;
+  font-weight: 600;
+}
+
+h1 em,
+h2 em {
+  font-style: italic;
+  font-weight: 500;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.lead {
+  font-size: var(--fs-lead);
+  line-height: 1.6;
+  color: var(--c-text);
+}
+
+.muted {
+  color: var(--c-muted);
+}
+
+.small {
+  font-size: var(--fs-small);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 1.4rem;
+  font-family: var(--f-sans);
+  font-size: var(--fs-eyebrow);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--c-navy);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 1.75rem;
+  height: 1px;
+  background: var(--c-red);
+}
+
+.prose > * + * {
+  margin-top: 1.1em;
+}
+
+.prose h2 {
+  font-size: clamp(1.7rem, 1.4rem + 1.2vw, 2.4rem);
+  margin-top: 2.2em;
+}
+
+.prose h3 {
+  margin-top: 1.8em;
+}
+
+.prose ul {
+  padding-left: 1.2em;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+/* --------------------------------------------------------------------------
+   Estructura
+   -------------------------------------------------------------------------- */
+
+.container {
+  width: 100%;
+  max-width: calc(var(--max) + var(--gutter) * 2);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--narrow {
+  max-width: calc(52rem + var(--gutter) * 2);
+}
+
+.section {
+  padding-block: var(--section);
+}
+
+.section--tight {
+  padding-block: calc(var(--section) * 0.6);
+}
+
+.section--cream {
+  background: var(--c-cream);
+}
+
+.section--stone {
+  background: var(--c-stone);
+}
+
+.section--dark {
+  background: var(--c-ink);
+  color: var(--c-on-dark);
+}
+
+.section--dark h2,
+.section--dark h3 {
+  color: var(--c-on-dark);
+}
+
+.section--dark .eyebrow {
+  color: var(--c-on-dark);
+}
+
+.section--dark .muted {
+  color: var(--c-on-dark-muted);
+}
+
+.section-head {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: clamp(2.5rem, 2rem + 3vw, 5rem);
+}
+
+@media (min-width: 56em) {
+  .section-head--split {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    align-items: end;
+    gap: 4rem;
+  }
+}
+
+.section-head p {
+  max-width: var(--max-text);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  padding: 0.75rem 1.1rem;
+  background: var(--c-ink);
+  color: var(--c-paper);
+  font-weight: 500;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+/* --------------------------------------------------------------------------
+   Botones y enlaces
+   -------------------------------------------------------------------------- */
+
+.btn {
+  --btn-bg: var(--c-ink);
+  --btn-fg: var(--c-paper);
+  --btn-border: var(--c-ink);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  min-height: 3.25rem;
+  padding: 0.85rem 1.6rem;
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color 0.3s var(--ease),
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease);
+}
+
+.btn:hover {
+  --btn-bg: var(--c-navy);
+  --btn-border: var(--c-navy);
+}
+
+.btn svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+}
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--c-ink);
+  --btn-border: var(--c-line-strong);
+}
+
+.btn--ghost:hover {
+  --btn-bg: var(--c-ink);
+  --btn-fg: var(--c-paper);
+  --btn-border: var(--c-ink);
+}
+
+.btn--light {
+  --btn-bg: var(--c-paper);
+  --btn-fg: var(--c-ink);
+  --btn-border: var(--c-paper);
+}
+
+.btn--light:hover {
+  --btn-bg: var(--c-white);
+  --btn-fg: var(--c-navy);
+  --btn-border: var(--c-white);
+}
+
+.btn--ghost-light {
+  --btn-bg: transparent;
+  --btn-fg: var(--c-paper);
+  --btn-border: rgb(248 245 239 / 0.55);
+}
+
+.btn--ghost-light:hover {
+  --btn-bg: var(--c-paper);
+  --btn-fg: var(--c-ink);
+  --btn-border: var(--c-paper);
+}
+
+.btn--whatsapp {
+  --btn-bg: #1d6b47;
+  --btn-border: #1d6b47;
+}
+
+.btn--whatsapp:hover {
+  --btn-bg: #14513a;
+  --btn-border: #14513a;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-block: 0.4rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid currentColor;
+}
+
+.link-arrow svg {
+  width: 1.1em;
+  height: 1.1em;
+  transition: transform 0.35s var(--ease);
+}
+
+.link-arrow:hover svg {
+  transform: translateX(0.3rem);
+}
+
+/* --------------------------------------------------------------------------
+   Etiquetas de contenido pendiente (visibles en el prototipo)
+   -------------------------------------------------------------------------- */
+
+.tag-pendiente {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.2rem 0.55rem;
+  border: 1px dashed currentColor;
+  border-radius: 99px;
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--c-oak);
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.section--dark .tag-pendiente,
+.on-dark .tag-pendiente {
+  color: #e6cfa8;
+}
+
+/* --------------------------------------------------------------------------
+   Medios
+   -------------------------------------------------------------------------- */
+
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--c-stone);
+}
+
+.media > picture,
+.media > img,
+.media > picture > img,
+.media > .foto-pendiente {
+  width: 100%;
+  height: 100%;
+}
+
+.media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.media--fill {
+  position: absolute;
+  inset: 0;
+}
+
+/* --------------------------------------------------------------------------
+   Animaciones al hacer scroll (solo con JS y sin "reducir movimiento")
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(1.75rem);
+    transition:
+      opacity 1s var(--ease),
+      transform 1.1s var(--ease);
+    transition-delay: var(--d, 0s);
+  }
+
+  .js [data-reveal='fade'] {
+    transform: none;
+  }
+
+  .js [data-reveal='imagen'] {
+    transform: none;
+    clip-path: inset(6% 6% 6% 6%);
+    transition:
+      opacity 1.1s var(--ease),
+      clip-path 1.4s var(--ease);
+  }
+
+  .js [data-reveal='imagen'] img {
+    transform: scale(1.08);
+    transition: transform 1.8s var(--ease);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+
+  .js [data-reveal='imagen'].is-visible img {
+    transform: none;
+  }
+}
+
+main:focus {
+  outline: none;
+}
+
+/* Aviso sobre fotos provisionales de baja resolución (solo prototipo) */
+.foto-aviso,
+.on-dark .foto-aviso,
+.section--dark .foto-aviso {
+  position: absolute;
+  right: 0.75rem;
+  bottom: 0.75rem;
+  z-index: 2;
+  background: rgb(248 245 239 / 0.92);
+  color: var(--c-oak);
+}
