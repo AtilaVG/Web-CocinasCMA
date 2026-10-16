@@ -4,7 +4,13 @@
 // Cabecera: se vuelve opaca al bajar
 const cabecera = document.querySelector<HTMLElement>('[data-cabecera]');
 if (cabecera) {
-  const actualizar = () => cabecera.classList.toggle('is-scrolled', window.scrollY > 24);
+  // En la portada con intro animada, la cabecera sigue transparente mientras dura la intro
+  const intro = document.querySelector<HTMLElement>('[data-intro]');
+  const umbral = () =>
+    intro && document.documentElement.classList.contains('anima')
+      ? intro.offsetHeight - window.innerHeight * 0.9
+      : 24;
+  const actualizar = () => cabecera.classList.toggle('is-scrolled', window.scrollY > umbral());
   actualizar();
   window.addEventListener('scroll', actualizar, { passive: true });
 }

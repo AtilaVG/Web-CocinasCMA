@@ -55,6 +55,10 @@ const imagenSocial = new URL(url('og-cocinascma.png'), Astro.site).href;
 
     <script is:inline>
       document.documentElement.classList.add('js');
+      // Animaciones ligadas al scroll (intro de la portada) solo si no se ha pedido reducir el movimiento
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('anima');
+      }
     </script>
     <DatosEstructurados />
   </head>

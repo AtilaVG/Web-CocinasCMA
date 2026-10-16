@@ -8,6 +8,7 @@ import { huecos } from '../data/fotos';
 import { destacados } from '../data/proyectos';
 import { nombreAcabado, nombreEstilo } from '../data/catalogo';
 import { url } from '../lib/url';
+import { secuencia } from '../data/intro';
 
 const pilares = [
   {
@@ -46,39 +47,85 @@ const cifras = [
   descripcion="Fábrica y tienda familiar de cocinas a medida en Humanes de Madrid, cerca de Fuenlabrada, Leganés y Móstoles. Diseñamos y fabricamos cada cocina desde 1992. Visita nuestra exposición de 700 m²."
   headerTransparente
 >
-  <!-- Portada -->
-  <section class="hero on-dark">
-    <div class="media media--fill hero__media">
-      <Foto
-        src={huecos.inicioHero.foto}
-        alt={huecos.inicioHero.alt}
-        pendiente={huecos.inicioHero.pendiente}
-        prioridad
-        tono="oscuro"
-        posicion="arriba"
-        minAncho={1600}
-      />
-    </div>
-    <div class="hero__velo" aria-hidden="true"></div>
-
-    <div class="container hero__contenido">
-      <p class="eyebrow hero__antetitulo" data-reveal>Fábrica de mobiliario de cocinas</p>
-      <h1 class="hero__titulo" data-reveal style="--d: 0.1s">
-        Cocinas a medida, <em>fabricadas por nosotros</em> desde&nbsp;1992
-      </h1>
-      <p class="hero__intro" data-reveal style="--d: 0.2s">
-        Diseñamos cada cocina para su espacio y la fabricamos en nuestra fábrica de Toledo. Más de 30 años de oficio
-        familiar, sin intermediarios.
-      </p>
-      <div class="btn-row" data-reveal style="--d: 0.3s">
-        <a class="btn btn--light" href={url('/proyectos/')}>Ver proyectos</a>
-        <a class="btn btn--ghost-light" href={url('/exposicion/')}>Visitar la exposición</a>
+  <!-- Portada: intro con puertas que se abren al hacer scroll -->
+  <section class="intro" data-intro aria-labelledby="portada-titulo">
+    <div class="hero on-dark" data-intro-escena>
+      <div class="hero__escena">
+        <div class="media media--fill hero__media">
+          <Foto
+            src={huecos.inicioHero.foto}
+            alt={huecos.inicioHero.alt}
+            pendiente={huecos.inicioHero.pendiente}
+            prioridad
+            tono="oscuro"
+            posicion="arriba"
+            minAncho={1600}
+          />
+        </div>
+        {
+          secuencia.total > 1 && (
+            <canvas
+              class="hero__canvas"
+              data-intro-canvas
+              data-base={url(secuencia.carpeta)}
+              data-total={secuencia.total}
+              data-ext={secuencia.extension}
+              aria-hidden="true"
+            />
+          )
+        }
       </div>
-    </div>
+      {secuencia.total > 1 && secuencia.aviso && <span class="foto-aviso hero__aviso">{secuencia.aviso}</span>}
+      <div class="hero__velo" aria-hidden="true"></div>
 
-    <div class="container hero__pie" aria-hidden="true">
-      <span>Humanes de Madrid · Cedillo del Condado</span>
-      <span class="hero__scroll"><Icon name="arrow-down" /></span>
+      {
+        secuencia.total < 2 && (
+          <div class="puertas" aria-hidden="true">
+            <div class="puerta puerta--izq">
+              <div class="puerta__frente">
+                <span class="puerta__gola" />
+                <span class="puerta__marca">cocinas</span>
+                <span class="puerta__dato">Desde 1992</span>
+              </div>
+              <div class="puerta__dorso" />
+            </div>
+            <div class="puerta puerta--der">
+              <div class="puerta__frente">
+                <span class="puerta__gola" />
+                <span class="puerta__marca">
+                  <b>cma</b>
+                </span>
+                <span class="puerta__dato">Humanes de Madrid</span>
+              </div>
+              <div class="puerta__dorso" />
+            </div>
+            <span class="puertas__aviso">
+              Desliza para abrir
+              <Icon name="arrow-down" />
+            </span>
+          </div>
+        )
+      }
+
+      <div class="container hero__contenido">
+        <p class="eyebrow hero__antetitulo">Fábrica de mobiliario de cocinas</p>
+        <h1 id="portada-titulo" class="hero__titulo">
+          Cocinas a medida, <em>fabricadas por nosotros</em> desde&nbsp;1992
+        </h1>
+        <p class="hero__intro">
+          Diseñamos cada cocina para su espacio y la fabricamos en nuestra fábrica de Toledo. Más de 30 años de oficio
+          familiar, sin intermediarios.
+        </p>
+        <div class="btn-row">
+          <a class="btn btn--light" href={url('/proyectos/')}>Ver proyectos</a>
+          <a class="btn btn--ghost-light" href={url('/exposicion/')}>Visitar la exposición</a>
+        </div>
+      </div>
+
+      <div class="container hero__pie" aria-hidden="true">
+        <span>Humanes de Madrid · Cedillo del Condado</span>
+        <span class="hero__scroll"><Icon name="arrow-down" /></span>
+      </div>
     </div>
   </section>
 
@@ -213,6 +260,9 @@ const cifras = [
   <Valoracion />
 
   <VisitaExposicion />
+  <script>
+    import '../scripts/intro';
+  </script>
 </Base>
 
 <style>
@@ -310,6 +360,243 @@ const cifras = [
   @keyframes flotar {
     50% {
       transform: translateY(0.35rem);
+    }
+  }
+
+
+  /* Intro: la portada queda fija mientras se abren las puertas */
+  :global(.anima) .intro {
+    height: 260svh;
+  }
+
+  :global(.anima) .intro .hero {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  @media (max-width: 47.99em) {
+    :global(.anima) .intro {
+      height: 190svh;
+    }
+  }
+
+  .hero__escena {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  :global(.anima) .hero__escena {
+    transform: scale(calc(1.14 - 0.14 * var(--zoom, 0)));
+    filter: brightness(calc(0.45 + 0.55 * var(--abrir, 0)));
+    will-change: transform, filter;
+  }
+
+  .hero__canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .hero__canvas:global(.is-lista) {
+    opacity: 1;
+  }
+
+  .hero__aviso {
+    top: calc(var(--header-h) + 1rem);
+    bottom: auto;
+  }
+
+  /* Texto: aparece cuando las puertas ya están casi abiertas */
+  :global(.anima) .intro .hero__contenido > *,
+  :global(.anima) .intro .hero__pie,
+  :global(.anima) .intro .hero__velo {
+    opacity: 0;
+    transform: translateY(1.5rem);
+    transition:
+      opacity 0.9s var(--ease),
+      transform 0.9s var(--ease);
+  }
+
+  :global(.anima) .intro .hero__velo {
+    transform: none;
+  }
+
+  :global(.anima) .intro.is-abierta .hero__contenido > *,
+  :global(.anima) .intro.is-abierta .hero__pie,
+  :global(.anima) .intro.is-abierta .hero__velo {
+    opacity: 1;
+    transform: none;
+  }
+
+  :global(.anima) .intro.is-abierta .hero__contenido > :nth-child(2) {
+    transition-delay: 0.08s;
+  }
+
+  :global(.anima) .intro.is-abierta .hero__contenido > :nth-child(3) {
+    transition-delay: 0.16s;
+  }
+
+  :global(.anima) .intro.is-abierta .hero__contenido > :nth-child(4) {
+    transition-delay: 0.24s;
+  }
+
+  /* Puertas (solo con animación; sin ella se ve la cocina directamente) */
+  .puertas {
+    display: none;
+  }
+
+  :global(.anima) .puertas {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    perspective: 1800px;
+    perspective-origin: 50% 45%;
+    pointer-events: none;
+  }
+
+  .puerta {
+    --giro: calc(var(--abrir, 0) * 104deg);
+    position: relative;
+    transform-style: preserve-3d;
+  }
+
+  .puerta--izq {
+    transform-origin: left center;
+    transform: rotateY(calc(-1 * var(--giro)));
+  }
+
+  .puerta--der {
+    transform-origin: right center;
+    transform: rotateY(var(--giro));
+  }
+
+  .puerta__frente,
+  .puerta__dorso {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+  }
+
+  /* Frente en laca azul marino con brillo */
+  .puerta__frente {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-inline: clamp(1rem, 4vw, 4rem);
+    background:
+      linear-gradient(100deg, rgb(255 255 255 / 0) 30%, rgb(255 255 255 / 0.09) 42%, rgb(255 255 255 / 0) 55%),
+      linear-gradient(180deg, #0d3f70 0%, #003c6d 45%, #022a52 100%);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      inset 0 -40px 80px rgb(0 0 0 / 0.25);
+  }
+
+  .puerta--izq .puerta__frente {
+    padding-right: clamp(0.4rem, 1vw, 1rem);
+    align-items: flex-end;
+    text-align: right;
+    border-right: 2px solid rgb(0 0 0 / 0.35);
+  }
+
+  .puerta--der .puerta__frente {
+    padding-left: clamp(0.4rem, 1vw, 1rem);
+    align-items: flex-start;
+    text-align: left;
+    border-left: 1px solid rgb(255 255 255 / 0.08);
+  }
+
+  /* Sombra que gana la puerta al girar */
+  .puerta__frente::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: #000;
+    opacity: calc(var(--abrir, 0) * 0.55);
+  }
+
+  /* Gola: hueco del tirador con perfil de aluminio */
+  .puerta__gola {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    height: clamp(1.75rem, 4vh, 2.75rem);
+    background: linear-gradient(180deg, #010d1f 0%, #031a33 70%, #b9c2cc 70%, #e6eaee 82%, #8e98a3 100%);
+  }
+
+  .puerta__marca {
+    font-family: var(--f-sans);
+    font-size: clamp(3rem, 1rem + 8vw, 8.5rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #f8f5ef;
+  }
+
+  .puerta__marca b {
+    font-weight: 400;
+    color: #e2453c;
+  }
+
+  .puerta__dato {
+    margin-top: 1.25rem;
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(248 245 239 / 0.7);
+  }
+
+  /* Cara interior del mueble (tablero en color madera) */
+  .puerta__dorso {
+    transform: rotateY(180deg);
+    background: linear-gradient(90deg, #8a6845, #a7835b 50%, #8a6845);
+    box-shadow: inset 0 0 60px rgb(0 0 0 / 0.35);
+  }
+
+  .puertas__aviso {
+    position: absolute;
+    bottom: clamp(1.5rem, 5vh, 3rem);
+    left: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgb(248 245 239 / 0.8);
+    transform: translateX(-50%);
+    transition: opacity 0.4s var(--ease);
+  }
+
+  .puertas__aviso :global(svg) {
+    width: 1.1rem;
+    height: 1.1rem;
+    animation: flotar 2.6s var(--ease) infinite;
+  }
+
+  .intro.is-empezada .puertas__aviso {
+    opacity: 0;
+  }
+
+  @media (max-width: 47.99em) {
+    .puerta__marca {
+      font-size: clamp(2.4rem, 0.5rem + 10vw, 4rem);
+    }
+
+    .puerta__dato {
+      font-size: 0.6rem;
+      letter-spacing: 0.16em;
     }
   }
 
