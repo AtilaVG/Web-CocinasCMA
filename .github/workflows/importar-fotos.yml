@@ -44,6 +44,17 @@ jobs:
         if: inputs.diagnostico == ''
         run: npm run fotos
 
+      # Las imágenes demasiado pequeñas (a menudo de banco de imágenes) no se
+      # suben al repo: quedan en un artifact para revisarlas a mano.
+      - name: Adjuntar imágenes descartadas para revisar
+        if: inputs.diagnostico == ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: imagenes-descartadas
+          path: referencias/web-actual/descartadas/
+          if-no-files-found: ignore
+          retention-days: 30
+
       - name: Guardar en el repositorio
         id: guardar
         if: inputs.diagnostico == ''

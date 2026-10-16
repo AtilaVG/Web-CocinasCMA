@@ -12,3 +12,7 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# Imágenes descartadas por el importador (pueden ser de banco de imágenes):
+# se revisan en local o en el artifact del workflow, no se publican en el repo
+referencias/web-actual/descartadas/

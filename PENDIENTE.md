@@ -22,6 +22,7 @@ Todo lo de esta lista aparece en el prototipo con una etiqueta **«pendiente»**
 - [ ] Una de las fotos de la página «Exposición y venta» actual (`cocina6`, cocina lineal en madera clara) tiene carteles de precio con QR y un distintivo «25» que parecen de otra cadena: ¿es de su exposición? De momento no se publica.
 - [ ] Confirmar si la foto de la cocina roja «Moderno-Luxe» es un trabajo suyo: parece de catálogo del fabricante (en la galería lleva la etiqueta «Foto por confirmar»).
 - [ ] Hay dos cocinas recientes fotografiadas con los plásticos de obra: ¿tienen la foto ya terminadas?
+- [ ] Las fotos de la portada antigua (`box-pic1–4`, `img5–7`) parecen de banco de imágenes y no se usan; `box-pic5` es un recorte de una cocina suya que ya está en la galería. Confirmar que no hay más fotos propias que rescatar.
 - [ ] Revisar la clasificación de las fotos (estilo y acabado salen de las etiquetas de la web actual) y la selección de la portada.
 
 ## Datos
