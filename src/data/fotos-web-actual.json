@@ -138,7 +138,7 @@
       "alt": "",
       "galeria": false,
       "destacado": false,
-      "nota": "Banner de 300×120 px del carrusel de la portada antigua: demasiado pequeño para la galería."
+      "nota": "Tiene carteles de precio con QR y un distintivo «25» que parecen de otra cadena: confirmar con el cliente que es de su exposición antes de usarla."
     },
     {
       "id": "cocina7",
@@ -756,7 +756,7 @@
         "cristal-gola"
       ],
       "titulo": "Cocina moderna en cristal con uñero",
-      "alt": "Isla con frentes de cristal negro y muebles altos blancos en la exposición de Humanes",
+      "alt": "Isla con frentes de cristal negro y encimera blanca, columnas de cristal negro y un expositor de encimeras, en la exposición de Humanes",
       "galeria": true,
       "destacado": false,
       "nota": ""
@@ -841,7 +841,7 @@
         "luxe"
       ],
       "titulo": "Cocina moderna, colección Luxe",
-      "alt": "",
+      "alt": "Cocina roja en laca brillo con isla y campana de acero en un loft (posible foto de catálogo del fabricante, pendiente de confirmar)",
       "galeria": true,
       "destacado": false,
       "nota": "Parece una foto de catálogo del fabricante (colección Luxe): confirmar con el cliente que es un trabajo suyo.",
@@ -898,7 +898,7 @@
         "madera"
       ],
       "titulo": "Cocina rústica en madera",
-      "alt": "Detalle de cajones de madera oscura con tiradores metálicos y encimera clara",
+      "alt": "Detalle de cajones de madera oscura con tiradores metálicos, en la exposición de Humanes",
       "galeria": true,
       "destacado": 3,
       "nota": ""
@@ -1584,7 +1584,7 @@
         "laminado-mate"
       ],
       "titulo": "Cocina actual en laminado mate",
-      "alt": "Cocina en laminado mate gris claro con encimera oscura y campana junto a la ventana",
+      "alt": "Cocina en L con frentes blancos mate sin tiradores, encimera gris y fregadero bajo la ventana; al fondo, la placa y la campana",
       "galeria": true,
       "destacado": 4,
       "nota": ""

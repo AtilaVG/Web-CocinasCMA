@@ -76,6 +76,25 @@ const foto = huecos.inicioExposicion;
     bottom: auto;
   }
 
+  /* En móvil la foto va entera encima de la tarjeta (a sangre quedaba tapada) */
+  @media (max-width: 55.99em) {
+    .visita {
+      display: block;
+      min-height: 0;
+      padding-block: 0 clamp(2rem, 6vw, 3rem);
+    }
+
+    .visita__media {
+      position: relative;
+      inset: auto;
+      aspect-ratio: 4 / 3;
+    }
+
+    .visita__contenedor {
+      margin-top: -3rem;
+    }
+  }
+
   .visita__contenedor {
     position: relative;
   }

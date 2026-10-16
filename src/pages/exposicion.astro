@@ -98,11 +98,25 @@ const encontraras = [
           reportaje nuevo.
         </p>
       </div>
+      <div
+        class="media tira__banner"
+        style={`aspect-ratio: ${proporcion(huecos.exposicionBanner.foto, '670 / 131')}`}
+        data-reveal
+      >
+        <Foto
+          src={huecos.exposicionBanner.foto}
+          alt={huecos.exposicionBanner.alt}
+          pendiente={huecos.exposicionBanner.pendiente}
+          sizes="(min-width: 44em) 670px, 100vw"
+          anchos={[670]}
+          compacto
+        />
+      </div>
       <ul class="tira__lista" role="list">
         {
           tiraExposicion.map((f, i) => (
-            <li class="media tira__foto" data-reveal style={`--d: ${(i % 3) * 0.06}s`}>
-              <Foto src={f.foto} alt={f.alt} sizes="(min-width: 64em) 30vw, 50vw" anchos={[300]} compacto />
+            <li class="media tira__foto" data-reveal style={`--d: ${(i % 5) * 0.05}s`}>
+              <Foto src={f.foto} alt={f.alt} sizes="(min-width: 56em) 260px, 50vw" anchos={[300]} compacto />
             </li>
           ))
         }
@@ -232,6 +246,11 @@ const encontraras = [
     margin-left: auto;
   }
 
+  /* Encuadre a la izquierda para que se vea el muestrario de encimeras */
+  .encontraras__foto--2 :global(img) {
+    object-position: 15% 50%;
+  }
+
   .encontraras__foto--2 {
     position: absolute;
     left: 0;
@@ -259,16 +278,23 @@ const encontraras = [
     font-size: clamp(1.6rem, 1.3rem + 1vw, 2.2rem);
   }
 
+  /* Las fotos de la web antigua son pequeñas: nunca se muestran más grandes
+     que su tamaño real (banner 670 px, miniaturas 300 px). */
+  .tira__banner {
+    max-width: 670px;
+    margin-bottom: 0.75rem;
+  }
+
   .tira__lista {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 300px));
     gap: 0.75rem;
   }
 
   @media (min-width: 56em) {
     .tira__lista {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(5, minmax(0, 300px));
+      gap: 0.75rem;
     }
   }
 
@@ -444,6 +470,9 @@ const encontraras = [
 
   .visita-info__foto {
     aspect-ratio: 4 / 3;
+    width: 100%;
+    max-width: 435px; /* ancho real de la foto de la fachada */
+    justify-self: center;
   }
 
   .visita-info__grid h2 {

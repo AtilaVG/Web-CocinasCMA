@@ -164,11 +164,13 @@ const proceso = [
             src={huecos.fabricaExterior.foto}
             alt={huecos.fabricaExterior.alt}
             pendiente={huecos.fabricaExterior.pendiente}
-            sizes="(min-width: 56em) 24rem, 100vw"
+            sizes="300px"
+            anchos={[300]}
             tono="oscuro"
             compacto
           />
         </div>
+        <p class="donde__nota"><span class="tag-pendiente">Foto por confirmar</span> ¿Es la nave de Cedillo?</p>
       </div>
       <div class="donde__datos" data-reveal style="--d: 0.16s">
         <address>
@@ -314,9 +316,27 @@ const proceso = [
   }
 
   .donde__foto {
-    max-width: 24rem;
+    max-width: 300px; /* ancho real de la foto: no se amplía */
     margin-top: 2rem;
     background: #0b1d45;
+  }
+
+  .donde__nota {
+    margin-top: 0.6rem;
+    font-size: var(--fs-small);
+    color: var(--c-on-dark-muted);
+  }
+
+  /* En móvil el banner doble se vería diminuto: se muestra solo la mitad
+     izquierda (la escuadradora) a mayor altura. */
+  @media (max-width: 39.99em) {
+    .proceso__foto--1 {
+      aspect-ratio: 335 / 131 !important;
+    }
+
+    .proceso__foto--1 :global(img) {
+      object-position: 0 50%;
+    }
   }
 
   .donde__datos {

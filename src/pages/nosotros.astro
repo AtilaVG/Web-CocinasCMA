@@ -235,6 +235,17 @@ const pasos = [
     aspect-ratio: 4 / 5;
   }
 
+  /* En móvil el hueco del equipo es pequeño: solo la etiqueta, sin el texto */
+  @media (max-width: 39.99em) {
+    .historia__foto--2 :global(.foto-pendiente) {
+      padding: 0.5rem;
+    }
+
+    .historia__foto--2 :global(.foto-pendiente__texto) {
+      display: none;
+    }
+  }
+
   .historia__foto--2 {
     position: absolute;
     right: 0;

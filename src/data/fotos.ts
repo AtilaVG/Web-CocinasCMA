@@ -38,7 +38,7 @@ export interface Hueco {
 export const huecos = {
   inicioHero: {
     foto: 'web-actual/imagenes_cocinas/gr-96576749160885808.jpg',
-    alt: 'Cocina blanca en laca brillo con isla de mármol, fabricada por Cocinas CMA',
+    alt: 'Cocina blanca en laca brillo con isla en acabado mármol veteado y hornos en columna, fabricada por Cocinas CMA',
     pendiente: 'Cocina terminada, horizontal y en alta resolución (mín. 2400 px de ancho)',
   },
   inicioFabrica: {
@@ -58,7 +58,7 @@ export const huecos = {
   },
   nosotrosHistoria: {
     foto: 'web-actual/imagenes_cocinas/gr-1355612061.jpg',
-    alt: 'Cocina rústica de pino con cestas de mimbre bajo la encimera',
+    alt: 'Cocina rústica en polilaminado efecto pino, con cestas de mimbre bajo la encimera',
     pendiente: 'Foto antigua del taller o de los fundadores (años 90)',
   },
   nosotrosEquipo: {
@@ -73,7 +73,7 @@ export const huecos = {
   },
   fabricaDetalle1: {
     foto: 'web-actual/images/fab-ban.jpg',
-    alt: 'Interior de la fábrica de Cedillo del Condado: seccionadora con tableros y nave con la canteadora',
+    alt: 'Interior de la fábrica de Cedillo del Condado: escuadradora con tableros y nave con la canteadora',
     pendiente: 'Seccionadora o corte de tableros',
   },
   fabricaDetalle2: {
@@ -108,20 +108,26 @@ export const huecos = {
   },
   fabricaExterior: {
     foto: 'web-actual/imagenes_cocinas/cocina7.jpg',
-    alt: 'Fachada de la nave de la fábrica, con el rótulo «Cocinas»',
+    alt: 'Nave con el rótulo vertical «Cocinas C.M.A.» en la fachada',
     pendiente: 'Exterior de la fábrica de Cedillo del Condado',
+  },
+  exposicionBanner: {
+    foto: 'web-actual/images/tienda-ban.jpg',
+    alt: 'Vista general de la exposición de Humanes con varias cocinas montadas, y ambientes en naranja y rojo con muestras de frentes',
+    pendiente: 'Vista panorámica de la exposición',
   },
 } satisfies Record<string, Hueco>;
 
 /**
  * Fotos actuales de la exposición (300×120 px en la web antigua). Se muestran
- * a su tamaño, como tira, hasta tener un reportaje nuevo de la tienda.
+ * sin ampliar, como tira, hasta tener un reportaje nuevo de la tienda.
+ * (cocina6.jpg no está: tiene carteles de precio de otra cadena y hay que
+ * confirmar con el cliente que es de su exposición.)
  */
 export const tiraExposicion: { foto: string; alt: string }[] = [
   { foto: 'web-actual/imagenes_cocinas/cocina1.jpg', alt: 'Cocina naranja con muestras de frentes sobre la encimera, en la exposición' },
   { foto: 'web-actual/imagenes_cocinas/cocina2.jpg', alt: 'Cocina roja con horno y frigorífico, en la exposición' },
-  { foto: 'web-actual/imagenes_cocinas/cocina3.jpg', alt: 'Cocina de madera con cestas y muestras de encimera, en la exposición' },
+  { foto: 'web-actual/imagenes_cocinas/cocina3.jpg', alt: 'Cocina rústica efecto pino con cestas de mimbre y muestras de encimera, en la exposición' },
   { foto: 'web-actual/imagenes_cocinas/cocina4.jpg', alt: 'Isla con encimera blanca y muebles negros, en la exposición' },
   { foto: 'web-actual/imagenes_cocinas/cocina5.jpg', alt: 'Cocina oscura con muestras de frentes sobre la encimera, en la exposición' },
-  { foto: 'web-actual/imagenes_cocinas/cocina6.jpg', alt: 'Cocina en tono madera claro con microondas integrado, en la exposición' },
 ];

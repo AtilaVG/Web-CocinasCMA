@@ -53,7 +53,7 @@ const RECURSO_UI = /(^|[\/_-])(logo|bot(on|o)?|btn|fondo|bg|flecha|icono?|spacer
 
 // ---------------------------------------------------------------------------
 
-const informe = { paginas: [], fallos: [], fotos: 0, descartadas: [] };
+const informe = { paginas: [], fallos: [], fotos: 0, descartadas: [], paraRevisar: [], sondeosFallidos: [] };
 const cacheImagenes = new Map();
 
 let origen;
@@ -115,19 +115,22 @@ async function main() {
       if (img && (!mejor || img.ancho * img.alto > mejor.ancho * mejor.alto)) mejor = { ...img, url: c };
     }
     if (!mejor) {
-      if (!g.sondeo) informe.descartadas.push(`${g.clave}: no se pudo descargar`);
+      if (g.sondeo) informe.sondeosFallidos.push(g.clave);
+      else informe.descartadas.push(`${g.clave}: no se pudo descargar`);
       continue;
     }
 
     const enCocinas = /\/imagenes_cocinas\//i.test(new URL(mejor.url).pathname);
     const lado = Math.max(mejor.ancho, mejor.alto);
     const nombre = path.basename(new URL(mejor.url).pathname);
-    if (!enCocinas && (RECURSO_UI.test(nombre) || lado < 300)) {
-      informe.descartadas.push(`${mejor.url}: parece un elemento de la interfaz (${mejor.ancho}×${mejor.alto})`);
+    if (!enCocinas && RECURSO_UI.test(nombre)) {
+      informe.descartadas.push(`${mejor.url}: elemento de la interfaz (${mejor.ancho}×${mejor.alto})`);
       continue;
     }
-    if (enCocinas && lado < 150) {
-      informe.descartadas.push(`${mejor.url}: demasiado pequeña (${mejor.ancho}×${mejor.alto})`);
+    // Las pequeñas no van a la web, pero se guardan en referencias/ para revisarlas a mano
+    if (lado < (enCocinas ? 150 : 300)) {
+      informe.descartadas.push(`${mejor.url}: demasiado pequeña (${mejor.ancho}×${mejor.alto}), guardada en referencias/web-actual/descartadas/`);
+      informe.paraRevisar.push({ nombre: nombreArchivo(nombre, mejor.formato), buffer: mejor.buffer });
       continue;
     }
 
@@ -154,7 +157,7 @@ async function main() {
     const estilos = clasificacion.estilos;
     const acabados = clasificacion.acabados;
     const titulo = clasificacion.titulo || tituloDesde(g.contextos);
-    const previo = anterior.get(mejor.url);
+    const previo = anterior.get(claveFoto(new URL(mejor.url)));
 
     fotos.push({
       id: idUnico(id, fotos),
@@ -406,7 +409,7 @@ function variantesGrandes(u) {
   const dir = u.pathname.replace(/[^/]*$/, '');
   const nombre = path.posix.basename(u.pathname);
   const sinPrefijo = nombre.replace(/^(pq|th|mini|peq)_/i, '');
-  const sinSufijo = sinPrefijo.replace(/_(pq|peq|th|mini)(\.\w+)$/i, '$2');
+  const sinSufijo = sinPrefijo.replace(/_?(pq|peq|th|mini)(\.\w+)$/i, '$2');
   const nombres = new Set([sinSufijo, `gr_${sinSufijo}`, `g_${sinSufijo}`, `grande_${sinSufijo}`]);
   if (sinSufijo !== nombre) nombres.add(sinSufijo.replace(/\.jpe?g$/i, '.JPG'));
   return [...nombres].filter((n) => n !== nombre).map((n) => new URL(dir + n, u));
@@ -418,7 +421,8 @@ function claveFoto(u) {
     .basename(u.pathname)
     .toLowerCase()
     .replace(/^(pq|gr|g|grande|th|mini|peq)_/, '')
-    .replace(/_(pq|peq|th|mini|gr)(\.\w+)$/, '$2')
+    .replace(/_(pq|peq|th|gr)(\.\w+)$/, '$2')
+    .replace(/_?mini(\.\w+)$/, '$1')
     .replace(/\.jpeg$/, '.jpg');
   return dir + nombre;
 }
@@ -501,9 +505,21 @@ function clasificarFoto(grupos, nombre = '') {
 }
 
 /** Vuelca el HTML de unas páginas tal como lo recibe el importador (solo lectura). */
-async function diagnostico(urls) {
+async function diagnostico(entradas) {
   const LIMITE = 60_000;
-  for (const url of urls) {
+  const urls = entradas.filter((e) => e && e !== 'true');
+  if (!urls.length) {
+    console.error('Uso: npm run fotos -- --diagnostico URL[,URL…]  (p. ej. /exposicion-virtual.php o cocinascma.com/fabrica.php)');
+    process.exitCode = 1;
+    return;
+  }
+  for (const entrada of urls) {
+    // Admite URL completas, dominios sin protocolo y rutas relativas a la web actual
+    const url = /^https?:\/\//i.test(entrada)
+      ? entrada
+      : entrada.startsWith('/')
+        ? new URL(entrada, ORIGENES[0]).href
+        : `https://${entrada}`;
     console.log(`\n===== ${url}`);
     try {
       const res = await pedir(url);
@@ -515,6 +531,7 @@ async function diagnostico(urls) {
       console.log(html.length > LIMITE ? html.slice(0, LIMITE) + `\n[… ${html.length - LIMITE} caracteres más]` : html);
     } catch (e) {
       console.log(`ERROR: ${e.cause?.code ?? e.message}`);
+      process.exitCode = 1;
     }
   }
 }
@@ -686,7 +703,10 @@ function leerArgumentos(lista) {
   const r = {};
   for (let i = 0; i < lista.length; i++) {
     if (lista[i].startsWith('--')) {
-      const [k, v] = lista[i].slice(2).split('=');
+      const arg = lista[i].slice(2);
+      const igual = arg.indexOf('=');
+      const k = igual < 0 ? arg : arg.slice(0, igual);
+      const v = igual < 0 ? undefined : arg.slice(igual + 1);
       r[k] = v ?? (lista[i + 1] && !lista[i + 1].startsWith('--') ? lista[++i] : 'true');
     }
   }
@@ -696,7 +716,9 @@ function leerArgumentos(lista) {
 async function leerManifiestoAnterior() {
   try {
     const datos = JSON.parse(await readFile(MANIFIESTO, 'utf8'));
-    return new Map((datos.fotos ?? []).map((f) => [f.origen, f]));
+    // Clave sin protocolo ni host: así las correcciones a mano se conservan aunque
+    // cambie el origen (www o no, http o https, o una copia local con --origen).
+    return new Map((datos.fotos ?? []).map((f) => [claveFoto(new URL(f.origen)), f]));
   } catch {
     return new Map();
   }
@@ -708,6 +730,10 @@ async function guardarReferencias(paginas) {
   for (const [i, p] of paginas.entries()) {
     const nombre = `${String(i + 1).padStart(2, '0')}-${slug(new URL(p.url).pathname + new URL(p.url).search).slice(0, 60) || 'inicio'}.txt`;
     await writeFile(path.join(DIR_REF, 'paginas', nombre), `${p.url}\n${p.titulo}\n${'='.repeat(60)}\n\n${p.texto}\n`);
+  }
+  if (informe.paraRevisar.length) {
+    await mkdir(path.join(DIR_REF, 'descartadas'), { recursive: true });
+    for (const d of informe.paraRevisar) await writeFile(path.join(DIR_REF, 'descartadas', d.nombre), d.buffer);
   }
   // Logo actual, como referencia (no se usa en la web)
   const logo = await descargarImagen(new URL('/images/logo.jpg', origen).href);
@@ -729,6 +755,9 @@ async function guardarReferencias(paginas) {
     '',
     '## Imágenes descartadas',
     ...(informe.descartadas.length ? informe.descartadas.map((f) => `- ${f}`) : ['- Ninguna']),
+    '',
+    '## Nombres probados que no existen',
+    ...(informe.sondeosFallidos.length ? informe.sondeosFallidos.map((f) => `- ${f}`) : ['- Ninguno']),
     '',
   ].join('\n');
   await writeFile(path.join(DIR_REF, 'informe.md'), md);

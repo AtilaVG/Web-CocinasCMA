@@ -115,11 +115,12 @@ export const hayFotosReales = reales.length > 0;
 
 export const proyectos: Proyecto[] = hayFotosReales ? reales : pendientes;
 
-/** Selección para la portada: los marcados como destacados (en su orden) o, si no hay, los primeros. */
+/** Selección para la portada: los destacados (en su orden), completados con los primeros si faltan. */
 export const destacados: Proyecto[] = (() => {
   const posicion = (p: Proyecto) => (typeof p.destacado === 'number' ? p.destacado : 99);
   const marcados = proyectos.filter((p) => p.destacado).sort((a, b) => posicion(a) - posicion(b));
-  return (marcados.length >= 5 ? marcados : proyectos).slice(0, 5);
+  const resto = proyectos.filter((p) => !p.destacado);
+  return [...marcados, ...resto].slice(0, 5);
 })();
 
 function ordenEstilo(p: Proyecto) {

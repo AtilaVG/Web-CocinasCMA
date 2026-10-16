@@ -21,6 +21,7 @@ interface Props {
 
 const { titulo, descripcion, tituloCompleto, headerTransparente = false } = Astro.props;
 const tituloFinal = tituloCompleto ?? `${titulo} · Cocinas CMA`;
+const esError = /\/404\/?$|\/404\.html$/.test(Astro.url.pathname);
 const canonica = new URL(Astro.url.pathname, Astro.site).href;
 const imagenSocial = new URL(url('og-cocinascma.png'), Astro.site).href;
 ---
@@ -32,7 +33,7 @@ const imagenSocial = new URL(url('og-cocinascma.png'), Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{tituloFinal}</title>
     <meta name="description" content={descripcion} />
-    <link rel="canonical" href={canonica} />
+    {!esError && <link rel="canonical" href={canonica} />}
     {!__INDEXAR__ && <meta name="robots" content="noindex, nofollow" />}
 
     <meta property="og:type" content="website" />
@@ -40,7 +41,7 @@ const imagenSocial = new URL(url('og-cocinascma.png'), Astro.site).href;
     <meta property="og:site_name" content="Cocinas CMA" />
     <meta property="og:title" content={tituloFinal} />
     <meta property="og:description" content={descripcion} />
-    <meta property="og:url" content={canonica} />
+    {!esError && <meta property="og:url" content={canonica} />}
     <meta property="og:image" content={imagenSocial} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />

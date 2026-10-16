@@ -77,6 +77,7 @@ if (galeria) {
   const titulo = visor?.querySelector<HTMLElement>('[data-visor-titulo]');
   const meta = visor?.querySelector<HTMLElement>('[data-visor-meta]');
   const contador = visor?.querySelector<HTMLElement>('[data-visor-contador]');
+  const aviso = visor?.querySelector<HTMLElement>('[data-visor-aviso]');
   let actual = 0;
 
   const enlacesVisibles = () =>
@@ -95,6 +96,10 @@ if (galeria) {
     if (titulo) titulo.textContent = enlace.dataset.titulo ?? '';
     if (meta) meta.textContent = enlace.dataset.meta ?? '';
     if (contador) contador.textContent = `${actual + 1} / ${enlaces.length}`;
+    if (aviso) {
+      aviso.textContent = enlace.dataset.aviso ?? '';
+      aviso.hidden = !enlace.dataset.aviso;
+    }
     const unaSola = enlaces.length < 2;
     visor.querySelectorAll<HTMLElement>('.visor__nav').forEach((b) => (b.hidden = unaSola));
     // Precarga de las vecinas

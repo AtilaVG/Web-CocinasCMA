@@ -110,6 +110,7 @@ const meta = (p: (typeof proyectos)[number]) =>
                     data-abrir
                     data-titulo={p.titulo}
                     data-meta={meta(p)}
+                    data-aviso={p.aviso}
                   >
                     <div class="media pieza__media">
                       <Foto
@@ -155,6 +156,7 @@ const meta = (p: (typeof proyectos)[number]) =>
           <span class="visor__titulo" data-visor-titulo></span>
           <span class="visor__meta" data-visor-meta></span>
           <span class="visor__contador" data-visor-contador></span>
+          <span class="tag-pendiente visor__aviso" data-visor-aviso hidden></span>
         </figcaption>
       </figure>
     </div>
@@ -458,6 +460,10 @@ const meta = (p: (typeof proyectos)[number]) =>
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--c-on-dark-muted);
+  }
+
+  .visor__aviso {
+    color: #e6cfa8;
   }
 
   .visor__boton {

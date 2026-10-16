@@ -133,8 +133,8 @@ const cifras = [
         </div>
         <div data-reveal style="--d: 0.16s">
           <p class="muted">
-            Modernas, actuales o rústicas; en laca, madera, cristal o estratificado. Cada una pensada para una casa y
-            una familia concretas.
+            Modernas, actuales o rústicas; en laca, madera, cristal o estratificado. Trabajos en casas de nuestros
+            clientes y ambientes de nuestra exposición de Humanes.
           </p>
         </div>
       </div>
@@ -241,6 +241,7 @@ const cifras = [
     position: absolute;
     inset: 0;
     background:
+      linear-gradient(180deg, rgb(2 15 61 / 0.55) 0, rgb(2 15 61 / 0) calc(var(--header-h) + 4rem)),
       linear-gradient(0deg, rgb(2 15 61 / 0.85) 0%, rgb(2 15 61 / 0.4) 40%, rgb(2 15 61 / 0) 68%),
       linear-gradient(90deg, rgb(2 15 61 / 0.5), rgb(2 15 61 / 0) 65%);
     pointer-events: none;
@@ -291,6 +292,13 @@ const cifras = [
   .hero__scroll :global(svg) {
     width: 1.25rem;
     height: 1.25rem;
+  }
+
+  /* En móvil el texto ocupa casi toda la foto: velo más alto y uniforme */
+  @media (max-width: 47.99em) {
+    .hero__velo {
+      background: linear-gradient(0deg, rgb(2 15 61 / 0.88) 0%, rgb(2 15 61 / 0.6) 50%, rgb(2 15 61 / 0.45) 100%);
+    }
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -486,9 +494,22 @@ const cifras = [
       grid-column: 6 / 13;
     }
 
-    /* Misma altura que la 4 (5 columnas a 4:3) */
+    /* La 5 ocupa el mismo alto que la 4 (se estira en la fila del grid) */
+    .trabajo--5 .trabajo__enlace {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
     .trabajo--5 .trabajo__media {
-      aspect-ratio: 28 / 15;
+      flex: 1 1 0;
+      aspect-ratio: auto;
+      min-height: 0;
+    }
+
+    .trabajo--5 .trabajo__media > :global(picture) {
+      position: absolute;
+      inset: 0;
     }
   }
 

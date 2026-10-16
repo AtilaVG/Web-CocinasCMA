@@ -110,11 +110,24 @@ const esActual = (ruta: string) => (ruta === '/' ? actual === '/' : actual.start
     inset: 0 0 auto;
   }
 
+  /* Sobre la foto: degradado marino y sombra suave para que el menú y el
+     teléfono se lean también sobre zonas claras (ventanas, muebles blancos) */
   .cabecera[data-transparente]:not(.is-scrolled) {
-    background: linear-gradient(180deg, rgb(2 15 61 / 0.55), rgb(2 15 61 / 0));
+    background: linear-gradient(180deg, rgb(2 15 61 / 0.78) 0%, rgb(2 15 61 / 0.5) 65%, rgb(2 15 61 / 0) 100%);
     backdrop-filter: none;
     color: var(--c-on-dark);
     border-color: transparent;
+  }
+
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__nav a,
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__tel,
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__menu {
+    text-shadow: 0 1px 3px rgb(2 15 61 / 0.6);
+  }
+
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__tel :global(svg),
+  .cabecera[data-transparente]:not(.is-scrolled) .cabecera__menu :global(svg) {
+    filter: drop-shadow(0 1px 2px rgb(2 15 61 / 0.7));
   }
 
   .cabecera :global(.logo-solido) {
